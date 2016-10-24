@@ -19,16 +19,16 @@ namespace _393_Food_Machine
            Breakfast
         }
 
-        private String description;
-        private RecipeCategory category;
-        private int prepTime;
-        private DateTime dateAdded;
-        private int numServings;
-        private int caloriesPerServing;
-        private double avgCost;
+        public String description;
+        public RecipeCategory category;
+        public int prepTime;
+        public DateTime dateAdded;
+        public int numServings;
+        public int caloriesPerServing;
+        public double avgCost;
 
         //The list of ingredients for the recipe, paired with the amount of servings of that Ingredient required
-        private List<Tuple<Ingredient, double>> ingredientList;
+        public List<Tuple<Ingredient, double>> ingredientList;
         
         public Recipe(String name, String description, RecipeCategory category, 
             int prepTime, DateTime dateAdded, 
@@ -66,8 +66,10 @@ namespace _393_Food_Machine
         //TODO: Incorporate actual call to API
         public override bool PushItem()
         {
-            String jsonObj = JsonConvert.SerializeObject(this);
-            Console.Write(jsonObj);
+            Recipe product = (Recipe) this.MemberwiseClone();
+            String jsonObj = JsonConvert.SerializeObject(product);
+            //Console.Out.WriteLine("ANYTHING AND EVERYTHING");
+            Console.Out.WriteLine(jsonObj);
             return true;
         }
 

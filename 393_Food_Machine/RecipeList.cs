@@ -18,6 +18,7 @@ namespace _393_Food_Machine
         public RecipeList()
         {
             InitializeComponent();
+            PullItems();
             foreach(Tuple<String,int> recipe in recipeList)
             {
                 recipeListBox.Items.Add(new KeyValuePair<String, int>(recipe.Item1,recipe.Item2));
@@ -28,6 +29,7 @@ namespace _393_Food_Machine
         public bool PullItems()
         {
             //Get the list of recipe names and ID's from the API
+            recipeList = new List<Tuple<string, int>>();
             return true;
         }
     }

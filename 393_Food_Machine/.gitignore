@@ -1,0 +1,10 @@
+/393_Food_Machine/*.csproj
+/393_Food_Machine/*Form1*
+/393_Food_Machine/Properties/
+/393_Food_Machine/*.config
+/393_Food_Machine/bin/
+/393_Food_Machine/obj/
+/packages/
+.vs/
+*.sln
+
