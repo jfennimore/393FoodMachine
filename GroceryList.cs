@@ -20,7 +20,7 @@ namespace _393_Food_Machine
 
         public GroceryList(String json)
         {
-            Store imported = JsonConvert.DeserializeObject<Store>(json);
+            GroceryList imported = JsonConvert.DeserializeObject<GroceryList>(json);
             this.id = imported.GetID();
             this.name = imported.GetName();
             this.groceries = imported.GetGroceries();
