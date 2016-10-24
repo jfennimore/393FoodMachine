@@ -8,8 +8,8 @@ namespace _393_Food_Machine
 {
     public abstract class Editable
     {
-        int id;
-        String name;
+        protected int id;
+        protected String name;
         //Push the item to the API as a JSON object and then validate that the object was received.
         public abstract bool PushItem();
 

@@ -26,9 +26,16 @@ namespace _393_Food_Machine
         private int numServings;
         private int caloriesPerServing;
         private double avgCost;
+
+        //The list of ingredients for the recipe, paired with the amount of servings of that Ingredient required
+        private List<Tuple<Ingredient, double>> ingredientList;
         
-        public Recipe(String description, RecipeCategory category, int prepTime, DateTime dateAdded, int numServings)
+        public Recipe(String name, String description, RecipeCategory category, 
+            int prepTime, DateTime dateAdded, 
+            int numServings, List<Tuple<Ingredient, double>> ingredientList)
         {
+            //this.id =
+            this.name = name; 
             this.description = description;
             this.category = category;
             this.prepTime = prepTime;
@@ -36,11 +43,14 @@ namespace _393_Food_Machine
             this.numServings = numServings;
             this.caloriesPerServing = CalculateCalories();
             this.avgCost = CalculateAvgCost();
+            this.ingredientList = ingredientList;
         }
 
         public Recipe(String json)
         {
             Recipe imported = JsonConvert.DeserializeObject<Recipe>(json);
+            this.id = imported.GetID();
+            this.name = imported.GetName();
             this.description = imported.GetDescription();
             this.category = imported.GetCategory();
             this.prepTime = imported.GetPrepTime();
@@ -48,10 +58,12 @@ namespace _393_Food_Machine
             this.numServings = imported.GetNumServings();
             //TODO: Do we take the JSON Object's word for it that these values are accurate?  For now, yes.
             this.caloriesPerServing = imported.GetCaloriesPerServing();
-            this.avgCost = imported.GetAvgCost();            
+            this.avgCost = imported.GetAvgCost();
+            this.ingredientList = imported.GetIngredientList();            
         }
 
         //PushItem basically IS 'ExportRecipe()'
+        //TODO: Incorporate actual call to API
         public override bool PushItem()
         {
             String jsonObj = JsonConvert.SerializeObject(this);
@@ -128,6 +140,17 @@ namespace _393_Food_Machine
         public void SetCaloriesPerServing(int calories)
         {
             caloriesPerServing = calories;
+        }
+
+        public List<Tuple<Ingredient, double>> GetIngredientList()
+        {
+            return ingredientList;
+        }
+
+        //TODO: Every time the ingredient list needs to be updated through an edit, the UI form is just going to recreate the List
+        public void SetIngredientList(List<Tuple<Ingredient, double>> ingredientList)
+        {
+            this.ingredientList = ingredientList;
         }
 
         //Calculate Avg Cost and Calories Per Serving based on information from Store and Ingredients

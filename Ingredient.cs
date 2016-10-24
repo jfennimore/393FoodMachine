@@ -36,6 +36,8 @@ namespace _393_Food_Machine
         public Ingredient(String json)
         {
             Ingredient imported = JsonConvert.DeserializeObject<Ingredient>(json);
+            this.id = imported.GetID();
+            this.name = imported.GetName();
             this.calories = imported.GetCalories();
             this.amount = imported.GetAmount();
             this.unit = imported.GetUnit();
