@@ -19,17 +19,22 @@ namespace _393_Food_Machine
         {
             InitializeComponent();
             PullItems();
-            foreach(Tuple<String,int> recipe in recipeList)
-            {
-                recipeListBox.Items.Add(new KeyValuePair<String, int>(recipe.Item1,recipe.Item2));
-            }
             
+            foreach (Tuple<String,int> recipe in recipeList)
+            {
+                recipeListBox.Items.Add(recipe.Item1);
+                //ListViewItem newItem = new ListViewItem();
+                //newItem.Text = recipe.Item1;
+                //newItem.Tag = recipe.Item2;
+                //recipeListBox.Items.Add(newItem);
+            }
         }
 
         public bool PullItems()
         {
             //Get the list of recipe names and ID's from the API
-            recipeList = new List<Tuple<string, int>>();
+            recipeList = new List<Tuple<String, int>>();
+            recipeList.Add(new Tuple<String, int>("Cake", 3));
             return true;
         }
     }

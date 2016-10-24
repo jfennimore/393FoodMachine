@@ -74,10 +74,6 @@
             // recipeListBox
             // 
             this.recipeListBox.FormattingEnabled = true;
-            this.recipeListBox.Items.AddRange(new object[] {
-            "Recipe1",
-            "Recipe2",
-            "Recipe3"});
             this.recipeListBox.Location = new System.Drawing.Point(54, 78);
             this.recipeListBox.Name = "recipeListBox";
             this.recipeListBox.Size = new System.Drawing.Size(477, 173);
