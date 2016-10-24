@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace _393_Food_Machine
 {
-    interface Editable
+    public abstract class Editable
     {
+        int id;
+        String name;
+        //Push the item to the API as a JSON object and then validate that the object was received.
+        public abstract bool PushItem();
+
+        public int GetID()
+        {
+            return id;
+        }
+
+        public String GetName()
+        {
+            return name;
+        }
     }
 }
