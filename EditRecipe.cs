@@ -10,37 +10,34 @@ using System.Windows.Forms;
 
 namespace _393_Food_Machine
 {
-    public partial class IndivRecipeUI : Form
+    public partial class EditRecipe : Form
     {
         private Recipe indivRecipe;
-
-        public IndivRecipeUI(int id)
+        public EditRecipe(int id)
         {
             InitializeComponent();
 
             //Grab the contents of this recipe from the API
             bool successfulPull = PullRecipeByID(id);
-            if(!successfulPull)
+            if (!successfulPull)
             {
                 Console.Error.Write(String.Format("Did not successfully pull recipe with id: %d", id));
             }
-            
+
             //Set title
             title.Text = indivRecipe.GetName();
-            
+
             //Add the ingredients
             foreach (Tuple<Ingredient, double> ingredient in indivRecipe.GetIngredientList())
             {
-                ingredientListBox.Items.Add(String.Format("%s\t\t\t%d %s", 
-                    ingredient.Item1.GetName(), 
-                    ingredient.Item2, 
+                ingredientListBox.Items.Add(String.Format("%s\t\t\t%d %s",
+                    ingredient.Item1.GetName(),
+                    ingredient.Item2,
                     ingredient.Item1.GetUnit()));
             }
             //Add prep description
-            descriptionListBox.Items.Add(String.Format("Prep Time: %d",indivRecipe.GetPrepTime()));
-            descriptionListBox.Items.Add(String.Format("Number of Servings: %d", indivRecipe.GetNumServings()));
-            descriptionListBox.Items.Add(String.Format("Calories per Serving: %d\n", indivRecipe.GetCaloriesPerServing()));
-            descriptionListBox.Items.Add(String.Format("Avg Cost to make: %d\n", indivRecipe.GetAvgCost()));
+            prepTimeBox.Text = (String.Format("Prep Time: %d", indivRecipe.GetPrepTime()));
+            servingsBox.Text = (String.Format("Number of Servings: %d", indivRecipe.GetNumServings()));
             descriptionListBox.Items.Add(indivRecipe.GetDescription());
         }
 
