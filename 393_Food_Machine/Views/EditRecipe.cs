@@ -25,20 +25,20 @@ namespace _393_Food_Machine
             }
 
             //Set title
-            title.Text = indivRecipe.GetName();
+            title.Text = indivRecipe.name;
 
             //Add the ingredients
-            foreach (Tuple<Ingredient, double> ingredient in indivRecipe.GetIngredientList())
+            foreach (Tuple<Ingredient, double> ingredient in indivRecipe.ingredientList)
             {
                 ingredientListBox.Items.Add(String.Format("%s\t\t\t%d %s",
-                    ingredient.Item1.GetName(),
+                    ingredient.Item1.name,
                     ingredient.Item2,
-                    ingredient.Item1.GetUnit()));
+                    ingredient.Item1.unit));
             }
             //Add prep description
-            prepTimeBox.Text = (String.Format("Prep Time: %d", indivRecipe.GetPrepTime()));
-            servingsBox.Text = (String.Format("Number of Servings: %d", indivRecipe.GetNumServings()));
-            descriptionListBox.Items.Add(indivRecipe.GetDescription());
+            prepTimeBox.Text = (String.Format("Prep Time: %d", indivRecipe.prepTime));
+            servingsBox.Text = (String.Format("Number of Servings: %d", indivRecipe.numServings));
+            descriptionListBox.Items.Add(indivRecipe.description);
         }
 
         //Initialize the Recipe object of this UI page from the JSON returned from the API

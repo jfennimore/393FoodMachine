@@ -78,6 +78,7 @@
             this.recipeListBox.Name = "recipeListBox";
             this.recipeListBox.Size = new System.Drawing.Size(477, 173);
             this.recipeListBox.TabIndex = 4;
+            this.recipeListBox.SelectedIndexChanged += new System.EventHandler(this.recipeListBox_SelectedIndexChanged);
             // 
             // newRecipeButton
             // 

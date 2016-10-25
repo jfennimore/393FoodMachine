@@ -21,8 +21,8 @@ namespace _393_Food_Machine
         public Store(String json)
         {
             Store imported = JsonConvert.DeserializeObject<Store>(json);
-            this.id = imported.GetID();
-            this.name = imported.GetName();
+            this.id = imported.id;
+            this.name = imported.name;
             this.ingredientCosts = imported.GetIngredientCosts();
         }
 

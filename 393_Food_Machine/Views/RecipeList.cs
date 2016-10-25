@@ -37,5 +37,13 @@ namespace _393_Food_Machine
             recipeList.Add(new Tuple<String, int>("Cake", 3));
             return true;
         }
+
+        //User selected an item in the list
+        private void recipeListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.Out.Write(recipeListBox.SelectedIndex);
+            //Match the selected index to the index of the Recipe in the list and get the id for that recipe
+            //Application.Run(new IndivRecipeUI());
+        }
     }
 }

@@ -1,7 +1,7 @@
 */*.csproj
 /393_Food_Machine/*Form1*
 */Properties/
-/393_Food_Machine/*.config
+/393_Food_Machine*/*.config
 */bin/
 */obj/
 /packages/

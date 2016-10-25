@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace _393_Food_Machine.Tests
 {
@@ -17,9 +18,9 @@ namespace _393_Food_Machine.Tests
         public void Initialize()
         {
             List<Tuple<Ingredient, double>> ingredients = new List<Tuple<Ingredient, double>>();
-            Ingredient butter = new Ingredient("Butter", 400, 1, "tbsp", Ingredient.IngredientCategory.Dairy);
-            Ingredient flour = new Ingredient("Flour", 100, 1, "cup", Ingredient.IngredientCategory.Grains_Pasta);
-            Ingredient water = new Ingredient("Water", 0, 1, "tbsp", Ingredient.IngredientCategory.Produce);
+            Ingredient butter = new Ingredient("Butter", 400, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Dairy);
+            Ingredient flour = new Ingredient("Flour", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Grains_Pasta);
+            Ingredient water = new Ingredient("Water", 0, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Produce);
             ingredients.Add(new Tuple<Ingredient, double>(butter, 3.0));
             ingredients.Add(new Tuple<Ingredient, double>(flour, 2.5));
             ingredients.Add(new Tuple<Ingredient, double>(water, 1.0));
@@ -31,52 +32,62 @@ namespace _393_Food_Machine.Tests
         [TestMethod()]
         public void TestSample()
         {
-            Assert.AreEqual("Pie Crust", sample.GetName());
-            Assert.AreEqual("Add all ingredients and mix", sample.GetDescription());
-            Assert.AreEqual(Recipe.RecipeCategory.Dessert, sample.GetCategory());
-            Assert.AreEqual(100, sample.GetPrepTime());
-            Assert.AreEqual(DateTime.Today, sample.GetDateAdded());
-            Assert.AreEqual(12, sample.GetNumServings());
+            Assert.AreEqual("Pie Crust", sample.name);
+            Assert.AreEqual("Add all ingredients and mix", sample.description);
+            Assert.AreEqual(Recipe.RecipeCategory.Dessert, sample.category);
+            Assert.AreEqual(100, sample.prepTime);
+            Assert.AreEqual(DateTime.Today, sample.dateAdded);
+            Assert.AreEqual(12, sample.numServings);
         }
 
         [TestMethod()]
         public void TestAlterRecipeDesc()
         {
-            sample.SetDescription("Crumble butter with a fork");
-            Assert.AreEqual("Crumble butter with a fork", sample.GetDescription());
-            Assert.AreNotEqual("Add all ingredients and mix", sample.GetDescription());
+            sample.description = "Crumble butter with a fork";
+            Assert.AreEqual("Crumble butter with a fork", sample.description);
+            Assert.AreNotEqual("Add all ingredients and mix", sample.description);
         }
 
         [TestMethod()]
         public void TestAlterRecipePrepTime()
         {
-            sample.SetPrepTime(50);
-            Assert.AreEqual(50, sample.GetPrepTime());
-            Assert.AreNotEqual(100, sample.GetPrepTime());
+            sample.prepTime = 50;
+            Assert.AreEqual(50, sample.prepTime);
+            Assert.AreNotEqual(100, sample.prepTime);
         }
 
         [TestMethod()]
         public void TestAlterRecipeCategory()
         {
-            sample.SetCategory(Recipe.RecipeCategory.Breakfast);
-            Assert.AreEqual(Recipe.RecipeCategory.Breakfast, sample.GetCategory());
-            Assert.AreNotEqual(Recipe.RecipeCategory.Dessert, sample.GetCategory());
+            sample.category = Recipe.RecipeCategory.Breakfast;
+            Assert.AreEqual(Recipe.RecipeCategory.Breakfast, sample.category);
+            Assert.AreNotEqual(Recipe.RecipeCategory.Dessert, sample.category);
         }
 
         [TestMethod()]
         public void TestAlterRecipeDate()
         {
-            sample.SetDateAdded(DateTime.Today.AddDays(1));
-            Assert.AreEqual(DateTime.Today.AddDays(1), sample.GetDateAdded());
-            Assert.AreNotEqual(DateTime.Today, sample.GetDateAdded());
+            sample.dateAdded = DateTime.Today.AddDays(1);
+            Assert.AreEqual(DateTime.Today.AddDays(1), sample.dateAdded);
+            Assert.AreNotEqual(DateTime.Today, sample.dateAdded);
         }
 
         [TestMethod()]
         public void TestAlterRecipeServings()
         {
-            sample.SetNumServings(10);
-            Assert.AreEqual(10, sample.GetNumServings());
-            Assert.AreNotEqual(12, sample.GetNumServings());
+            sample.numServings = 10;
+            Assert.AreEqual(10, sample.numServings);
+            Assert.AreNotEqual(12, sample.numServings);
+        }
+
+        [TestMethod()]
+        //The Recipe should be the same before and after serialization
+        public void TestJSONSerialization()
+        {
+            sample.PushItem();
+            String jsonObj = JsonConvert.SerializeObject(sample);
+            Recipe deserialized = JsonConvert.DeserializeObject<Recipe>(jsonObj);
+            Assert.IsTrue(sample.Equals(deserialized));
         }
 
 

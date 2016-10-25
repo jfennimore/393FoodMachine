@@ -21,17 +21,29 @@ namespace _393_Food_Machine
             Canned_Goods
         }
 
-        public int calories;
-        public double amount;
-        public String unit;
-        public IngredientCategory category;
+        //These are the most common units for almost all recipes
+        public enum measurementUnits
+        {
+            tsp,
+            tbsp,
+            cups,
+            lbs,
+            quarts,
+            gallons,
+            oz
+        }
 
-        public Ingredient(String name, int calories, double amount, String unit, IngredientCategory category)
+        public int calories { get; set; }
+        //public double amount; //I don't think we ACTUALLY need this!
+        public measurementUnits unit { get; set; }
+        public IngredientCategory category { get; set; }
+
+        [JsonConstructor]
+        public Ingredient(String name, int calories, measurementUnits unit, IngredientCategory category)
         {
             this.id = 0;
             this.name = name;
             this.calories = calories;
-            this.amount = amount;
             this.unit = unit;
             this.category = category;
         }
@@ -39,12 +51,11 @@ namespace _393_Food_Machine
         public Ingredient(String json)
         {
             Ingredient imported = JsonConvert.DeserializeObject<Ingredient>(json);
-            this.id = imported.GetID();
-            this.name = imported.GetName();
-            this.calories = imported.GetCalories();
-            this.amount = imported.GetAmount();
-            this.unit = imported.GetUnit();
-            this.category = imported.GetCategory();
+            this.id = imported.id;
+            this.name = imported.name;
+            this.calories = imported.calories;
+            this.unit = imported.unit;
+            this.category = imported.category;
         } 
 
         public override bool PushItem()
@@ -54,45 +65,5 @@ namespace _393_Food_Machine
             return true;
         }
 
-        //Getters and Setters for all Ingredient Fields
-        public int GetCalories()
-        {
-            return calories;
-        }
-
-        public void SetCalories(int calories)
-        {
-            this.calories = calories;
-        }
-
-        public double GetAmount()
-        {
-            return amount;
-        }
-
-        public void SetAmount(double amount)
-        {
-            this.amount = amount;
-        }
-
-        public String GetUnit()
-        {
-            return unit;
-        }
-
-        public void SetUnit(String unit)
-        {
-            this.unit = unit;
-        }
-
-        public IngredientCategory GetCategory()
-        {
-            return category;
-        }
-
-        public void SetCategory(IngredientCategory category)
-        {
-            this.category = category;
-        }
     }
 }

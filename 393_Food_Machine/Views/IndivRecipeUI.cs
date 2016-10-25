@@ -26,22 +26,22 @@ namespace _393_Food_Machine
             }
             
             //Set title
-            title.Text = indivRecipe.GetName();
+            title.Text = indivRecipe.name;
             
             //Add the ingredients
-            foreach (Tuple<Ingredient, double> ingredient in indivRecipe.GetIngredientList())
+            foreach (Tuple<Ingredient, double> ingredient in indivRecipe.ingredientList)
             {
                 ingredientListBox.Items.Add(String.Format("%s\t\t\t%d %s", 
-                    ingredient.Item1.GetName(), 
+                    ingredient.Item1.name, 
                     ingredient.Item2, 
-                    ingredient.Item1.GetUnit()));
+                    ingredient.Item1.unit));
             }
             //Add prep description
-            descriptionListBox.Items.Add(String.Format("Prep Time: %d",indivRecipe.GetPrepTime()));
-            descriptionListBox.Items.Add(String.Format("Number of Servings: %d", indivRecipe.GetNumServings()));
-            descriptionListBox.Items.Add(String.Format("Calories per Serving: %d\n", indivRecipe.GetCaloriesPerServing()));
-            descriptionListBox.Items.Add(String.Format("Avg Cost to make: %d\n", indivRecipe.GetAvgCost()));
-            descriptionListBox.Items.Add(indivRecipe.GetDescription());
+            descriptionListBox.Items.Add(String.Format("Prep Time: %d",indivRecipe.prepTime));
+            descriptionListBox.Items.Add(String.Format("Number of Servings: %d", indivRecipe.numServings));
+            descriptionListBox.Items.Add(String.Format("Calories per Serving: %d\n", indivRecipe.caloriesPerServing));
+            descriptionListBox.Items.Add(String.Format("Avg Cost to make: %d\n", indivRecipe.avgCost));
+            descriptionListBox.Items.Add(indivRecipe.description);
         }
 
         //Initialize the Recipe object of this UI page from the JSON returned from the API
