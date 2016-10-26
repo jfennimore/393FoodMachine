@@ -43,9 +43,9 @@ namespace _393_Food_Machine
             this.prepTime = prepTime;
             this.dateAdded = dateAdded;
             this.numServings = numServings;
+            this.ingredientList = ingredientList;
             this.caloriesPerServing = CalculateCalories();
             this.avgCost = CalculateAvgCost();
-            this.ingredientList = ingredientList;
         }
 
         public Recipe(String json)
