@@ -24,24 +24,37 @@ namespace _393_Food_Machine
             {
                 Console.Error.Write(String.Format("Did not successfully pull recipe with id: %d", id));
             }
-            
+            InitializeFields();
+        }
+
+        public IndivRecipeUI(String json)
+        {
+            InitializeComponent();
+            indivRecipe = new Recipe(json);
+            InitializeFields();
+        }
+
+        private void InitializeFields()
+        {
             //Set title
             title.Text = indivRecipe.name;
-            
+
             //Add the ingredients
             foreach (Tuple<Ingredient, double> ingredient in indivRecipe.ingredientList)
             {
-                ingredientListBox.Items.Add(String.Format("%s\t\t\t%d %s", 
-                    ingredient.Item1.name, 
-                    ingredient.Item2, 
+                ingredientListBox.Items.Add(String.Format("{0}\t\t{1} {2}",
+                    ingredient.Item1.name,
+                    ingredient.Item2,
                     ingredient.Item1.unit));
             }
             //Add prep description
-            descriptionListBox.Items.Add(String.Format("Prep Time: %d",indivRecipe.prepTime));
-            descriptionListBox.Items.Add(String.Format("Number of Servings: %d", indivRecipe.numServings));
-            descriptionListBox.Items.Add(String.Format("Calories per Serving: %d\n", indivRecipe.caloriesPerServing));
-            descriptionListBox.Items.Add(String.Format("Avg Cost to make: %d\n", indivRecipe.avgCost));
-            descriptionListBox.Items.Add(indivRecipe.description);
+            StringBuilder recipeDesc = new StringBuilder();
+            recipeDesc.AppendLine(String.Format("Prep Time: {0}", indivRecipe.prepTime));
+            recipeDesc.AppendLine(String.Format("Number of Servings: {0}", indivRecipe.numServings));
+            recipeDesc.AppendLine(String.Format("Calories per Serving: {0}", indivRecipe.caloriesPerServing));
+            recipeDesc.AppendLine(String.Format("Avg Cost to make: {0}{1}", indivRecipe.avgCost, Environment.NewLine));
+            recipeDesc.AppendLine(String.Format("Description:\t{0}",indivRecipe.description));
+            descriptionTextBox.Text = recipeDesc.ToString();
         }
 
         //Initialize the Recipe object of this UI page from the JSON returned from the API

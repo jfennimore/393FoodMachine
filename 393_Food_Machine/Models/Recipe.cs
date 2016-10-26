@@ -70,11 +70,13 @@ namespace _393_Food_Machine
             this.category = imported.category;
             this.prepTime = imported.prepTime;
             this.dateAdded = imported.dateAdded;
+            this.ingredientList = imported.ingredientList;
+            //IngredientList cannot be null when assigning to numServings
             this.numServings = imported.numServings;
             //TODO: Do we take the JSON Object's word for it that these values are accurate?  For now, yes.
             this.caloriesPerServing = imported.caloriesPerServing;
             this.avgCost = imported.avgCost;
-            this.ingredientList = imported.ingredientList;            
+                       
         }
 
         //PushItem basically IS 'ExportRecipe()'

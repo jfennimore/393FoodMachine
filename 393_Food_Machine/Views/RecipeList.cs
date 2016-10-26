@@ -13,37 +13,72 @@ namespace _393_Food_Machine
     public partial class RecipeList : Form
     {
         //Binds recipe names with their ID's
-        private List<Tuple<String, int>> recipeList;
+        private List<Tuple<String, int, String>> recipeList;
 
         public RecipeList()
         {
             InitializeComponent();
             PullItems();
             
-            foreach (Tuple<String,int> recipe in recipeList)
+            foreach (Tuple<String,int,String> recipe in recipeList)
             {
                 recipeListBox.Items.Add(recipe.Item1);
-                //ListViewItem newItem = new ListViewItem();
-                //newItem.Text = recipe.Item1;
-                //newItem.Tag = recipe.Item2;
-                //recipeListBox.Items.Add(newItem);
             }
         }
 
         public bool PullItems()
         {
             //Get the list of recipe names and ID's from the API
-            recipeList = new List<Tuple<String, int>>();
-            recipeList.Add(new Tuple<String, int>("Cake", 3));
+            recipeList = new List<Tuple<String, int, String>>();
+            //The following a just demo recipes generated client-side to add to this list
+            recipeList.Add(new Tuple<String, int,String>("Cake", 3, jsonCake()));
+            recipeList.Add(new Tuple<String, int, String>("Meatballs", 5, jsonMeatballs()));
             return true;
         }
 
         //User selected an item in the list
         private void recipeListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.Out.Write(recipeListBox.SelectedIndex);
+            int index = recipeListBox.SelectedIndex;
+            int recipeId = recipeList.ElementAt(index).Item2;
             //Match the selected index to the index of the Recipe in the list and get the id for that recipe
-            //Application.Run(new IndivRecipeUI());
+            //Application.Run(new IndivRecipeUI(recipeId));
+            String jsonRecipe = recipeList.ElementAt(index).Item3;
+            (new IndivRecipeUI(jsonRecipe)).Show();
+        }
+
+        private String jsonCake()
+        {
+            Ingredient egg = new Ingredient("Egg", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Baking_Spices);
+            Ingredient sugar = new Ingredient("Sugar", 200, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
+            Ingredient flour = new Ingredient("Flour", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
+            Ingredient butter = new Ingredient("Butter", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Dairy);
+            List<Tuple<Ingredient, double>> ingrList = new List<Tuple<Ingredient, double>>();
+            ingrList.Add(new Tuple<Ingredient, double>(egg, 3));
+            ingrList.Add(new Tuple<Ingredient, double>(sugar, 2));
+            ingrList.Add(new Tuple<Ingredient, double>(flour, 2));
+            ingrList.Add(new Tuple<Ingredient, double>(butter, 8));
+            Recipe cake = new _393_Food_Machine.Recipe("Cake", 
+                "Blend on high mix, thoroughly whipping the butter and sugar together until they are creamy and smooth.  Then slowly add the flour a few tablespoons at a time until just mixed.", 
+                Recipe.RecipeCategory.Dessert, 30, DateTime.Today, 8, ingrList);
+            return cake.ToString();
+        }
+
+        private String jsonMeatballs()
+        {
+            Ingredient egg = new Ingredient("Egg", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Baking_Spices);
+            Ingredient ground_beef = new Ingredient("Ground Beef", 300, Ingredient.measurementUnits.lbs, Ingredient.IngredientCategory.Baking_Spices);
+            Ingredient breadcrumbs = new Ingredient("Breadcrumbs", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
+            Ingredient cheese = new Ingredient("Grated Cheese", 200, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Dairy);
+            List<Tuple<Ingredient, double>> ingrList = new List<Tuple<Ingredient, double>>();
+            ingrList.Add(new Tuple<Ingredient, double>(egg, 1));
+            ingrList.Add(new Tuple<Ingredient, double>(ground_beef, 1));
+            ingrList.Add(new Tuple<Ingredient, double>(breadcrumbs, 1.5));
+            ingrList.Add(new Tuple<Ingredient, double>(cheese, 1));
+            Recipe meatballs = new _393_Food_Machine.Recipe("Meatballs",
+                "Mix together meat, eggs, breadcrumbs all at once, then break off pieces, roll into balls, place on a pan and bake at 350F for 20 minutes.",
+                Recipe.RecipeCategory.Dessert, 30, DateTime.Today, 6, ingrList);
+            return meatballs.ToString();
         }
     }
 }

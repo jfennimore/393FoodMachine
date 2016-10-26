@@ -33,9 +33,9 @@
             this.editRecipeButton = new System.Windows.Forms.Button();
             this.title = new System.Windows.Forms.Label();
             this.ingredientListBox = new System.Windows.Forms.ListBox();
-            this.descriptionListBox = new System.Windows.Forms.ListBox();
             this.ingredientsLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
+            this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // backButton
@@ -83,14 +83,6 @@
             this.ingredientListBox.Size = new System.Drawing.Size(416, 82);
             this.ingredientListBox.TabIndex = 4;
             // 
-            // descriptionListBox
-            // 
-            this.descriptionListBox.FormattingEnabled = true;
-            this.descriptionListBox.Location = new System.Drawing.Point(71, 190);
-            this.descriptionListBox.Name = "descriptionListBox";
-            this.descriptionListBox.Size = new System.Drawing.Size(416, 95);
-            this.descriptionListBox.TabIndex = 5;
-            // 
             // ingredientsLabel
             // 
             this.ingredientsLabel.AutoSize = true;
@@ -111,14 +103,22 @@
             this.descriptionLabel.TabIndex = 7;
             this.descriptionLabel.Text = "Preparation Description";
             // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Location = new System.Drawing.Point(71, 191);
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(416, 84);
+            this.descriptionTextBox.TabIndex = 8;
+            this.descriptionTextBox.Text = "";
+            // 
             // IndivRecipeUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 297);
+            this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.ingredientsLabel);
-            this.Controls.Add(this.descriptionListBox);
             this.Controls.Add(this.ingredientListBox);
             this.Controls.Add(this.title);
             this.Controls.Add(this.editRecipeButton);
@@ -138,8 +138,8 @@
         private System.Windows.Forms.Button editRecipeButton;
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.ListBox ingredientListBox;
-        private System.Windows.Forms.ListBox descriptionListBox;
         private System.Windows.Forms.Label ingredientsLabel;
         private System.Windows.Forms.Label descriptionLabel;
+        private System.Windows.Forms.RichTextBox descriptionTextBox;
     }
 }
