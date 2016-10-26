@@ -68,9 +68,7 @@ namespace _393_Food_Machine
         //TODO: Incorporate actual call to API
         public override bool PushItem()
         {
-            Recipe product = (Recipe) this.MemberwiseClone();
-            String jsonObj = JsonConvert.SerializeObject(product);
-            //Console.Out.WriteLine("ANYTHING AND EVERYTHING");
+            String jsonObj = this.ToString();
             Console.Out.WriteLine(jsonObj);
             return true;
         }
@@ -78,13 +76,20 @@ namespace _393_Food_Machine
         //Calculate Avg Cost and Calories Per Serving based on information from Store and Ingredients
         private int CalculateCalories()
         {
-            //TODO: reach out to API to get this information
-            return 0;
+            double calories = 0.0;
+            foreach(Tuple<Ingredient,double> ingredient in ingredientList)
+            {
+                //Adds the calories per unit/serving of the ingredient times the amount of that ingredient called for in the recipe
+                calories += ingredient.Item1.calories * ingredient.Item2;
+            }
+            //Round off the calories
+            return (int) calories; 
         }
 
         private double CalculateAvgCost()
         {
             //TODO: reach out to API to get this information
+            //This method does need the API since all of the cost information is in the Store table.
             return 0.0;
         }
 
