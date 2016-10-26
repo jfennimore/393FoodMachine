@@ -24,7 +24,20 @@ namespace _393_Food_Machine
         public RecipeCategory category { get; set; }
         public int prepTime { get; set; }
         public DateTime dateAdded { get; set; }
-        public int numServings { get; set; }
+        //If this isn't confusing, I don't know what is - the property can't reference itself when you spell out the accessors
+        private int NumServings;
+        public int numServings
+        {
+            get
+            {
+                return NumServings;
+            }
+            set
+            {
+                NumServings = value;
+                caloriesPerServing = CalculateCalories(); //Changing the number of servings for the recipe necessarily changes the number of calories per serving
+            }
+        }
         public int caloriesPerServing { get; set; }
         public double avgCost { get; set; }
 
@@ -42,8 +55,8 @@ namespace _393_Food_Machine
             this.category = category;
             this.prepTime = prepTime;
             this.dateAdded = dateAdded;
-            this.numServings = numServings;
             this.ingredientList = ingredientList;
+            this.numServings = numServings;
             this.caloriesPerServing = CalculateCalories();
             this.avgCost = CalculateAvgCost();
         }
@@ -83,7 +96,7 @@ namespace _393_Food_Machine
                 calories += ingredient.Item1.calories * ingredient.Item2;
             }
             //Round off the calories
-            return (int) calories; 
+            return (int) (calories/numServings); 
         }
 
         private double CalculateAvgCost()

@@ -84,12 +84,18 @@ namespace _393_Food_Machine.Tests
         //The Recipe should be the same before and after serialization
         public void TestJSONSerialization()
         {
-            sample.PushItem();
-            String jsonObj = JsonConvert.SerializeObject(sample);
+            String jsonObj = sample.ToString(); //This IS the JSON Serialization
             Recipe deserialized = JsonConvert.DeserializeObject<Recipe>(jsonObj);
             Assert.IsTrue(sample.Equals(deserialized));
         }
 
+        [TestMethod()]
+        public void TestCalculateCalories()
+        { 
+            //Butter 400 * 3 + Flour 100 * 2.5 + Water 0 * 1 = 1450
+            // 1450/numServings = 1450/12 = 120.83
+            Assert.AreEqual(120, sample.caloriesPerServing);
+        }
 
         /*
         [TestMethod()]
