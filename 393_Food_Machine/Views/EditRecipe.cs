@@ -24,21 +24,33 @@ namespace _393_Food_Machine
                 Console.Error.Write(String.Format("Did not successfully pull recipe with id: %d", id));
             }
 
+            InitializeFields();
+        }
+
+        public EditRecipe(String json)
+        {
+            InitializeComponent();
+            indivRecipe = new _393_Food_Machine.Recipe(json);
+            InitializeFields();
+        }
+
+        private void InitializeFields()
+        {
             //Set title
             title.Text = indivRecipe.name;
 
             //Add the ingredients
             foreach (Tuple<Ingredient, double> ingredient in indivRecipe.ingredientList)
             {
-                ingredientListBox.Items.Add(String.Format("%s\t\t\t%d %s",
+                ingredientListBox.Items.Add(String.Format("{0}\t\t{1} {2}",
                     ingredient.Item1.name,
                     ingredient.Item2,
                     ingredient.Item1.unit));
             }
             //Add prep description
-            prepTimeBox.Text = (String.Format("Prep Time: %d", indivRecipe.prepTime));
-            servingsBox.Text = (String.Format("Number of Servings: %d", indivRecipe.numServings));
-            descriptionListBox.Items.Add(indivRecipe.description);
+            prepTimeBox.Text = (String.Format("{0}", indivRecipe.prepTime));
+            servingsBox.Text = (String.Format("{0}", indivRecipe.numServings));
+            descriptionTextBox.Text = indivRecipe.description;
         }
 
         //Initialize the Recipe object of this UI page from the JSON returned from the API
@@ -55,6 +67,11 @@ namespace _393_Food_Machine
             {
                 //return false;
             }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

@@ -46,6 +46,7 @@
             this.backButton.TabIndex = 0;
             this.backButton.Text = "< Recipe List";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // exportButton
             // 
@@ -64,6 +65,7 @@
             this.editRecipeButton.TabIndex = 2;
             this.editRecipeButton.Text = "Edit Recipe";
             this.editRecipeButton.UseVisualStyleBackColor = true;
+            this.editRecipeButton.Click += new System.EventHandler(this.editRecipeButton_Click);
             // 
             // title
             // 
@@ -115,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 297);
+            this.ClientSize = new System.Drawing.Size(584, 311);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.ingredientsLabel);

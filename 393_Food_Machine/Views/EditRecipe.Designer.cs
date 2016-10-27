@@ -34,12 +34,12 @@
             this.title = new System.Windows.Forms.TextBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.ingredientsLabel = new System.Windows.Forms.Label();
-            this.descriptionListBox = new System.Windows.Forms.ListBox();
             this.ingredientListBox = new System.Windows.Forms.ListBox();
             this.servingsBox = new System.Windows.Forms.TextBox();
             this.prepTimeBox = new System.Windows.Forms.TextBox();
             this.servingsLabel = new System.Windows.Forms.Label();
             this.prepTimeLabel = new System.Windows.Forms.Label();
+            this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -50,6 +50,7 @@
             this.cancelButton.TabIndex = 0;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // deleteButton
             // 
@@ -101,14 +102,6 @@
             this.ingredientsLabel.TabIndex = 10;
             this.ingredientsLabel.Text = "Ingredients";
             // 
-            // descriptionListBox
-            // 
-            this.descriptionListBox.FormattingEnabled = true;
-            this.descriptionListBox.Location = new System.Drawing.Point(253, 203);
-            this.descriptionListBox.Name = "descriptionListBox";
-            this.descriptionListBox.Size = new System.Drawing.Size(297, 95);
-            this.descriptionListBox.TabIndex = 9;
-            // 
             // ingredientListBox
             // 
             this.ingredientListBox.FormattingEnabled = true;
@@ -151,18 +144,26 @@
             this.prepTimeLabel.TabIndex = 15;
             this.prepTimeLabel.Text = "Prep Time (min.)";
             // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Location = new System.Drawing.Point(253, 203);
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(247, 71);
+            this.descriptionTextBox.TabIndex = 16;
+            this.descriptionTextBox.Text = "";
+            // 
             // EditRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 303);
+            this.ClientSize = new System.Drawing.Size(584, 311);
+            this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.prepTimeLabel);
             this.Controls.Add(this.servingsLabel);
             this.Controls.Add(this.prepTimeBox);
             this.Controls.Add(this.servingsBox);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.ingredientsLabel);
-            this.Controls.Add(this.descriptionListBox);
             this.Controls.Add(this.ingredientListBox);
             this.Controls.Add(this.title);
             this.Controls.Add(this.confirmButton);
@@ -183,11 +184,11 @@
         private System.Windows.Forms.TextBox title;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.Label ingredientsLabel;
-        private System.Windows.Forms.ListBox descriptionListBox;
         private System.Windows.Forms.ListBox ingredientListBox;
         private System.Windows.Forms.TextBox servingsBox;
         private System.Windows.Forms.TextBox prepTimeBox;
         private System.Windows.Forms.Label servingsLabel;
         private System.Windows.Forms.Label prepTimeLabel;
+        private System.Windows.Forms.RichTextBox descriptionTextBox;
     }
 }

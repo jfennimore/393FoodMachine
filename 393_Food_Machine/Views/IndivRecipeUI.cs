@@ -49,12 +49,13 @@ namespace _393_Food_Machine
             }
             //Add prep description
             StringBuilder recipeDesc = new StringBuilder();
-            recipeDesc.AppendLine(String.Format("Prep Time: {0}", indivRecipe.prepTime));
+            recipeDesc.AppendLine(String.Format("Prep Time: {0} min.", indivRecipe.prepTime));
             recipeDesc.AppendLine(String.Format("Number of Servings: {0}", indivRecipe.numServings));
             recipeDesc.AppendLine(String.Format("Calories per Serving: {0}", indivRecipe.caloriesPerServing));
             recipeDesc.AppendLine(String.Format("Avg Cost to make: {0}{1}", indivRecipe.avgCost, Environment.NewLine));
             recipeDesc.AppendLine(String.Format("Description:\t{0}",indivRecipe.description));
             descriptionTextBox.Text = recipeDesc.ToString();
+            descriptionTextBox.ReadOnly = true;
         }
 
         //Initialize the Recipe object of this UI page from the JSON returned from the API
@@ -71,6 +72,16 @@ namespace _393_Food_Machine
             {
                 //return false;
             }
+        }
+
+        private void editRecipeButton_Click(object sender, EventArgs e)
+        {
+            (new EditRecipe(indivRecipe.ToString())).Show();
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

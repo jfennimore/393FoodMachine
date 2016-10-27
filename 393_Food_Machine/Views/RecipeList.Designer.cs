@@ -102,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 297);
+            this.ClientSize = new System.Drawing.Size(584, 311);
             this.Controls.Add(this.importButton);
             this.Controls.Add(this.newRecipeButton);
             this.Controls.Add(this.recipeListBox);
