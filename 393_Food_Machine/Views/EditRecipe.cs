@@ -72,6 +72,31 @@ namespace _393_Food_Machine
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Hide();
+            (new IndivRecipeUI(indivRecipe.ToString())).Show();
+        }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            //Collect all of the recipe info on the page and push that to the API
+            //In the meantime, for demo purposes- go back to IndivRecipe mode showing the changes.
+            indivRecipe.name = title.Text;
+            indivRecipe.description = descriptionTextBox.Text;
+            int newNumServ;
+            int newPrepTime;
+            bool servingsParsed = Int32.TryParse(servingsBox.Text, out newNumServ);
+            bool prepTimeParsed = Int32.TryParse(prepTimeBox.Text, out newPrepTime);
+            //TODO: Handle ingredients
+            if(!servingsParsed || !prepTimeParsed)
+            {
+                System.Windows.Forms.MessageBox.Show("Please only use numeric values for servings and prep time!");
+            }
+            else
+            {
+                indivRecipe.numServings = newNumServ;
+                indivRecipe.prepTime = newPrepTime;
+                this.Hide();
+                (new IndivRecipeUI(indivRecipe.ToString())).Show();
+            }
         }
     }
 }

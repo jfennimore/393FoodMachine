@@ -76,6 +76,7 @@ namespace _393_Food_Machine
 
         private void editRecipeButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             (new EditRecipe(indivRecipe.ToString())).Show();
         }
 
