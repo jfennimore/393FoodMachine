@@ -1,0 +1,13 @@
+c:\users\joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\bin\Debug\393_Food_Machine.exe.config
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\bin\Debug\393_Food_Machine.exe
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\bin\Debug\393_Food_Machine.pdb
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\_393_Food_Machine.EditRecipe.resources
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\_393_Food_Machine.IndivRecipeUI.resources
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\_393_Food_Machine.Properties.Resources.resources
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\_393_Food_Machine.RecipeList.resources
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\393_Food_Machine.csproj.GenerateResource.Cache
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\393_Food_Machine.exe
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\393_Food_Machine.pdb
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\393_Food_Machine.csprojResolveAssemblyReference.cache
