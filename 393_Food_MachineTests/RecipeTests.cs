@@ -95,6 +95,9 @@ namespace _393_Food_Machine.Tests
             //Butter 400 * 3 + Flour 100 * 2.5 + Water 0 * 1 = 1450
             // 1450/numServings = 1450/12 = 120.83
             Assert.AreEqual(120, sample.caloriesPerServing);
+            //CalculateCalories needs to recalculate whenever the number of servings changes.
+            sample.numServings = 10;
+            Assert.AreEqual(145, sample.caloriesPerServing);
         }
 
         /*
