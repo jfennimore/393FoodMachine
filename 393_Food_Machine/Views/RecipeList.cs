@@ -24,6 +24,8 @@ namespace _393_Food_Machine
             {
                 recipeListBox.Items.Add(recipe.Item1);
             }
+
+            
         }
 
         public bool PullItems()
@@ -79,6 +81,29 @@ namespace _393_Food_Machine
                 "Mix together meat, eggs, breadcrumbs all at once, then break off pieces, roll into balls, place on a pan and bake at 350F for 20 minutes.",
                 Recipe.RecipeCategory.Dessert, 30, DateTime.Today, 6, ingrList);
             return meatballs.ToString();
+        }
+
+        private void recipeFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(recipeFilter.Text)
+            {
+                case "Category":
+                    RecipeCategorySelect rsc = new RecipeCategorySelect(this);
+                    rsc.Show();
+                    //Filter out by category
+                    break;
+                case "Calories":
+                    break;
+                case "Cost":
+                    break;
+                case "Ingredient":
+                    break;
+            }
+        }
+
+        public void setFilterText(String filter)
+        {
+            recipeFilter.Text = filter;
         }
     }
 }

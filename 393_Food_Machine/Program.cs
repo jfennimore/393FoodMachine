@@ -16,7 +16,7 @@ namespace _393_Food_Machine
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RecipeList());
+            Application.Run(new Views.HomeScreen());
         }
     }
 }

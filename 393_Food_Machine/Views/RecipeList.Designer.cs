@@ -40,10 +40,16 @@
             // recipeFilter
             // 
             this.recipeFilter.FormattingEnabled = true;
+            this.recipeFilter.Items.AddRange(new object[] {
+            "Calories",
+            "Category",
+            "Cost",
+            "Ingredient "});
             this.recipeFilter.Location = new System.Drawing.Point(51, 40);
             this.recipeFilter.Name = "recipeFilter";
             this.recipeFilter.Size = new System.Drawing.Size(121, 21);
             this.recipeFilter.TabIndex = 0;
+            this.recipeFilter.SelectedIndexChanged += new System.EventHandler(this.recipeFilter_SelectedIndexChanged);
             // 
             // recipeSort
             // 
