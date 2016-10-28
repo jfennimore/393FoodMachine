@@ -28,9 +28,9 @@ namespace _393_Food_Machine.Tests
                 ingredients);
         }
         
-        //Run the basic operations on a sample recipe
+        //Run the basic 'get' operations on a sample recipe
         [TestMethod()]
-        public void TestSample()
+        public void TestSampleRecipe()
         {
             Assert.AreEqual("Pie Crust", sample.name);
             Assert.AreEqual("Add all ingredients and mix", sample.description);
