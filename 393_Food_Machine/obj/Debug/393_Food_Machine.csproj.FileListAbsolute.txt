@@ -13,3 +13,4 @@ C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Mac
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\393_Food_Machine.csprojResolveAssemblyReference.cache
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\_393_Food_Machine.Views.HomeScreen.resources
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\_393_Food_Machine.RecipeCategorySelect.resources
+C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_Machine\obj\Debug\_393_Food_Machine.Views.IngredientList.resources

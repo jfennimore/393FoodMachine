@@ -17,13 +17,13 @@ namespace _393_Food_Machine.Tests
         [TestInitialize]
         public void Initialize()
         {
-            List<Tuple<Ingredient, double>> ingredients = new List<Tuple<Ingredient, double>>();
+            List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingredients = new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>();
             Ingredient butter = new Ingredient("Butter", 400, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Dairy);
             Ingredient flour = new Ingredient("Flour", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Grains_Pasta);
             Ingredient water = new Ingredient("Water", 0, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Produce);
-            ingredients.Add(new Tuple<Ingredient, double>(butter, 3.0));
-            ingredients.Add(new Tuple<Ingredient, double>(flour, 2.5));
-            ingredients.Add(new Tuple<Ingredient, double>(water, 1.0));
+            ingredients.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(butter, 3.0, Ingredient.measurementUnits.tbsp));
+            ingredients.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(flour, 2.5, Ingredient.measurementUnits.cups));
+            ingredients.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(water, 1.0, Ingredient.measurementUnits.cups));
             sample = new _393_Food_Machine.Recipe("Pie Crust", "Add all ingredients and mix", Recipe.RecipeCategory.Dessert, 100, DateTime.Today, 12,
                 ingredients);
         }
