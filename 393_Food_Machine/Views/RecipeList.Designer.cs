@@ -94,6 +94,7 @@
             this.newRecipeButton.TabIndex = 5;
             this.newRecipeButton.Text = "New Recipe";
             this.newRecipeButton.UseVisualStyleBackColor = true;
+            this.newRecipeButton.Click += new System.EventHandler(this.newRecipeButton_Click);
             // 
             // importButton
             // 

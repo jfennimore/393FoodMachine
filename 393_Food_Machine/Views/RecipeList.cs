@@ -105,5 +105,11 @@ namespace _393_Food_Machine
         {
             recipeFilter.Text = filter;
         }
+
+        private void newRecipeButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            (new EditRecipe()).Show();
+        }
     }
 }

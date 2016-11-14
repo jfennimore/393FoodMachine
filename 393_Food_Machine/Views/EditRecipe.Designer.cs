@@ -40,6 +40,15 @@
             this.servingsLabel = new System.Windows.Forms.Label();
             this.prepTimeLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
+            this.editIngredientName = new System.Windows.Forms.TextBox();
+            this.editIngredientAmount = new System.Windows.Forms.TextBox();
+            this.editIngredientUnit = new System.Windows.Forms.ComboBox();
+            this.editIngredientConfirm = new System.Windows.Forms.Button();
+            this.editIngredientRemove = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.newIngredientUnit = new System.Windows.Forms.ComboBox();
+            this.newIngredientAmount = new System.Windows.Forms.TextBox();
+            this.newIngredientName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -87,7 +96,7 @@
             // 
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionLabel.Location = new System.Drawing.Point(249, 181);
+            this.descriptionLabel.Location = new System.Drawing.Point(249, 252);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(188, 19);
             this.descriptionLabel.TabIndex = 11;
@@ -110,17 +119,18 @@
             this.ingredientListBox.Name = "ingredientListBox";
             this.ingredientListBox.Size = new System.Drawing.Size(416, 82);
             this.ingredientListBox.TabIndex = 8;
+            this.ingredientListBox.SelectedIndexChanged += new System.EventHandler(this.ingredientListBox_SelectedIndexChanged);
             // 
             // servingsBox
             // 
-            this.servingsBox.Location = new System.Drawing.Point(84, 203);
+            this.servingsBox.Location = new System.Drawing.Point(84, 274);
             this.servingsBox.Name = "servingsBox";
             this.servingsBox.Size = new System.Drawing.Size(100, 20);
             this.servingsBox.TabIndex = 12;
             // 
             // prepTimeBox
             // 
-            this.prepTimeBox.Location = new System.Drawing.Point(84, 254);
+            this.prepTimeBox.Location = new System.Drawing.Point(84, 325);
             this.prepTimeBox.Name = "prepTimeBox";
             this.prepTimeBox.Size = new System.Drawing.Size(100, 20);
             this.prepTimeBox.TabIndex = 13;
@@ -129,7 +139,7 @@
             // 
             this.servingsLabel.AutoSize = true;
             this.servingsLabel.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.servingsLabel.Location = new System.Drawing.Point(80, 181);
+            this.servingsLabel.Location = new System.Drawing.Point(80, 252);
             this.servingsLabel.Name = "servingsLabel";
             this.servingsLabel.Size = new System.Drawing.Size(76, 19);
             this.servingsLabel.TabIndex = 14;
@@ -139,7 +149,7 @@
             // 
             this.prepTimeLabel.AutoSize = true;
             this.prepTimeLabel.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prepTimeLabel.Location = new System.Drawing.Point(80, 232);
+            this.prepTimeLabel.Location = new System.Drawing.Point(80, 303);
             this.prepTimeLabel.Name = "prepTimeLabel";
             this.prepTimeLabel.Size = new System.Drawing.Size(134, 19);
             this.prepTimeLabel.TabIndex = 15;
@@ -147,17 +157,102 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(253, 203);
+            this.descriptionTextBox.Location = new System.Drawing.Point(253, 274);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(247, 71);
             this.descriptionTextBox.TabIndex = 16;
             this.descriptionTextBox.Text = "";
             // 
+            // editIngredientName
+            // 
+            this.editIngredientName.Location = new System.Drawing.Point(84, 189);
+            this.editIngredientName.Name = "editIngredientName";
+            this.editIngredientName.Size = new System.Drawing.Size(167, 20);
+            this.editIngredientName.TabIndex = 17;
+            this.editIngredientName.Text = "(Existing Ingredient Name)";
+            // 
+            // editIngredientAmount
+            // 
+            this.editIngredientAmount.Location = new System.Drawing.Point(268, 188);
+            this.editIngredientAmount.Name = "editIngredientAmount";
+            this.editIngredientAmount.Size = new System.Drawing.Size(51, 20);
+            this.editIngredientAmount.TabIndex = 18;
+            this.editIngredientAmount.Text = "(Amount)";
+            // 
+            // editIngredientUnit
+            // 
+            this.editIngredientUnit.FormattingEnabled = true;
+            this.editIngredientUnit.Location = new System.Drawing.Point(334, 188);
+            this.editIngredientUnit.Name = "editIngredientUnit";
+            this.editIngredientUnit.Size = new System.Drawing.Size(73, 21);
+            this.editIngredientUnit.TabIndex = 19;
+            // 
+            // editIngredientConfirm
+            // 
+            this.editIngredientConfirm.Location = new System.Drawing.Point(413, 187);
+            this.editIngredientConfirm.Name = "editIngredientConfirm";
+            this.editIngredientConfirm.Size = new System.Drawing.Size(75, 23);
+            this.editIngredientConfirm.TabIndex = 20;
+            this.editIngredientConfirm.Text = "Confirm";
+            this.editIngredientConfirm.UseVisualStyleBackColor = true;
+            this.editIngredientConfirm.Click += new System.EventHandler(this.editIngredientConfirm_Click);
+            // 
+            // editIngredientRemove
+            // 
+            this.editIngredientRemove.Location = new System.Drawing.Point(494, 187);
+            this.editIngredientRemove.Name = "editIngredientRemove";
+            this.editIngredientRemove.Size = new System.Drawing.Size(75, 23);
+            this.editIngredientRemove.TabIndex = 21;
+            this.editIngredientRemove.Text = "Remove";
+            this.editIngredientRemove.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(413, 216);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Add New";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // newIngredientUnit
+            // 
+            this.newIngredientUnit.FormattingEnabled = true;
+            this.newIngredientUnit.Location = new System.Drawing.Point(334, 217);
+            this.newIngredientUnit.Name = "newIngredientUnit";
+            this.newIngredientUnit.Size = new System.Drawing.Size(73, 21);
+            this.newIngredientUnit.TabIndex = 24;
+            // 
+            // newIngredientAmount
+            // 
+            this.newIngredientAmount.Location = new System.Drawing.Point(268, 217);
+            this.newIngredientAmount.Name = "newIngredientAmount";
+            this.newIngredientAmount.Size = new System.Drawing.Size(51, 20);
+            this.newIngredientAmount.TabIndex = 23;
+            this.newIngredientAmount.Text = "(Amount)";
+            // 
+            // newIngredientName
+            // 
+            this.newIngredientName.Location = new System.Drawing.Point(84, 218);
+            this.newIngredientName.Name = "newIngredientName";
+            this.newIngredientName.Size = new System.Drawing.Size(167, 20);
+            this.newIngredientName.TabIndex = 22;
+            this.newIngredientName.Text = "(New Ingredient Name)";
+            // 
             // EditRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 311);
+            this.ClientSize = new System.Drawing.Size(584, 346);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.newIngredientUnit);
+            this.Controls.Add(this.newIngredientAmount);
+            this.Controls.Add(this.newIngredientName);
+            this.Controls.Add(this.editIngredientRemove);
+            this.Controls.Add(this.editIngredientConfirm);
+            this.Controls.Add(this.editIngredientUnit);
+            this.Controls.Add(this.editIngredientAmount);
+            this.Controls.Add(this.editIngredientName);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.prepTimeLabel);
             this.Controls.Add(this.servingsLabel);
@@ -191,5 +286,14 @@
         private System.Windows.Forms.Label servingsLabel;
         private System.Windows.Forms.Label prepTimeLabel;
         private System.Windows.Forms.RichTextBox descriptionTextBox;
+        private System.Windows.Forms.TextBox editIngredientName;
+        private System.Windows.Forms.TextBox editIngredientAmount;
+        private System.Windows.Forms.ComboBox editIngredientUnit;
+        private System.Windows.Forms.Button editIngredientConfirm;
+        private System.Windows.Forms.Button editIngredientRemove;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox newIngredientUnit;
+        private System.Windows.Forms.TextBox newIngredientAmount;
+        private System.Windows.Forms.TextBox newIngredientName;
     }
 }
