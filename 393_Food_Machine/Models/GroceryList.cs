@@ -20,10 +20,18 @@ namespace _393_Food_Machine
 
         public GroceryList(String json)
         {
-            GroceryList imported = JsonConvert.DeserializeObject<GroceryList>(json);
-            this.id = imported.id;
-            this.name = imported.name;
-            this.groceries = imported.GetGroceries();
+            try
+            {
+                GroceryList imported = JsonConvert.DeserializeObject<GroceryList>(json);
+                this.id = imported.id;
+                this.name = imported.name;
+                this.groceries = imported.GetGroceries();
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("The given JSON could not be parsed into a grocery list");
+                return;
+            }
         }
 
         //TODO: Incorporate actual call to API

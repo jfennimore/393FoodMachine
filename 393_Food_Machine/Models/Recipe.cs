@@ -64,19 +64,27 @@ namespace _393_Food_Machine
 
         public Recipe(String json)
         {
-            Recipe imported = JsonConvert.DeserializeObject<Recipe>(json);
-            this.id = imported.id;
-            this.name = imported.name;
-            this.description = imported.description;
-            this.category = imported.category;
-            this.prepTime = imported.prepTime;
-            this.dateAdded = imported.dateAdded;
-            this.ingredientList = imported.ingredientList;
-            //IngredientList cannot be null when assigning to numServings
-            this.numServings = imported.numServings;
-            //TODO: Do we take the JSON Object's word for it that these values are accurate?  For now, yes.
-            this.caloriesPerServing = imported.caloriesPerServing;
-            this.avgCost = imported.avgCost;
+            try
+            {
+                Recipe imported = JsonConvert.DeserializeObject<Recipe>(json);
+                this.id = imported.id;
+                this.name = imported.name;
+                this.description = imported.description;
+                this.category = imported.category;
+                this.prepTime = imported.prepTime;
+                this.dateAdded = imported.dateAdded;
+                this.ingredientList = imported.ingredientList;
+                //IngredientList cannot be null when assigning to numServings
+                this.numServings = imported.numServings;
+                //TODO: Do we take the JSON Object's word for it that these values are accurate?  For now, yes.
+                this.caloriesPerServing = imported.caloriesPerServing;
+                this.avgCost = imported.avgCost;
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("The given JSON could not be parsed into a recipe");
+                return;
+            }
                        
         }
 

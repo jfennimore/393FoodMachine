@@ -20,10 +20,19 @@ namespace _393_Food_Machine
 
         public Store(String json)
         {
-            Store imported = JsonConvert.DeserializeObject<Store>(json);
-            this.id = imported.id;
-            this.name = imported.name;
-            this.ingredientCosts = imported.GetIngredientCosts();
+            try
+            {
+                Store imported = JsonConvert.DeserializeObject<Store>(json);
+                this.id = imported.id;
+                this.name = imported.name;
+                this.ingredientCosts = imported.GetIngredientCosts();
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("The given JSON could not be parsed into a store.");
+                return;
+            }
+            
         }
 
         //TODO: Incorporate actual call to API

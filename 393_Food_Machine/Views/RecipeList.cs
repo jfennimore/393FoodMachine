@@ -120,10 +120,13 @@ namespace _393_Food_Machine
             String newRecipePath = fileDialog.FileName;
             if(Path.GetExtension(newRecipePath).Equals(".json")) {
                 String jsonObj = System.IO.File.ReadAllText(newRecipePath, ASCIIEncoding.ASCII);
-                //Validate JSON as good recipe
+                //Constructor of Recipe will validate JSON as good recipe
                 Recipe importedRec = new Recipe(jsonObj);
-                recipeList.Add(new Tuple<string,int,string>(importedRec.name,5,jsonObj));
-                recipeListBox.Items.Add(importedRec.name);
+                if(importedRec.name != null)
+                {
+                    recipeList.Add(new Tuple<string, int, string>(importedRec.name, 5, jsonObj));
+                    recipeListBox.Items.Add(importedRec.name);
+                }
             }
             else
             {

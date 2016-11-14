@@ -59,12 +59,20 @@ namespace _393_Food_Machine
 
         public Ingredient(String json)
         {
-            Ingredient imported = JsonConvert.DeserializeObject<Ingredient>(json);
-            this.id = imported.id;
-            this.name = imported.name;
-            this.calories = imported.calories;
-            this.unit = imported.unit;
-            this.category = imported.category;
+            try
+            {
+                Ingredient imported = JsonConvert.DeserializeObject<Ingredient>(json);
+                this.id = imported.id;
+                this.name = imported.name;
+                this.calories = imported.calories;
+                this.unit = imported.unit;
+                this.category = imported.category;
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("The given JSON could not be parsed into an ingredient");
+                return;
+            }
         } 
 
         public override bool PushItem()
