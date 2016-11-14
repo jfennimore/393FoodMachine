@@ -104,6 +104,7 @@
             this.importButton.TabIndex = 6;
             this.importButton.Text = "Import Recipe";
             this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.importButton_Click);
             // 
             // RecipeList
             // 

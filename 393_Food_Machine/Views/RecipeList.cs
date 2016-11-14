@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace _393_Food_Machine
 {
@@ -110,6 +111,24 @@ namespace _393_Food_Machine
         {
             this.Hide();
             (new EditRecipe()).Show();
+        }
+
+        private void importButton_Click(object sender, EventArgs e)
+        {
+            FileDialog fileDialog = new OpenFileDialog();
+            DialogResult pathResult = fileDialog.ShowDialog();
+            String newRecipePath = fileDialog.FileName;
+            if(Path.GetExtension(newRecipePath).Equals(".json")) {
+                String jsonObj = System.IO.File.ReadAllText(newRecipePath, ASCIIEncoding.ASCII);
+                //Validate JSON as good recipe
+                Recipe importedRec = new Recipe(jsonObj);
+                recipeList.Add(new Tuple<string,int,string>(importedRec.name,5,jsonObj));
+                recipeListBox.Items.Add(importedRec.name);
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Recipes can only be imported in JSON format");
+            }
         }
     }
 }
