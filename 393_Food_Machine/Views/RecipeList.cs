@@ -13,7 +13,7 @@ namespace _393_Food_Machine
 {
     public partial class RecipeList : Form
     {
-        //Binds recipe names with their ID's
+        //Binds recipe names with their ID's and their JSON representations
         private List<Tuple<String, int, String>> recipeList;
 
         public RecipeList()
@@ -45,7 +45,6 @@ namespace _393_Food_Machine
             int index = recipeListBox.SelectedIndex;
             int recipeId = recipeList.ElementAt(index).Item2;
             //Match the selected index to the index of the Recipe in the list and get the id for that recipe
-            //Application.Run(new IndivRecipeUI(recipeId));
             String jsonRecipe = recipeList.ElementAt(index).Item3;
             (new IndivRecipeUI(jsonRecipe)).Show();
         }

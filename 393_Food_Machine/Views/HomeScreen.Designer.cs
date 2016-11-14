@@ -81,6 +81,7 @@
             this.ingredientButton.TabIndex = 5;
             this.ingredientButton.Text = "Ingredients";
             this.ingredientButton.UseVisualStyleBackColor = true;
+            this.ingredientButton.Click += new System.EventHandler(this.ingredientButton_Click);
             // 
             // button1
             // 
