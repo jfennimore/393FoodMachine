@@ -19,6 +19,7 @@ namespace _393_Food_Machine
            Breakfast
         }
 
+
         //JSON Serialization requires that all of these properties be public, but the Get/Set ensures getter/setter functionality
         public String description { get; set; }
         public RecipeCategory category { get; set; }

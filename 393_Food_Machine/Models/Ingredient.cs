@@ -48,6 +48,15 @@ namespace _393_Food_Machine
             this.category = category;
         }
 
+        public Ingredient(String name, int calories, int unit, int category)
+        {
+            this.id = 0;
+            this.name = name;
+            this.calories = calories;
+            this.unit = (measurementUnits)unit;
+            this.category = (IngredientCategory)category;
+        }
+
         public Ingredient(String json)
         {
             Ingredient imported = JsonConvert.DeserializeObject<Ingredient>(json);

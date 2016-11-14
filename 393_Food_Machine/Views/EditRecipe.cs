@@ -204,10 +204,10 @@ namespace _393_Food_Machine
         private void editIngredientConfirm_Click(object sender, EventArgs e)
         {
             bool editIngrFieldsValid = true;
-            //editIngrFieldsValid = editIngrFieldsValid && ValidateEditIngredientName();
+            editIngrFieldsValid = editIngrFieldsValid && ValidateEditIngredientName();
             editIngrFieldsValid = editIngrFieldsValid && ValidateEditIngredientAmount();
 
-            if (editIngrFieldsValid)
+            if (editIngrFieldsValid && ingredientListBox.SelectedIndex != -1)
             {
                 indivRecipe.ingredientList[ingredientListBox.SelectedIndex] = 
                     new Tuple<Ingredient, double>(new Ingredient(
@@ -219,6 +219,20 @@ namespace _393_Food_Machine
                     );
             }
             populateIngredientsBox();
+        }
+
+        private bool ValidateEditIngredientName()
+        {
+            if (editIngredientName.Text.Equals("") || editIngredientName.Text.Equals("(Existing Ingredient Name"))
+            {
+                System.Windows.Forms.MessageBox.Show("There is no ingredient selected to edit!");
+                return false;
+            }
+            else
+            {
+                //TODO: Check against the API that this ingredient exists
+                return true;
+            }
         }
 
         private bool ValidateEditIngredientAmount()
@@ -236,17 +250,57 @@ namespace _393_Food_Machine
             }
         }
 
+        private void addNewIngrButton_Click(object sender, EventArgs e)
+        {
+            bool newIngrFieldsValid = true;
+            newIngrFieldsValid = newIngrFieldsValid && ValidateNewIngredientName();
+            newIngrFieldsValid = newIngrFieldsValid && ValidateNewIngredientAmount();
+            if(newIngrFieldsValid)
+            {
+                //Get ingredient ID from the name
+                //Add ingredient to this Recipe
+                populateIngredientsBox();
+            }
+        }
+
         private bool ValidateNewIngredientName()
         {
             if (newIngredientName.Text.Equals("") || newIngredientName.Text.Equals("(Existing Ingredient Name"))
             {
-                System.Windows.Forms.MessageBox.Show("Please address the ingredient name before confirming");
+                System.Windows.Forms.MessageBox.Show("Please address the ingredient name before adding new ingredient");
                 return false;
             }
             else
             {
                 //TODO: Check against the API that this ingredient exists
                 return true;
+            }
+        }
+
+        private bool ValidateNewIngredientAmount()
+        {
+            double ingredientAmount;
+            bool newAmountParsed = Double.TryParse(newIngredientAmount.Text, out ingredientAmount);
+            if (!newAmountParsed)
+            {
+                System.Windows.Forms.MessageBox.Show("Please input a valid numeric value for ingredient amount before adding new ingredient");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void editIngredientRemove_Click(object sender, EventArgs e)
+        {
+            if(ingredientListBox.SelectedIndex != -1)
+            {
+                indivRecipe.ingredientList.RemoveAt(ingredientListBox.SelectedIndex);
+                editIngredientName.Text = "";
+                editIngredientAmount.Text = "";
+                editIngredientUnit.Text = "";
+                populateIngredientsBox();
             }
         }
     }

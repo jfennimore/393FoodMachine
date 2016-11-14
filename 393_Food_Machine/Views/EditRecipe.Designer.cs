@@ -205,6 +205,7 @@
             this.editIngredientRemove.TabIndex = 21;
             this.editIngredientRemove.Text = "Remove";
             this.editIngredientRemove.UseVisualStyleBackColor = true;
+            this.editIngredientRemove.Click += new System.EventHandler(this.editIngredientRemove_Click);
             // 
             // button1
             // 
