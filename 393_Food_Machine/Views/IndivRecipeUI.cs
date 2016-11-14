@@ -84,5 +84,16 @@ namespace _393_Food_Machine
         {
             this.Hide();
         }
+
+        //Let user specify where they want the exported recipe to go, then create a file with the name of the recipe.json
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            DialogResult pathResult = fbd.ShowDialog();
+            String newFilePath = fbd.SelectedPath + "\\" + indivRecipe.name + ".json";
+            System.IO.FileStream jsonFile = System.IO.File.Create(newFilePath);
+            jsonFile.Close();
+            System.IO.File.WriteAllText(newFilePath, indivRecipe.ToString());
+        }
     }
 }

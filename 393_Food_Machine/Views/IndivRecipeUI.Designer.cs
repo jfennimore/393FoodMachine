@@ -56,6 +56,7 @@
             this.exportButton.TabIndex = 1;
             this.exportButton.Text = "Export";
             this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
             // editRecipeButton
             // 
