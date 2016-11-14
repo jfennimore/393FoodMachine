@@ -24,13 +24,18 @@ namespace _393_Food_Machine
         //These are the most common units for almost all recipes
         public enum measurementUnits
         {
-            tsp,
-            tbsp,
-            cups,
-            lbs,
-            quarts,
-            gallons,
-            oz
+            tsp = 1,
+            tbsp = 3,
+            cups = 48,
+            lbs = 144,
+            //This is a bit of a fudge- putting measurements of weight with volume.
+            //But, for the sake of avoiding excessive complexity, we'll allow people
+            //to list ingredients in whatever form they choose, and do our best to 
+            //approximate the equivalent conversion
+            quarts = 192,
+            gallons = 768,
+            oz = 9,
+            na = 0
         }
 
         public int calories { get; set; }

@@ -43,12 +43,12 @@ namespace _393_Food_Machine
         public double avgCost { get; set; }
 
         //The list of ingredients for the recipe, paired with the amount of servings of that Ingredient required
-        public List<Tuple<Ingredient, double>> ingredientList { get; set; }
+        public List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingredientList { get; set; }
 
         [JsonConstructor]
         public Recipe(String name, String description, RecipeCategory category, 
             int prepTime, DateTime dateAdded, 
-            int numServings, List<Tuple<Ingredient, double>> ingredientList)
+            int numServings, List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingredientList)
         {
             //this.id =
             this.name = name; 
@@ -101,13 +101,29 @@ namespace _393_Food_Machine
         private int CalculateCalories()
         {
             double calories = 0.0;
-            foreach(Tuple<Ingredient,double> ingredient in ingredientList)
+            foreach(Tuple<Ingredient,double,Ingredient.measurementUnits> ingredient in ingredientList)
             {
                 //Adds the calories per unit/serving of the ingredient times the amount of that ingredient called for in the recipe
-                calories += ingredient.Item1.calories * ingredient.Item2;
+                double conversionFactor = DetermineConversionFactor(ingredient.Item1.unit, ingredient.Item3);
+                calories += ingredient.Item1.calories * conversionFactor * ingredient.Item2;
             }
             //Round off the calories
             return (int) (calories/numServings); 
+        }
+
+        private double DetermineConversionFactor(Ingredient.measurementUnits ingrUnit, Ingredient.measurementUnits recipeUnit)
+        {
+            //Things with unit 'na' are for miscellaneous ingredients where the number of it implies 'one of these' like 1 egg.
+            //Therefore, ignore any 'conversion' that might go on with this, because it's impossible to tell how large 'one of' could be.
+            if (recipeUnit == 0 || ingrUnit == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return (double) recipeUnit / (double) ingrUnit;
+            }
+            
         }
 
         private double CalculateAvgCost()

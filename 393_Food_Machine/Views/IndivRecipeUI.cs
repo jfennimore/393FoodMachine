@@ -40,12 +40,12 @@ namespace _393_Food_Machine
             title.Text = indivRecipe.name;
 
             //Add the ingredients
-            foreach (Tuple<Ingredient, double> ingredient in indivRecipe.ingredientList)
+            foreach (Tuple<Ingredient, double, Ingredient.measurementUnits> ingredient in indivRecipe.ingredientList)
             {
                 ingredientListBox.Items.Add(String.Format("{0}\t\t{1} {2}",
                     ingredient.Item1.name,
                     ingredient.Item2,
-                    ingredient.Item1.unit));
+                    ingredient.Item3));
             }
             //Add prep description
             StringBuilder recipeDesc = new StringBuilder();

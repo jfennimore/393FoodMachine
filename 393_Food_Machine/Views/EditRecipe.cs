@@ -64,12 +64,12 @@ namespace _393_Food_Machine
         private void populateIngredientsBox()
         {
             ingredientListBox.Items.Clear();
-            foreach (Tuple<Ingredient, double> ingredient in indivRecipe.ingredientList)
+            foreach (Tuple<Ingredient, double, Ingredient.measurementUnits> ingredient in indivRecipe.ingredientList)
             {
                 ingredientListBox.Items.Add(String.Format("{0}\t\t{1} {2}",
                     ingredient.Item1.name,
                     ingredient.Item2,
-                    ingredient.Item1.unit));
+                    ingredient.Item3));
             }
         }
 
@@ -102,7 +102,7 @@ namespace _393_Food_Machine
             if (indivRecipe == null)
             {
                 //Create a dummy recipe- all of this data is about to be written over anyway.
-                indivRecipe = new _393_Food_Machine.Recipe("Dummy", "", Recipe.RecipeCategory.Appetizer, 0, DateTime.Today, 0, new List<Tuple<Ingredient, double>>());
+                indivRecipe = new _393_Food_Machine.Recipe("Dummy", "", Recipe.RecipeCategory.Appetizer, 0, DateTime.Today, 0, new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>());
             }
 
             //Collect all of the recipe info on the page and push that to the API
@@ -195,7 +195,7 @@ namespace _393_Food_Machine
         private void ingredientListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = ingredientListBox.SelectedIndex;
-            Tuple<Ingredient, double> selectedIngredient = indivRecipe.ingredientList.ElementAt(index);
+            Tuple<Ingredient, double, Ingredient.measurementUnits> selectedIngredient = indivRecipe.ingredientList.ElementAt(index);
             editIngredientName.Text = selectedIngredient.Item1.name;
             editIngredientAmount.Text = selectedIngredient.Item2.ToString();
             editIngredientUnit.Text = selectedIngredient.Item1.unit.ToString(); 
@@ -210,12 +210,13 @@ namespace _393_Food_Machine
             if (editIngrFieldsValid && ingredientListBox.SelectedIndex != -1)
             {
                 indivRecipe.ingredientList[ingredientListBox.SelectedIndex] = 
-                    new Tuple<Ingredient, double>(new Ingredient(
+                    new Tuple<Ingredient, double, Ingredient.measurementUnits>(new Ingredient(
                         editIngredientName.Text, 
                         0, 
                         (Ingredient.measurementUnits) editIngredientUnit.SelectedIndex,
                         indivRecipe.ingredientList[ingredientListBox.SelectedIndex].Item1.category), 
-                        Double.Parse(editIngredientAmount.Text)
+                        Double.Parse(editIngredientAmount.Text),
+                        (Ingredient.measurementUnits) editIngredientUnit.SelectedIndex
                     );
             }
             populateIngredientsBox();

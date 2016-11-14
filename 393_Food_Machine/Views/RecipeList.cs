@@ -56,11 +56,11 @@ namespace _393_Food_Machine
             Ingredient sugar = new Ingredient("Sugar", 200, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
             Ingredient flour = new Ingredient("Flour", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
             Ingredient butter = new Ingredient("Butter", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Dairy);
-            List<Tuple<Ingredient, double>> ingrList = new List<Tuple<Ingredient, double>>();
-            ingrList.Add(new Tuple<Ingredient, double>(egg, 3));
-            ingrList.Add(new Tuple<Ingredient, double>(sugar, 2));
-            ingrList.Add(new Tuple<Ingredient, double>(flour, 2));
-            ingrList.Add(new Tuple<Ingredient, double>(butter, 8));
+            List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingrList = new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>();
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(egg, 3, Ingredient.measurementUnits.na));
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(sugar, 2, Ingredient.measurementUnits.lbs));
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(flour, 2, Ingredient.measurementUnits.cups));
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(butter, 1, Ingredient.measurementUnits.lbs));
             Recipe cake = new _393_Food_Machine.Recipe("Cake", 
                 "Blend on high mix, thoroughly whipping the butter and sugar together until they are creamy and smooth.  Then slowly add the flour a few tablespoons at a time until just mixed.", 
                 Recipe.RecipeCategory.Dessert, 30, DateTime.Today, 8, ingrList);
@@ -73,11 +73,11 @@ namespace _393_Food_Machine
             Ingredient ground_beef = new Ingredient("Ground Beef", 300, Ingredient.measurementUnits.lbs, Ingredient.IngredientCategory.Baking_Spices);
             Ingredient breadcrumbs = new Ingredient("Breadcrumbs", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
             Ingredient cheese = new Ingredient("Grated Cheese", 200, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Dairy);
-            List<Tuple<Ingredient, double>> ingrList = new List<Tuple<Ingredient, double>>();
-            ingrList.Add(new Tuple<Ingredient, double>(egg, 1));
-            ingrList.Add(new Tuple<Ingredient, double>(ground_beef, 1));
-            ingrList.Add(new Tuple<Ingredient, double>(breadcrumbs, 1.5));
-            ingrList.Add(new Tuple<Ingredient, double>(cheese, 1));
+            List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingrList = new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>();
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(egg, 1, Ingredient.measurementUnits.na));
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(ground_beef, 1, Ingredient.measurementUnits.lbs));
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(breadcrumbs, 1.5, Ingredient.measurementUnits.cups));
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(cheese, 1, Ingredient.measurementUnits.cups));
             Recipe meatballs = new _393_Food_Machine.Recipe("Meatballs",
                 "Mix together meat, eggs, breadcrumbs all at once, then break off pieces, roll into balls, place on a pan and bake at 350F for 20 minutes.",
                 Recipe.RecipeCategory.Dessert, 30, DateTime.Today, 6, ingrList);
