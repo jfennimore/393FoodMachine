@@ -39,6 +39,9 @@ namespace _393_Food_Machine
             //Set title
             title.Text = indivRecipe.name;
 
+            //Set recipe Category
+            categoryLabel.Text = Enum.GetName(typeof(Recipe.RecipeCategory), indivRecipe.category);
+
             //Add the ingredients
             foreach (Tuple<Ingredient, double, Ingredient.measurementUnits> ingredient in indivRecipe.ingredientList)
             {

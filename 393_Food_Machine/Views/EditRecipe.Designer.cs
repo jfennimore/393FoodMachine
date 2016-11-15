@@ -49,6 +49,7 @@
             this.newIngredientUnit = new System.Windows.Forms.ComboBox();
             this.newIngredientAmount = new System.Windows.Forms.TextBox();
             this.newIngredientName = new System.Windows.Forms.TextBox();
+            this.recipeCategoryBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -86,7 +87,7 @@
             // 
             // title
             // 
-            this.title.Location = new System.Drawing.Point(203, 48);
+            this.title.Location = new System.Drawing.Point(202, 28);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(156, 20);
             this.title.TabIndex = 3;
@@ -240,11 +241,20 @@
             this.newIngredientName.TabIndex = 22;
             this.newIngredientName.Text = "(New Ingredient Name)";
             // 
+            // recipeCategoryBox
+            // 
+            this.recipeCategoryBox.FormattingEnabled = true;
+            this.recipeCategoryBox.Location = new System.Drawing.Point(202, 55);
+            this.recipeCategoryBox.Name = "recipeCategoryBox";
+            this.recipeCategoryBox.Size = new System.Drawing.Size(156, 21);
+            this.recipeCategoryBox.TabIndex = 26;
+            // 
             // EditRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 346);
+            this.ClientSize = new System.Drawing.Size(584, 370);
+            this.Controls.Add(this.recipeCategoryBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.newIngredientUnit);
             this.Controls.Add(this.newIngredientAmount);
@@ -296,5 +306,6 @@
         private System.Windows.Forms.ComboBox newIngredientUnit;
         private System.Windows.Forms.TextBox newIngredientAmount;
         private System.Windows.Forms.TextBox newIngredientName;
+        private System.Windows.Forms.ComboBox recipeCategoryBox;
     }
 }

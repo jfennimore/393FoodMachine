@@ -23,7 +23,7 @@ namespace _393_Food_Machine
             {
                 Console.Error.Write(String.Format("Did not successfully pull recipe with id: %d", id));
             }
-
+            populateComboBoxes();
             InitializeFields();
         }
 
@@ -31,6 +31,7 @@ namespace _393_Food_Machine
         {
             InitializeComponent();
             indivRecipe = new _393_Food_Machine.Recipe(json);
+            populateComboBoxes();
             InitializeFields();
         }
 
@@ -39,6 +40,7 @@ namespace _393_Food_Machine
         {
             InitializeComponent();
             Text = "Create New Recipe";
+            populateComboBoxes();
         }
 
         private void InitializeFields()
@@ -54,11 +56,16 @@ namespace _393_Food_Machine
             servingsBox.Text = (String.Format("{0}", indivRecipe.numServings));
             descriptionTextBox.Text = indivRecipe.description;
 
-            //Ingredient Unit Combo boxes
+            recipeCategoryBox.Text = Enum.GetName(typeof(Recipe.RecipeCategory), indivRecipe.category);
+            editIngredientName.ReadOnly = true;
+        }
+
+        //All of the combo boxes in the form need to be filled in with the Enum values
+        private void populateComboBoxes()
+        {
+            recipeCategoryBox.Items.AddRange(Enum.GetNames(typeof(Recipe.RecipeCategory)));
             editIngredientUnit.Items.AddRange(Enum.GetNames(typeof(Ingredient.measurementUnits)));
             newIngredientUnit.Items.AddRange(Enum.GetNames(typeof(Ingredient.measurementUnits)));
-
-            editIngredientName.ReadOnly = true;
         }
 
         private void populateIngredientsBox()
@@ -115,6 +122,8 @@ namespace _393_Food_Machine
             allFieldsValid = allFieldsValid && ValidateNumericFields();
             //Validate that there are ingredients
             allFieldsValid = allFieldsValid && ValidateIngredients();
+            //Validate Recipe Category
+            allFieldsValid = allFieldsValid && ValidateRecipeCategory();
 
             if (allFieldsValid)
             {
@@ -124,10 +133,24 @@ namespace _393_Food_Machine
             }
         }
 
+        private bool ValidateRecipeCategory()
+        {
+            if(recipeCategoryBox.SelectedIndex < Enum.GetValues(typeof(Recipe.RecipeCategory)).Length) {
+                indivRecipe.category = (Recipe.RecipeCategory)recipeCategoryBox.SelectedIndex;
+                return true;
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Please ensure that an appropriate Recipe Category is provided from the dropdown");
+                return false;
+            }
+        }
+
         private bool ValidateIngredients()
         {
             if(indivRecipe.ingredientList.Count > 0)
             {
+                //ingredientList is updated on the fly, no need to change it here 
                 return true;
             }
             else

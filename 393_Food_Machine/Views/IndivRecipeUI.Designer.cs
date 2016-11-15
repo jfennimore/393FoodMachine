@@ -36,6 +36,7 @@
             this.ingredientsLabel = new System.Windows.Forms.Label();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
+            this.categoryLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // backButton
@@ -70,6 +71,7 @@
             // 
             // title
             // 
+            this.title.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Arial Black", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title.Location = new System.Drawing.Point(202, 13);
@@ -77,6 +79,7 @@
             this.title.Size = new System.Drawing.Size(138, 27);
             this.title.TabIndex = 3;
             this.title.Text = "Recipe Title";
+            this.title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ingredientListBox
             // 
@@ -114,11 +117,23 @@
             this.descriptionTextBox.TabIndex = 8;
             this.descriptionTextBox.Text = "";
             // 
+            // categoryLabel
+            // 
+            this.categoryLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Location = new System.Drawing.Point(225, 40);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(86, 13);
+            this.categoryLabel.TabIndex = 9;
+            this.categoryLabel.Text = "Recipe Category";
+            this.categoryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // IndivRecipeUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 311);
+            this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.descriptionLabel);
             this.Controls.Add(this.ingredientsLabel);
@@ -144,5 +159,6 @@
         private System.Windows.Forms.Label ingredientsLabel;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.RichTextBox descriptionTextBox;
+        private System.Windows.Forms.Label categoryLabel;
     }
 }

@@ -26,7 +26,7 @@ namespace _393_Food_Machine.Views
 
         private void ingredientButton_Click(object sender, EventArgs e)
         {
-            String uri = "";
+            String uri = "http://food-machine-api.herokuapp.com/ingredients";
             WebRequest wr = WebRequest.Create(uri);
             StreamReader response = new StreamReader(wr.GetResponse().GetResponseStream());
             StringBuilder fullResponse = new StringBuilder();
