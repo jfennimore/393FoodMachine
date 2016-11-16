@@ -27,6 +27,14 @@ namespace _393_Food_Machine.Views
 
         }
 
+        private void populateComboBoxes()
+        {
+            editCategoryBox.Items.AddRange(Enum.GetNames(typeof(Ingredient.IngredientCategory)));
+            newCategoryBox.Items.AddRange(Enum.GetNames(typeof(Ingredient.IngredientCategory)));
+            editIngredientUnit.Items.AddRange(Enum.GetNames(typeof(Ingredient.measurementUnits)));
+            newIngredientUnit.Items.AddRange(Enum.GetNames(typeof(Ingredient.measurementUnits)));
+        }
+
         private bool PullItems()
         {
             //Get the list of recipe names and ID's from the API
