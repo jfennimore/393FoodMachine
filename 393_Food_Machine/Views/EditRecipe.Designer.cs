@@ -45,7 +45,7 @@
             this.editIngredientUnit = new System.Windows.Forms.ComboBox();
             this.editIngredientConfirm = new System.Windows.Forms.Button();
             this.editIngredientRemove = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.newIngrButton = new System.Windows.Forms.Button();
             this.newIngredientUnit = new System.Windows.Forms.ComboBox();
             this.newIngredientAmount = new System.Windows.Forms.TextBox();
             this.newIngredientName = new System.Windows.Forms.TextBox();
@@ -208,14 +208,15 @@
             this.editIngredientRemove.UseVisualStyleBackColor = true;
             this.editIngredientRemove.Click += new System.EventHandler(this.editIngredientRemove_Click);
             // 
-            // button1
+            // newIngrButton
             // 
-            this.button1.Location = new System.Drawing.Point(413, 216);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Add New";
-            this.button1.UseVisualStyleBackColor = true;
+            this.newIngrButton.Location = new System.Drawing.Point(413, 216);
+            this.newIngrButton.Name = "newIngrButton";
+            this.newIngrButton.Size = new System.Drawing.Size(75, 23);
+            this.newIngrButton.TabIndex = 25;
+            this.newIngrButton.Text = "Add New";
+            this.newIngrButton.UseVisualStyleBackColor = true;
+            this.newIngrButton.Click += new System.EventHandler(this.newIngrButton_Click);
             // 
             // newIngredientUnit
             // 
@@ -255,7 +256,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 370);
             this.Controls.Add(this.recipeCategoryBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.newIngrButton);
             this.Controls.Add(this.newIngredientUnit);
             this.Controls.Add(this.newIngredientAmount);
             this.Controls.Add(this.newIngredientName);
@@ -302,7 +303,7 @@
         private System.Windows.Forms.ComboBox editIngredientUnit;
         private System.Windows.Forms.Button editIngredientConfirm;
         private System.Windows.Forms.Button editIngredientRemove;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button newIngrButton;
         private System.Windows.Forms.ComboBox newIngredientUnit;
         private System.Windows.Forms.TextBox newIngredientAmount;
         private System.Windows.Forms.TextBox newIngredientName;

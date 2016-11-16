@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.newIngredientButton = new System.Windows.Forms.Button();
             this.ingredientListBox = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ingredientSort = new System.Windows.Forms.ComboBox();
             this.ingredientFilter = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.newIngrButton = new System.Windows.Forms.Button();
             this.newIngredientUnit = new System.Windows.Forms.ComboBox();
             this.newIngredientCalories = new System.Windows.Forms.TextBox();
             this.newIngredientName = new System.Windows.Forms.TextBox();
@@ -46,15 +45,6 @@
             this.editCategoryBox = new System.Windows.Forms.ComboBox();
             this.newCategoryBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // newIngredientButton
-            // 
-            this.newIngredientButton.Location = new System.Drawing.Point(244, 261);
-            this.newIngredientButton.Name = "newIngredientButton";
-            this.newIngredientButton.Size = new System.Drawing.Size(91, 23);
-            this.newIngredientButton.TabIndex = 12;
-            this.newIngredientButton.Text = "New Ingredient";
-            this.newIngredientButton.UseVisualStyleBackColor = true;
             // 
             // ingredientListBox
             // 
@@ -104,26 +94,27 @@
             this.ingredientFilter.Size = new System.Drawing.Size(121, 21);
             this.ingredientFilter.TabIndex = 7;
             // 
-            // button1
+            // newIngrButton
             // 
-            this.button1.Location = new System.Drawing.Point(437, 197);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 23);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "Add New";
-            this.button1.UseVisualStyleBackColor = true;
+            this.newIngrButton.Location = new System.Drawing.Point(437, 219);
+            this.newIngrButton.Name = "newIngrButton";
+            this.newIngrButton.Size = new System.Drawing.Size(67, 23);
+            this.newIngrButton.TabIndex = 34;
+            this.newIngrButton.Text = "Add New";
+            this.newIngrButton.UseVisualStyleBackColor = true;
+            this.newIngrButton.Click += new System.EventHandler(this.newIngrButton_Click);
             // 
             // newIngredientUnit
             // 
             this.newIngredientUnit.FormattingEnabled = true;
-            this.newIngredientUnit.Location = new System.Drawing.Point(276, 199);
+            this.newIngredientUnit.Location = new System.Drawing.Point(276, 221);
             this.newIngredientUnit.Name = "newIngredientUnit";
             this.newIngredientUnit.Size = new System.Drawing.Size(73, 21);
             this.newIngredientUnit.TabIndex = 33;
             // 
             // newIngredientCalories
             // 
-            this.newIngredientCalories.Location = new System.Drawing.Point(219, 199);
+            this.newIngredientCalories.Location = new System.Drawing.Point(219, 221);
             this.newIngredientCalories.Name = "newIngredientCalories";
             this.newIngredientCalories.Size = new System.Drawing.Size(51, 20);
             this.newIngredientCalories.TabIndex = 32;
@@ -131,7 +122,7 @@
             // 
             // newIngredientName
             // 
-            this.newIngredientName.Location = new System.Drawing.Point(46, 199);
+            this.newIngredientName.Location = new System.Drawing.Point(46, 221);
             this.newIngredientName.Name = "newIngredientName";
             this.newIngredientName.Size = new System.Drawing.Size(167, 20);
             this.newIngredientName.TabIndex = 31;
@@ -139,33 +130,35 @@
             // 
             // editIngredientRemove
             // 
-            this.editIngredientRemove.Location = new System.Drawing.Point(497, 168);
+            this.editIngredientRemove.Location = new System.Drawing.Point(497, 190);
             this.editIngredientRemove.Name = "editIngredientRemove";
             this.editIngredientRemove.Size = new System.Drawing.Size(56, 23);
             this.editIngredientRemove.TabIndex = 30;
             this.editIngredientRemove.Text = "Remove";
             this.editIngredientRemove.UseVisualStyleBackColor = true;
+            this.editIngredientRemove.Click += new System.EventHandler(this.editIngredientRemove_Click);
             // 
             // editIngredientConfirm
             // 
-            this.editIngredientConfirm.Location = new System.Drawing.Point(437, 168);
+            this.editIngredientConfirm.Location = new System.Drawing.Point(437, 190);
             this.editIngredientConfirm.Name = "editIngredientConfirm";
             this.editIngredientConfirm.Size = new System.Drawing.Size(54, 23);
             this.editIngredientConfirm.TabIndex = 29;
             this.editIngredientConfirm.Text = "Confirm";
             this.editIngredientConfirm.UseVisualStyleBackColor = true;
+            this.editIngredientConfirm.Click += new System.EventHandler(this.editIngredientConfirm_Click);
             // 
             // editIngredientUnit
             // 
             this.editIngredientUnit.FormattingEnabled = true;
-            this.editIngredientUnit.Location = new System.Drawing.Point(276, 170);
+            this.editIngredientUnit.Location = new System.Drawing.Point(276, 192);
             this.editIngredientUnit.Name = "editIngredientUnit";
             this.editIngredientUnit.Size = new System.Drawing.Size(73, 21);
             this.editIngredientUnit.TabIndex = 28;
             // 
             // editIngredientCalories
             // 
-            this.editIngredientCalories.Location = new System.Drawing.Point(219, 170);
+            this.editIngredientCalories.Location = new System.Drawing.Point(219, 192);
             this.editIngredientCalories.Name = "editIngredientCalories";
             this.editIngredientCalories.Size = new System.Drawing.Size(51, 20);
             this.editIngredientCalories.TabIndex = 27;
@@ -173,7 +166,7 @@
             // 
             // editIngredientName
             // 
-            this.editIngredientName.Location = new System.Drawing.Point(46, 170);
+            this.editIngredientName.Location = new System.Drawing.Point(46, 192);
             this.editIngredientName.Name = "editIngredientName";
             this.editIngredientName.Size = new System.Drawing.Size(167, 20);
             this.editIngredientName.TabIndex = 26;
@@ -182,7 +175,7 @@
             // editCategoryBox
             // 
             this.editCategoryBox.FormattingEnabled = true;
-            this.editCategoryBox.Location = new System.Drawing.Point(356, 170);
+            this.editCategoryBox.Location = new System.Drawing.Point(356, 192);
             this.editCategoryBox.Name = "editCategoryBox";
             this.editCategoryBox.Size = new System.Drawing.Size(75, 21);
             this.editCategoryBox.TabIndex = 35;
@@ -190,7 +183,7 @@
             // newCategoryBox
             // 
             this.newCategoryBox.FormattingEnabled = true;
-            this.newCategoryBox.Location = new System.Drawing.Point(356, 199);
+            this.newCategoryBox.Location = new System.Drawing.Point(356, 221);
             this.newCategoryBox.Name = "newCategoryBox";
             this.newCategoryBox.Size = new System.Drawing.Size(75, 21);
             this.newCategoryBox.TabIndex = 36;
@@ -202,7 +195,7 @@
             this.ClientSize = new System.Drawing.Size(584, 311);
             this.Controls.Add(this.newCategoryBox);
             this.Controls.Add(this.editCategoryBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.newIngrButton);
             this.Controls.Add(this.newIngredientUnit);
             this.Controls.Add(this.newIngredientCalories);
             this.Controls.Add(this.newIngredientName);
@@ -211,7 +204,6 @@
             this.Controls.Add(this.editIngredientUnit);
             this.Controls.Add(this.editIngredientCalories);
             this.Controls.Add(this.editIngredientName);
-            this.Controls.Add(this.newIngredientButton);
             this.Controls.Add(this.ingredientListBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -225,14 +217,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button newIngredientButton;
         private System.Windows.Forms.ListBox ingredientListBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox ingredientSort;
         private System.Windows.Forms.ComboBox ingredientFilter;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button newIngrButton;
         private System.Windows.Forms.ComboBox newIngredientUnit;
         private System.Windows.Forms.TextBox newIngredientCalories;
         private System.Windows.Forms.TextBox newIngredientName;

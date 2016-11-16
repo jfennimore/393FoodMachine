@@ -104,8 +104,6 @@ namespace _393_Food_Machine
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            bool allFieldsValid = true;
-
             if (indivRecipe == null)
             {
                 //Create a dummy recipe- all of this data is about to be written over anyway.
@@ -114,116 +112,151 @@ namespace _393_Food_Machine
 
             //Collect all of the recipe info on the page and push that to the API
             //In the meantime, for demo purposes- go back to IndivRecipe mode showing the changes.
+            bool recipeFieldsValid = validateRecipeFields();
 
+            if(recipeFieldsValid)
+            {
+                indivRecipe.name = title.Text;
+                indivRecipe.numServings = Int32.Parse(servingsBox.Text);
+                indivRecipe.prepTime = Int32.Parse(prepTimeBox.Text);
+                indivRecipe.description = descriptionTextBox.Text;
+                indivRecipe.category = (Recipe.RecipeCategory)recipeCategoryBox.SelectedIndex;
+
+                this.Hide();
+                indivRecipe.PushItem();
+                (new IndivRecipeUI(indivRecipe.ToString())).Show();
+            }
+        }
+
+        private bool validateRecipeFields()
+        {
             /* 
              * Validation strategy: Check on each field value, and if there's an issue, short circuit- we'll only allow a push if all fields are valid
              */
             //Validate Title
-            if(! _393_Food_Machine.Models.FieldValidator.ValidateString(title,"Title",new String[] { "Recipe Name" }))
+            if (!Models.FieldValidator.ValidateString(title, "Title", new String[] { "Recipe Name" }))
             {
-                return;
+                return false;
             }
             //Validate Description
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateString(descriptionTextBox, "Description", new String[] { }))
+            if (!Models.FieldValidator.ValidateString(descriptionTextBox, "Description", new String[] { }))
             {
-                return;
+                return false;
             }
             //Validate number of servings and prep time
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateIntNumeric(servingsBox,"Number of Servings"))
+            if (!Models.FieldValidator.ValidateIntNumeric(servingsBox, "Number of Servings"))
             {
-                return;
+                return false;
             }
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateIntNumeric(prepTimeBox,"Prep Time"))
+            if (!Models.FieldValidator.ValidateIntNumeric(prepTimeBox, "Prep Time"))
             {
-                return;
+                return false;
             }
             //Validate that there are ingredients
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateStructureNotEmpty(indivRecipe.ingredientList,"Ingredients"))
+            if (!Models.FieldValidator.ValidateStructureNotEmpty(indivRecipe.ingredientList, "Ingredients"))
             {
-                return;
+                return false;
             }
             //Validate Recipe Category
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateWithinRange(recipeCategoryBox.SelectedIndex,typeof(Recipe.RecipeCategory),"Recipe Category"))
+            if (!Models.FieldValidator.ValidateWithinRange(recipeCategoryBox.SelectedIndex, typeof(Recipe.RecipeCategory), "Recipe Category", recipeCategoryBox.Text))
             {
-                return;
+                return false;
             }
             //If we made it this far, then the recipe is valid.
-            indivRecipe.name = title.Text;
-            indivRecipe.numServings = Int32.Parse(servingsBox.Text);
-            indivRecipe.prepTime = Int32.Parse(prepTimeBox.Text);
-            indivRecipe.description = descriptionTextBox.Text;
-            indivRecipe.category = (Recipe.RecipeCategory)recipeCategoryBox.SelectedIndex;
-
-            this.Hide();
-            indivRecipe.PushItem();
-            (new IndivRecipeUI(indivRecipe.ToString())).Show();
+            return true;
         }
 
         private void ingredientListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = ingredientListBox.SelectedIndex;
-            Tuple<Ingredient, double, Ingredient.measurementUnits> selectedIngredient = indivRecipe.ingredientList.ElementAt(index);
-            editIngredientName.Text = selectedIngredient.Item1.name;
-            editIngredientAmount.Text = selectedIngredient.Item2.ToString();
-            editIngredientUnit.Text = selectedIngredient.Item1.unit.ToString(); 
+            //It's possible to select an 'empty' row, and so we need to prevent an OutOfBounds exception.
+            if (index < indivRecipe.ingredientList.Count)
+            {
+                Tuple<Ingredient, double, Ingredient.measurementUnits> selectedIngredient = indivRecipe.ingredientList.ElementAt(index);
+                editIngredientName.Text = selectedIngredient.Item1.name;
+                editIngredientAmount.Text = selectedIngredient.Item2.ToString();
+                editIngredientUnit.Text = selectedIngredient.Item1.unit.ToString();
+            }
         }
 
         private void editIngredientConfirm_Click(object sender, EventArgs e)
         {
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateString(editIngredientName, "Editing Ingredient Name", new String[] { "(Existing Ingredient Name)" }))
+            bool editFieldsValid = validateEditFields();
+            if(editFieldsValid)
             {
-                //TODO: Check that the given ingredient name actually exists in the API
-                return;
+                if (ingredientListBox.SelectedIndex != -1)
+                {
+                    indivRecipe.ingredientList[ingredientListBox.SelectedIndex] =
+                        new Tuple<Ingredient, double, Ingredient.measurementUnits>(new Ingredient(
+                            editIngredientName.Text,
+                            0,
+                            (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), editIngredientUnit.Text),
+                            indivRecipe.ingredientList[ingredientListBox.SelectedIndex].Item1.category),
+                            Double.Parse(editIngredientAmount.Text),
+                            (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits),editIngredientUnit.Text)
+                        );
+                }
+                populateIngredientsBox();
             }
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateDoubleNumeric(editIngredientAmount, "Edit Ingredient Amount"))
-            {
-                return;
-            }
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateWithinRange(editIngredientUnit.SelectedIndex, typeof(Ingredient.measurementUnits), "Edit Ingredient Unit"))
-            {
-                return;
-            }
-
-            if (ingredientListBox.SelectedIndex != -1)
-            {
-                indivRecipe.ingredientList[ingredientListBox.SelectedIndex] = 
-                    new Tuple<Ingredient, double, Ingredient.measurementUnits>(new Ingredient(
-                        editIngredientName.Text, 
-                        0, 
-                        (Ingredient.measurementUnits) editIngredientUnit.SelectedIndex,
-                        indivRecipe.ingredientList[ingredientListBox.SelectedIndex].Item1.category), 
-                        Double.Parse(editIngredientAmount.Text),
-                        (Ingredient.measurementUnits) editIngredientUnit.SelectedIndex
-                    );
-            }
-            populateIngredientsBox();
         }
 
-
-        private void addNewIngrButton_Click(object sender, EventArgs e)
+        private bool validateEditFields()
         {
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateString(newIngredientName, "New Ingredient Name", new String[] { "(New Ingredient Name)" }))
+            //Ingredient Name
+            if (!Models.FieldValidator.ValidateString(editIngredientName, "Editing Ingredient Name", new String[] { "(Existing Ingredient Name)" }))
             {
-                return;
+                //TODO: Check that the given ingredient name actually exists in the API
+                return false;
             }
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateDoubleNumeric(newIngredientAmount, "New Ingredient Amount"))
+            //Ingredient Amount
+            if (!Models.FieldValidator.ValidateDoubleNumeric(editIngredientAmount, "Edit Ingredient Amount"))
             {
-                return;
+                return false;
             }
-            if (!_393_Food_Machine.Models.FieldValidator.ValidateWithinRange(newIngredientUnit.SelectedIndex,typeof(Ingredient.measurementUnits),"New Ingredient Unit"))
+            //Ingredient Unit
+            if (!Models.FieldValidator.ValidateWithinRange(editIngredientUnit.SelectedIndex, typeof(Ingredient.measurementUnits), "Edit Ingredient Unit", editIngredientUnit.Text))
             {
-                return;
+                return false;
             }
-            
-            //Get ingredient ID from the name
-            //Add ingredient to this Recipe
-            populateIngredientsBox();
-            
+
+            return true;
+        }
+
+        private void newIngrButton_Click(object sender, EventArgs e)
+        {
+            bool newIngrFieldsValid = validateNewIngrFields();
+            if (newIngrFieldsValid)
+            {
+                //TODO: Get ingredient ID from the name
+                //Add ingredient to this Recipe
+                populateIngredientsBox();
+            }
+        }
+
+        private bool validateNewIngrFields()
+        {
+            //Ingredient Name
+            if (!Models.FieldValidator.ValidateString(newIngredientName, "New Ingredient Name", new String[] { "(New Ingredient Name)" }))
+            {
+                return false;
+            }
+            //Ingredient Amount
+            if (!Models.FieldValidator.ValidateDoubleNumeric(newIngredientAmount, "New Ingredient Amount"))
+            {
+                return false;
+            }
+            //Ingredient Unit
+            if (!Models.FieldValidator.ValidateWithinRange(newIngredientUnit.SelectedIndex, typeof(Ingredient.measurementUnits), "New Ingredient Unit", newIngredientUnit.Name))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private void editIngredientRemove_Click(object sender, EventArgs e)
         {
-            if(ingredientListBox.SelectedIndex != -1)
+            if(ingredientListBox.SelectedIndex != -1 && ingredientListBox.SelectedIndex < indivRecipe.ingredientList.Count)
             {
                 indivRecipe.ingredientList.RemoveAt(ingredientListBox.SelectedIndex);
                 editIngredientName.Text = "";
@@ -232,5 +265,7 @@ namespace _393_Food_Machine
                 populateIngredientsBox();
             }
         }
+
+       
     }
 }

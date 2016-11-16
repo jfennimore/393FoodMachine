@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _393_Food_Machine.Models
+namespace Models
 {
     /**
      * The purpose of this class is to make field validation code reusable across all of the
@@ -75,9 +75,14 @@ namespace _393_Food_Machine.Models
             }
         }
 
-        public static bool ValidateWithinRange(int index, Type enumType, String fieldName)
+        public static bool ValidateWithinRange(int index, Type enumType, String fieldName, String fieldText)
         {
-            if(index < Enum.GetValues(enumType).Length && index > 0)
+            if(index < Enum.GetValues(enumType).Length && index >= 0)
+            {
+                return true;
+            }
+            //In case someone happens to know the unit they want and they type it!
+            if(Enum.GetNames(enumType).Contains(fieldText))
             {
                 return true;
             }
@@ -86,6 +91,11 @@ namespace _393_Food_Machine.Models
                 System.Windows.Forms.MessageBox.Show(String.Format("The index selected for {0} is not accepted.", fieldName));
                 return false;
             }
+        }
+
+        public static int getComboIndex(Type enumType, String value)
+        {
+            return Array.IndexOf(Enum.GetNames(enumType), value);
         }
     }
 
