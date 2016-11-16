@@ -35,7 +35,20 @@ namespace _393_Food_Machine
         }
 
         //TODO: Incorporate actual call to API
-        public override bool PushItem()
+        public override bool PushNewItem()
+        {
+            String jsonObj = JsonConvert.SerializeObject(this);
+            Console.Write(jsonObj);
+            return true;
+        }
+
+        public override bool PushExistingItem()
+        {
+            String jsonObj = JsonConvert.SerializeObject(this);
+            Console.Write(jsonObj);
+            return true;
+        }
+        public override bool DeleteItem()
         {
             String jsonObj = JsonConvert.SerializeObject(this);
             Console.Write(jsonObj);

@@ -12,7 +12,11 @@ namespace _393_Food_Machine
         public int id { get; set; }
         public String name { get; set; }
         //Push the item to the API as a JSON object and then validate that the object was received.
-        public abstract bool PushItem();
+        public abstract bool PushNewItem();
+
+        public abstract bool PushExistingItem();
+
+        public abstract bool DeleteItem();
 
         //The string representation of an Editable object should be the JSON representation of it.
         public override string ToString()

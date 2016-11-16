@@ -90,10 +90,23 @@ namespace _393_Food_Machine
 
         //PushItem basically IS 'ExportRecipe()'
         //TODO: Incorporate actual call to API
-        public override bool PushItem()
+        public override bool PushNewItem()
         {
-            String jsonObj = this.ToString();
-            Console.Out.WriteLine(jsonObj);
+            String jsonObj = JsonConvert.SerializeObject(this);
+            Console.Write(jsonObj);
+            return true;
+        }
+
+        public override bool PushExistingItem()
+        {
+            String jsonObj = JsonConvert.SerializeObject(this);
+            Console.Write(jsonObj);
+            return true;
+        }
+        public override bool DeleteItem()
+        {
+            String jsonObj = JsonConvert.SerializeObject(this);
+            Console.Write(jsonObj);
             return true;
         }
 

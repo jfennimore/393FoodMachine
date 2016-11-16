@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Models
+namespace _393_Food_Machine.Models
 {
     /**
      * The purpose of this class is to make field validation code reusable across all of the

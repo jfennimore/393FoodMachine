@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _393_Food_Machine.Views
 {
@@ -43,9 +45,20 @@ namespace _393_Food_Machine.Views
         private bool PullItems()
         {
             //Get the list of recipe names and ID's from the API
+            JObject outerLayer = JObject.Parse(Models.APICalls.getAllIngredients());
+            List<Ingredient> apiIngredientList = JsonConvert.DeserializeObject<List<Ingredient>>(outerLayer.GetValue("ingredients").ToString());
             ingrList = new List<Tuple<String, int, String>>();
+            foreach (Ingredient ingr in apiIngredientList)
+            {
+                ingrList.Add(new Tuple<string, int, string>(ingr.name, ingr.id, ingr.ToString()));
+            }
             ingrList.Add(new Tuple<string, int, string>("Butter", 3, jsonButter()));
             ingrList.Add(new Tuple<string, int, string>("Flour", 4, jsonFlour()));
+            List<Ingredient> jsonIngredients = new List<Ingredient>();
+            jsonIngredients.Add(new Ingredient(jsonButter()));
+            jsonIngredients.Add(new Ingredient(jsonFlour()));
+            String listOfIngr = JsonConvert.SerializeObject(jsonIngredients);
+            Console.Out.Write(listOfIngr);
             return true;
         }
 
@@ -73,6 +86,7 @@ namespace _393_Food_Machine.Views
                             (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), editIngredientUnit.Text),
                             (Ingredient.IngredientCategory)Models.FieldValidator.getComboIndex(typeof(Ingredient.IngredientCategory), editCategoryBox.Text));
                 ingrList[ingredientListBox.SelectedIndex] = new Tuple<string, int, string>(newIngr.name, newIngr.id, newIngr.ToString());
+                newIngr.PushExistingItem();
                         
                 populateIngredientsBox();
             }
@@ -115,7 +129,7 @@ namespace _393_Food_Machine.Views
                             (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), newIngredientUnit.Text),
                             (Ingredient.IngredientCategory)Models.FieldValidator.getComboIndex(typeof(Ingredient.IngredientCategory), newCategoryBox.Text));
                 ingrList.Add(new Tuple<string, int, string>(newIngr.name, newIngr.id, newIngr.ToString()));
-                newIngr.PushItem();
+                newIngr.PushNewItem();
                 populateIngredientsBox();
             }
         }
@@ -163,6 +177,8 @@ namespace _393_Food_Machine.Views
         {
             if (ingredientListBox.SelectedIndex != -1 && ingredientListBox.SelectedIndex < ingrList.Count)
             {
+                Ingredient current = new Ingredient(ingrList.ElementAt(ingredientListBox.SelectedIndex).Item3);
+                current.DeleteItem();
                 ingrList.RemoveAt(ingredientListBox.SelectedIndex);
                 editIngredientName.Text = "";
                 editIngredientCalories.Text = "";

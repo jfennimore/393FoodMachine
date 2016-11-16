@@ -104,9 +104,12 @@ namespace _393_Food_Machine
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
+            bool isNewRecipe = false;
+
             if (indivRecipe == null)
             {
                 //Create a dummy recipe- all of this data is about to be written over anyway.
+                isNewRecipe = true;
                 indivRecipe = new _393_Food_Machine.Recipe("Dummy", "", Recipe.RecipeCategory.Appetizer, 0, DateTime.Today, 0, new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>());
             }
 
@@ -123,7 +126,15 @@ namespace _393_Food_Machine
                 indivRecipe.category = (Recipe.RecipeCategory)recipeCategoryBox.SelectedIndex;
 
                 this.Hide();
-                indivRecipe.PushItem();
+                if (isNewRecipe)
+                {
+                    indivRecipe.PushNewItem();
+                }
+                else
+                {
+                    indivRecipe.PushExistingItem();
+                }
+
                 (new IndivRecipeUI(indivRecipe.ToString())).Show();
             }
         }

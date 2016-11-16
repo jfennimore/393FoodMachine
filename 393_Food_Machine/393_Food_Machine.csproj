@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\APICalls.cs" />
     <Compile Include="Models\Editable.cs" />
     <Compile Include="Models\FieldValidator.cs" />
     <Compile Include="Views\EditRecipe.cs">

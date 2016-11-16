@@ -80,10 +80,24 @@ namespace _393_Food_Machine
             }
         } 
 
-        public override bool PushItem()
+        public override bool PushNewItem()
         {
-            String jsonObj = JsonConvert.SerializeObject(this);
-            Console.Out.WriteLine(jsonObj);
+            Models.APICalls.postNewIngredient(this);
+            //TODO: Check if the post was successful and return that instead of just true
+            return true;
+        }
+
+        public override bool PushExistingItem()
+        {
+            Models.APICalls.updateIngredient(this);
+            //TODO: Check if the post was successful and return that instead of just true
+            return true;
+        }
+
+        public override bool DeleteItem()
+        {
+            Models.APICalls.postNewIngredient(this);
+            //TODO: Check if the post was successful and return that instead of just true
             return true;
         }
 
