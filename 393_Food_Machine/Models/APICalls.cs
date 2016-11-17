@@ -35,6 +35,12 @@ namespace _393_Food_Machine.Models
             return makeCall(request);
         }
 
+        public static String getIndivCall(String urlExtension, int id)
+        {
+            String fullExtension = urlExtension + "//" + id;
+            return getCall(fullExtension);
+        }
+
 
         public static String postCall(String urlExtension, Editable obj)
         {
@@ -96,6 +102,31 @@ namespace _393_Food_Machine.Models
         public static String deleteIngredient(Ingredient ingredient)
         {
             return deleteCall("ingredients", ingredient);
+        }
+
+        public static String getAllRecipes()
+        {
+            return getCall("recipes");
+        }
+
+        public static String getRecipeById(int id)
+        {
+            return getIndivCall("recipes", id);
+        }
+
+        public static String postNewRecipe(Recipe recipe)
+        {
+            return postCall("recipes", recipe);
+        }
+
+        public static String updateRecipe(Recipe recipe)
+        {
+            return putCall("recipes", recipe);
+        }
+
+        public static String deleteRecipe(Recipe recipe)
+        {
+            return deleteCall("recipes", recipe);
         }
     }
 }

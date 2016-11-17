@@ -44,6 +44,7 @@
             this.editIngredientName = new System.Windows.Forms.TextBox();
             this.editCategoryBox = new System.Windows.Forms.ComboBox();
             this.newCategoryBox = new System.Windows.Forms.ComboBox();
+            this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ingredientListBox
@@ -58,7 +59,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(402, 24);
+            this.label2.Location = new System.Drawing.Point(402, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 10;
@@ -67,7 +68,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 25);
+            this.label1.Location = new System.Drawing.Point(43, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 9;
@@ -188,11 +189,22 @@
             this.newCategoryBox.Size = new System.Drawing.Size(75, 21);
             this.newCategoryBox.TabIndex = 36;
             // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(3, 1);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(81, 23);
+            this.backButton.TabIndex = 37;
+            this.backButton.Text = "< Home";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // IngredientList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 311);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.newCategoryBox);
             this.Controls.Add(this.editCategoryBox);
             this.Controls.Add(this.newIngrButton);
@@ -233,5 +245,6 @@
         private System.Windows.Forms.TextBox editIngredientName;
         private System.Windows.Forms.ComboBox editCategoryBox;
         private System.Windows.Forms.ComboBox newCategoryBox;
+        private System.Windows.Forms.Button backButton;
     }
 }

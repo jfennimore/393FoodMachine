@@ -79,13 +79,14 @@ namespace _393_Food_Machine
 
         private void editRecipeButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             (new EditRecipe(indivRecipe.ToString())).Show();
+            this.Close();
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            (new RecipeList()).Show();
+            this.Close();
         }
 
         //Let user specify where they want the exported recipe to go, then create a file with the name of the recipe.json

@@ -14,7 +14,7 @@ namespace _393_Food_Machine.Views
 {
     public partial class IngredientList : Form
     {
-        private List<Tuple<String, int, String>> ingrList;
+        private List<Ingredient> ingrList;
 
         public IngredientList()
         {
@@ -36,29 +36,19 @@ namespace _393_Food_Machine.Views
         private void populateIngredientsBox()
         {
             ingredientListBox.Items.Clear();
-            foreach (Tuple<String, int, String> ingredient in ingrList)
+            foreach (Ingredient ingredient in ingrList)
             {
-                ingredientListBox.Items.Add(ingredient.Item1);
+                ingredientListBox.Items.Add(ingredient.name);
             }
         }
 
         private bool PullItems()
         {
-            //Get the list of recipe names and ID's from the API
+            LoadingScreen ls = new LoadingScreen();
+            ls.Show();
             JObject outerLayer = JObject.Parse(Models.APICalls.getAllIngredients());
-            List<Ingredient> apiIngredientList = JsonConvert.DeserializeObject<List<Ingredient>>(outerLayer.GetValue("ingredients").ToString());
-            ingrList = new List<Tuple<String, int, String>>();
-            foreach (Ingredient ingr in apiIngredientList)
-            {
-                ingrList.Add(new Tuple<string, int, string>(ingr.name, ingr.id, ingr.ToString()));
-            }
-            ingrList.Add(new Tuple<string, int, string>("Butter", 3, jsonButter()));
-            ingrList.Add(new Tuple<string, int, string>("Flour", 4, jsonFlour()));
-            List<Ingredient> jsonIngredients = new List<Ingredient>();
-            jsonIngredients.Add(new Ingredient(jsonButter()));
-            jsonIngredients.Add(new Ingredient(jsonFlour()));
-            String listOfIngr = JsonConvert.SerializeObject(jsonIngredients);
-            Console.Out.Write(listOfIngr);
+            ls.Close();
+            ingrList = JsonConvert.DeserializeObject<List<Ingredient>>(outerLayer.GetValue("ingredients").ToString());
             return true;
         }
 
@@ -68,11 +58,11 @@ namespace _393_Food_Machine.Views
             //Possible to select a row that is empty, so prevent out of bounds exceptions!
             if (index < ingrList.Count)
             {
-                Ingredient selectedIngr = new Ingredient(ingrList.ElementAt(index).Item3);
+                Ingredient selectedIngr = ingrList.ElementAt(index);
                 editIngredientName.Text = selectedIngr.name;
                 editIngredientCalories.Text = selectedIngr.calories.ToString();
-                editIngredientUnit.Text = Enum.GetName(typeof(Ingredient.measurementUnits), selectedIngr.unit);
-                editCategoryBox.Text = Enum.GetName(typeof(Ingredient.IngredientCategory), selectedIngr.category);
+                editIngredientUnit.Text = Models.FieldValidator.getComboName(typeof(Ingredient.measurementUnits),selectedIngr.unit);
+                editCategoryBox.Text = Models.FieldValidator.getComboName(typeof(Ingredient.IngredientCategory), selectedIngr.category);
             }
         }
 
@@ -85,7 +75,7 @@ namespace _393_Food_Machine.Views
                             Int32.Parse(editIngredientCalories.Text),
                             (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), editIngredientUnit.Text),
                             (Ingredient.IngredientCategory)Models.FieldValidator.getComboIndex(typeof(Ingredient.IngredientCategory), editCategoryBox.Text));
-                ingrList[ingredientListBox.SelectedIndex] = new Tuple<string, int, string>(newIngr.name, newIngr.id, newIngr.ToString());
+                ingrList[ingredientListBox.SelectedIndex] = newIngr;
                 newIngr.PushExistingItem();
                         
                 populateIngredientsBox();
@@ -128,7 +118,7 @@ namespace _393_Food_Machine.Views
                             Int32.Parse(newIngredientCalories.Text),
                             (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), newIngredientUnit.Text),
                             (Ingredient.IngredientCategory)Models.FieldValidator.getComboIndex(typeof(Ingredient.IngredientCategory), newCategoryBox.Text));
-                ingrList.Add(new Tuple<string, int, string>(newIngr.name, newIngr.id, newIngr.ToString()));
+                ingrList.Add(newIngr);
                 newIngr.PushNewItem();
                 populateIngredientsBox();
             }
@@ -161,23 +151,11 @@ namespace _393_Food_Machine.Views
             return true;
         }
 
-        private String jsonButter()
-        {
-            Ingredient butter = new Ingredient("Butter", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Dairy);
-            return butter.ToString();
-        }
-
-        private String jsonFlour()
-        {
-            Ingredient flour = new Ingredient("Flour", 150, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
-            return flour.ToString();
-        }
-
         private void editIngredientRemove_Click(object sender, EventArgs e)
         {
             if (ingredientListBox.SelectedIndex != -1 && ingredientListBox.SelectedIndex < ingrList.Count)
             {
-                Ingredient current = new Ingredient(ingrList.ElementAt(ingredientListBox.SelectedIndex).Item3);
+                Ingredient current = ingrList.ElementAt(ingredientListBox.SelectedIndex);
                 current.DeleteItem();
                 ingrList.RemoveAt(ingredientListBox.SelectedIndex);
                 editIngredientName.Text = "";
@@ -186,6 +164,11 @@ namespace _393_Food_Machine.Views
                 editCategoryBox.Text = "";
                 populateIngredientsBox();
             }
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

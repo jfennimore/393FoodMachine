@@ -93,10 +93,19 @@ namespace _393_Food_Machine.Models
             }
         }
 
+        //Converting from Enum string to the int index of that value in the array of all enum values for that type
         public static int getComboIndex(Type enumType, String value)
         {
             return Array.IndexOf(Enum.GetNames(enumType), value);
         }
+
+        //Going in the other direction
+        public static String getComboName(Type enumType, Enum value)
+        {
+            return Enum.GetNames(enumType)[Int32.Parse(value.ToString())];
+        }
+
+
     }
 
     

@@ -8,22 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _393_Food_Machine
 {
     public partial class RecipeList : Form
     {
         //Binds recipe names with their ID's and their JSON representations
-        private List<Tuple<String, int, String>> recipeList;
+        private List<Recipe> recipeList;
 
         public RecipeList()
         {
             InitializeComponent();
             PullItems();
             
-            foreach (Tuple<String,int,String> recipe in recipeList)
+            foreach (Recipe recipe in recipeList)
             {
-                recipeListBox.Items.Add(recipe.Item1);
+                recipeListBox.Items.Add(recipe.name);
             }
 
             
@@ -31,11 +33,8 @@ namespace _393_Food_Machine
 
         public bool PullItems()
         {
-            //Get the list of recipe names and ID's from the API
-            recipeList = new List<Tuple<String, int, String>>();
-            //The following a just demo recipes generated client-side to add to this list
-            recipeList.Add(new Tuple<String, int,String>("Cake", 3, jsonCake()));
-            recipeList.Add(new Tuple<String, int, String>("Meatballs", 5, jsonMeatballs()));
+            JObject outerLayer = JObject.Parse(Models.APICalls.getAllIngredients());
+            recipeList = JsonConvert.DeserializeObject<List<Recipe>>(outerLayer.GetValue("recipes").ToString());
             return true;
         }
 
@@ -43,9 +42,7 @@ namespace _393_Food_Machine
         private void recipeListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = recipeListBox.SelectedIndex;
-            int recipeId = recipeList.ElementAt(index).Item2;
-            //Match the selected index to the index of the Recipe in the list and get the id for that recipe
-            String jsonRecipe = recipeList.ElementAt(index).Item3;
+            String jsonRecipe = recipeList.ElementAt(index).ToString();
             (new IndivRecipeUI(jsonRecipe)).Show();
         }
 
@@ -108,8 +105,8 @@ namespace _393_Food_Machine
 
         private void newRecipeButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             (new EditRecipe()).Show();
+            this.Close();
         }
 
         private void importButton_Click(object sender, EventArgs e)
@@ -123,7 +120,7 @@ namespace _393_Food_Machine
                 Recipe importedRec = new Recipe(jsonObj);
                 if(importedRec.name != null)
                 {
-                    recipeList.Add(new Tuple<string, int, string>(importedRec.name, 5, jsonObj));
+                    recipeList.Add(importedRec);
                     recipeListBox.Items.Add(importedRec.name);
                 }
             }
@@ -131,6 +128,11 @@ namespace _393_Food_Machine
             {
                 System.Windows.Forms.MessageBox.Show("Recipes can only be imported in JSON format");
             }
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

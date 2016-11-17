@@ -35,6 +35,7 @@
             this.recipeListBox = new System.Windows.Forms.ListBox();
             this.newRecipeButton = new System.Windows.Forms.Button();
             this.importButton = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // recipeFilter
@@ -62,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 21);
+            this.label1.Location = new System.Drawing.Point(51, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 2;
@@ -71,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(410, 20);
+            this.label2.Location = new System.Drawing.Point(410, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 3;
@@ -106,11 +107,22 @@
             this.importButton.UseVisualStyleBackColor = true;
             this.importButton.Click += new System.EventHandler(this.importButton_Click);
             // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(1, 0);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(81, 23);
+            this.backButton.TabIndex = 38;
+            this.backButton.Text = "< Home";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // RecipeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 311);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.importButton);
             this.Controls.Add(this.newRecipeButton);
             this.Controls.Add(this.recipeListBox);
@@ -134,6 +146,7 @@
         private System.Windows.Forms.ListBox recipeListBox;
         private System.Windows.Forms.Button newRecipeButton;
         private System.Windows.Forms.Button importButton;
+        private System.Windows.Forms.Button backButton;
     }
 }
 

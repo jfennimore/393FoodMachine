@@ -29,19 +29,5 @@ namespace _393_Food_Machine.Views
             (new IngredientList()).Show();
         }
 
-        private void api_call()
-        {
-            String uri = "http://food-machine-api.herokuapp.com/ingredients";
-            WebRequest wr = WebRequest.Create(uri);
-            StreamReader response = new StreamReader(wr.GetResponse().GetResponseStream());
-            StringBuilder fullResponse = new StringBuilder();
-            String responseLine = "";
-            while (responseLine != null)
-            {
-                responseLine = response.ReadLine();
-                fullResponse.Append(responseLine);
-            }
-            System.Windows.Forms.MessageBox.Show(fullResponse.ToString());
-        }
     }
 }

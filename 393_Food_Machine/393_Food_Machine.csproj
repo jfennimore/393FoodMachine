@@ -82,6 +82,12 @@
     <Compile Include="Views\IngredientList.Designer.cs">
       <DependentUpon>IngredientList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoadingScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoadingScreen.Designer.cs">
+      <DependentUpon>LoadingScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecipeCategorySelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </Compile>
     <EmbeddedResource Include="Views\IngredientList.resx">
       <DependentUpon>IngredientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoadingScreen.resx">
+      <DependentUpon>LoadingScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RecipeCategorySelect.resx">
       <DependentUpon>RecipeCategorySelect.cs</DependentUpon>

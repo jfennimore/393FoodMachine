@@ -21,7 +21,8 @@ namespace _393_Food_Machine
             bool successfulPull = PullRecipeByID(id);
             if (!successfulPull)
             {
-                Console.Error.Write(String.Format("Did not successfully pull recipe with id: %d", id));
+                Console.Error.Write(String.Format("Did not successfully pull recipe with id: {0}", id));
+                this.Close();
             }
             populateComboBoxes();
             InitializeFields();
@@ -84,21 +85,20 @@ namespace _393_Food_Machine
         public bool PullRecipeByID(int id)
         {
             //Get the Recipe from the API - make an HTTP request for GetRecipe(ID)
-            String jsonObj = "";
-            indivRecipe = new _393_Food_Machine.Recipe(jsonObj);
-            if (/* jsonObj received from HTTP request */ true)
+            indivRecipe = new Recipe(Models.APICalls.getRecipeById(id));
+            if (indivRecipe != null)
             {
                 return true;
             }
             else
             {
-                //return false;
+                return false;
             }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             (new IndivRecipeUI(indivRecipe.ToString())).Show();
         }
 
@@ -125,7 +125,7 @@ namespace _393_Food_Machine
                 indivRecipe.description = descriptionTextBox.Text;
                 indivRecipe.category = (Recipe.RecipeCategory)recipeCategoryBox.SelectedIndex;
 
-                this.Hide();
+                this.Close();
                 if (isNewRecipe)
                 {
                     indivRecipe.PushNewItem();
