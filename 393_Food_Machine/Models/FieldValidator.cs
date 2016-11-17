@@ -102,7 +102,17 @@ namespace _393_Food_Machine.Models
         //Going in the other direction
         public static String getComboName(Type enumType, Enum value)
         {
-            return Enum.GetNames(enumType)[Int32.Parse(value.ToString())];
+            //This is just truly, truly bizarre.  I am throwing my hands up in the air about enums.  
+            //But this DOES appear to work.
+            int index = getComboIndex(enumType, value.ToString());
+            if (index == -1)
+            {
+                return Enum.GetNames(enumType)[Int32.Parse(value.ToString())];
+            }
+            else
+            {
+                return Enum.GetName(enumType, index);
+            }
         }
 
 
