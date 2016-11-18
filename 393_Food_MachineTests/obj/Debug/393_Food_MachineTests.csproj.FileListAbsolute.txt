@@ -1,12 +1,9 @@
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\393_Food_MachineTests.dll
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\393_Food_MachineTests.pdb
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\393_Food_Machine.exe
-C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\393_Food_Machine.pdb
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\obj\Debug\393_Food_MachineTests.csprojResolveAssemblyReference.cache
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\obj\Debug\393_Food_MachineTests.dll
 C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\obj\Debug\393_Food_MachineTests.pdb
-C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\393_Food_MachineTests.dll.CodeAnalysisLog.xml
-C:\Users\Joe\documents\visual studio 2015\Projects\393_Food_Machine\393_Food_MachineTests\bin\Debug\393_Food_MachineTests.dll.lastcodeanalysissucceeded

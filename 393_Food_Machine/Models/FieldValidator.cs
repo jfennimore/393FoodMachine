@@ -11,7 +11,7 @@ namespace _393_Food_Machine.Models
      * The purpose of this class is to make field validation code reusable across all of the
      * different forms. 
      */
-    class FieldValidator
+    public class FieldValidator
     {
         public static bool ValidateDoubleNumeric(TextBox textbox, String fieldName)
         {

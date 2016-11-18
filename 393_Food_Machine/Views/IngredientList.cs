@@ -170,5 +170,10 @@ namespace _393_Food_Machine.Views
         {
             this.Close();
         }
+
+        public TextBox getEditIngrName()
+        {
+            return editIngredientName;
+        }
     }
 }

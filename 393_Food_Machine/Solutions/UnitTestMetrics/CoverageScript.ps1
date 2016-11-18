@@ -1,0 +1,6 @@
+﻿cd "C:\Users\Joe\Documents\Visual Studio 2015\Projects\393_Food_Machine"
+$targetPath = "$(Get-Location)\393_Food_Machine\bin\Debug\393_Food_Machine.exe"
+$resultsPath = "~\393_Food_Machine\Solutions\UnitTestMetrics\coverage.trx" 
+$outputPath = "$(Get-Location)\393_Food_Machine\Solutions\UnitTestMetrics\coverage.xml"
+Write-Verbose ".\packages\OpenCover.4.6.519\tools\OpenCover.Console.Exe -register -target:$targetPath -targetargs:`"/noisolation /resultsfile:$resultsPath`" -filter:`"+[]`" -mergebyhash -output:$outputPath"
+& .\packages\OpenCover.4.6.519\tools\OpenCover.Console.Exe -register:user "-target:$targetPath" -targetargs:"/noisolation" -filter:"+[/" -mergebyhash "-output:$outputPath"
