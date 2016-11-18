@@ -35,10 +35,9 @@ namespace _393_Food_Machine.Models
             return makeCall(request);
         }
 
-        public static String getIndivCall(String urlExtension, int id)
+        public static String getIndivCall(String uri)
         {
-            String fullExtension = urlExtension + "//" + id;
-            return getCall(fullExtension);
+            return getCall(uri);
         }
 
 
@@ -58,10 +57,9 @@ namespace _393_Food_Machine.Models
             return makeCall(request);
         }
 
-        public static String putCall(String urlExtension, Editable obj)
+        public static String putCall(Editable obj)
         {
-            String fullUrl = baseUrl + "//" + urlExtension;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fullUrl);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(obj.uri);
             request.ContentType = "application/json";
             request.Accept = "*/*";
             request.Method = "PUT";
@@ -74,10 +72,9 @@ namespace _393_Food_Machine.Models
             return makeCall(request);
         }
 
-        public static String deleteCall(String urlExtension, Editable obj)
+        public static String deleteCall(Editable obj)
         {
-            String fullUrl = baseUrl + "//" + urlExtension;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fullUrl);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(obj.uri);
             request.ContentType = "application/json";
             request.Accept = "*/*";
             request.Method = "DELETE";
@@ -96,22 +93,17 @@ namespace _393_Food_Machine.Models
 
         public static String updateIngredient(Ingredient ingredient)
         {
-            return putCall("ingredients", ingredient);
+            return putCall(ingredient);
         }
 
         public static String deleteIngredient(Ingredient ingredient)
         {
-            return deleteCall("ingredients", ingredient);
+            return deleteCall(ingredient);
         }
 
         public static String getAllRecipes()
         {
             return getCall("recipes");
-        }
-
-        public static String getRecipeById(int id)
-        {
-            return getIndivCall("recipes", id);
         }
 
         public static String postNewRecipe(Recipe recipe)
@@ -121,12 +113,12 @@ namespace _393_Food_Machine.Models
 
         public static String updateRecipe(Recipe recipe)
         {
-            return putCall("recipes", recipe);
+            return putCall(recipe);
         }
 
         public static String deleteRecipe(Recipe recipe)
         {
-            return deleteCall("recipes", recipe);
+            return deleteCall(recipe);
         }
     }
 }

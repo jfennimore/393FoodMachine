@@ -67,7 +67,7 @@ namespace _393_Food_Machine
             try
             {
                 Recipe imported = JsonConvert.DeserializeObject<Recipe>(json);
-                this.id = imported.id;
+                this.uri = imported.uri;
                 this.name = imported.name;
                 this.description = imported.description;
                 this.category = imported.category;
@@ -148,7 +148,7 @@ namespace _393_Food_Machine
 
         public bool Equals(Recipe rec)
         {
-            bool recipeInfoEqual = this.id == rec.id &&
+            bool recipeInfoEqual = this.uri == rec.uri &&
                 this.name == rec.name &&
                 this.description.Equals(rec.description) &&
                 this.dateAdded.Equals(rec.dateAdded) &&

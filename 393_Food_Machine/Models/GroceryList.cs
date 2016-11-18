@@ -23,7 +23,7 @@ namespace _393_Food_Machine
             try
             {
                 GroceryList imported = JsonConvert.DeserializeObject<GroceryList>(json);
-                this.id = imported.id;
+                this.uri = imported.uri;
                 this.name = imported.name;
                 this.groceries = imported.GetGroceries();
             }

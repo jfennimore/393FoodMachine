@@ -85,7 +85,7 @@ namespace _393_Food_Machine
         public bool PullRecipeByID(int id)
         {
             //Get the Recipe from the API - make an HTTP request for GetRecipe(ID)
-            indivRecipe = new Recipe(Models.APICalls.getRecipeById(id));
+            indivRecipe = new Recipe(Models.APICalls.getCall(indivRecipe.uri));
             if (indivRecipe != null)
             {
                 return true;

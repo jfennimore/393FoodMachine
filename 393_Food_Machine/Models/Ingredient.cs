@@ -46,7 +46,6 @@ namespace _393_Food_Machine
         [JsonConstructor]
         public Ingredient(String name, int calories, measurementUnits unit, IngredientCategory category)
         {
-            this.id = 0;
             this.name = name;
             this.calories = calories;
             this.unit = unit;
@@ -55,7 +54,6 @@ namespace _393_Food_Machine
 
         public Ingredient(String name, int calories, int unit, int category)
         {
-            this.id = 0;
             this.name = name;
             this.calories = calories;
             this.unit = (measurementUnits)unit;
@@ -67,7 +65,7 @@ namespace _393_Food_Machine
             try
             {
                 Ingredient imported = JsonConvert.DeserializeObject<Ingredient>(json);
-                this.id = imported.id;
+                this.uri = imported.uri;
                 this.name = imported.name;
                 this.calories = imported.calories;
                 this.unit = imported.unit;
@@ -96,7 +94,7 @@ namespace _393_Food_Machine
 
         public override bool DeleteItem()
         {
-            Models.APICalls.postNewIngredient(this);
+            Models.APICalls.deleteIngredient(this);
             //TODO: Check if the post was successful and return that instead of just true
             return true;
         }

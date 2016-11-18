@@ -71,12 +71,12 @@ namespace _393_Food_Machine.Views
             bool editFieldsValid = validateEditFields();
             if (editFieldsValid)
             {
-                Ingredient newIngr = new Ingredient(editIngredientName.Text,
-                            Int32.Parse(editIngredientCalories.Text),
-                            (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), editIngredientUnit.Text),
-                            (Ingredient.IngredientCategory)Models.FieldValidator.getComboIndex(typeof(Ingredient.IngredientCategory), editCategoryBox.Text));
-                ingrList[ingredientListBox.SelectedIndex] = newIngr;
-                newIngr.PushExistingItem();
+                Ingredient editIngr = ingrList[ingredientListBox.SelectedIndex];
+                editIngr.name = editIngredientName.Text;
+                editIngr.calories = Int32.Parse(editIngredientCalories.Text);
+                editIngr.unit = (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), editIngredientUnit.Text);
+                editIngr.category = (Ingredient.IngredientCategory)Models.FieldValidator.getComboIndex(typeof(Ingredient.IngredientCategory), editCategoryBox.Text);
+                editIngr.PushExistingItem();
                         
                 populateIngredientsBox();
             }

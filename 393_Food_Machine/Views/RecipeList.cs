@@ -33,7 +33,7 @@ namespace _393_Food_Machine
 
         public bool PullItems()
         {
-            JObject outerLayer = JObject.Parse(Models.APICalls.getAllIngredients());
+            JObject outerLayer = JObject.Parse(Models.APICalls.getAllRecipes());
             recipeList = JsonConvert.DeserializeObject<List<Recipe>>(outerLayer.GetValue("recipes").ToString());
             return true;
         }
