@@ -15,9 +15,35 @@ namespace _393_Food_Machine
         //Push the item to the API as a JSON object and then validate that the object was received.
         public abstract bool PushNewItem();
 
-        public abstract bool PushExistingItem();
+        public bool PushExistingItem() {
+            try
+            {
+                String result = Models.APICalls.putCall(this);
+                Console.Out.WriteLine(result);
+                return true;
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(String.Format("There was a problem updating {0}", this.name));
+                return false;
+            }
+            
+        }
 
-        public abstract bool DeleteItem();
+        public bool DeleteItem()
+        {
+            try
+            {
+                String result = Models.APICalls.deleteCall(this);
+                Console.Out.WriteLine(result);
+                return true;
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(String.Format("There was a problem deleting {0}", this.name));
+                return false;
+            }
+        }
 
         //The string representation of an Editable object should be the JSON representation of it.
         public override string ToString()

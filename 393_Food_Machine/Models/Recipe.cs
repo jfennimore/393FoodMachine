@@ -97,19 +97,6 @@ namespace _393_Food_Machine
             return true;
         }
 
-        public override bool PushExistingItem()
-        {
-            String jsonObj = JsonConvert.SerializeObject(this);
-            Console.Write(jsonObj);
-            return true;
-        }
-        public override bool DeleteItem()
-        {
-            String jsonObj = JsonConvert.SerializeObject(this);
-            Console.Write(jsonObj);
-            return true;
-        }
-
         //Calculate Avg Cost and Calories Per Serving based on information from Store and Ingredients
         private int CalculateCalories()
         {

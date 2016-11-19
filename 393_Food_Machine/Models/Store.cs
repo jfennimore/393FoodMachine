@@ -43,19 +43,6 @@ namespace _393_Food_Machine
             return true;
         }
 
-        public override bool PushExistingItem()
-        {
-            String jsonObj = JsonConvert.SerializeObject(this);
-            Console.Write(jsonObj);
-            return true;
-        }
-        public override bool DeleteItem()
-        {
-            String jsonObj = JsonConvert.SerializeObject(this);
-            Console.Write(jsonObj);
-            return true;
-        }
-
         public List<Tuple<Ingredient, double>> GetIngredientCosts()
         {
             return ingredientCosts;

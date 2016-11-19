@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _393_Food_Machine
 {
@@ -80,23 +81,19 @@ namespace _393_Food_Machine
 
         public override bool PushNewItem()
         {
-            Models.APICalls.postNewIngredient(this);
-            //TODO: Check if the post was successful and return that instead of just true
-            return true;
-        }
-
-        public override bool PushExistingItem()
-        {
-            Models.APICalls.updateIngredient(this);
-            //TODO: Check if the post was successful and return that instead of just true
-            return true;
-        }
-
-        public override bool DeleteItem()
-        {
-            Models.APICalls.deleteIngredient(this);
-            //TODO: Check if the post was successful and return that instead of just true
-            return true;
+            String jsonWithURI = Models.APICalls.postNewIngredient(this);
+            try
+            {
+                JObject outerLayer = JObject.Parse(jsonWithURI);
+                Ingredient confirmed = JsonConvert.DeserializeObject<Ingredient>(outerLayer.GetValue("ingredient").ToString());
+                this.uri = confirmed.uri;
+                return true;
+            }
+            catch(Exception e)
+            {
+                //There must have been an issue deserializing the result of the request.
+                return false;
+            }
         }
 
     }

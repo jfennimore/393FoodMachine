@@ -91,16 +91,6 @@ namespace _393_Food_Machine.Models
             return postCall("ingredients", ingredient);
         }
 
-        public static String updateIngredient(Ingredient ingredient)
-        {
-            return putCall(ingredient);
-        }
-
-        public static String deleteIngredient(Ingredient ingredient)
-        {
-            return deleteCall(ingredient);
-        }
-
         public static String getAllRecipes()
         {
             return getCall("recipes");
@@ -109,16 +99,6 @@ namespace _393_Food_Machine.Models
         public static String postNewRecipe(Recipe recipe)
         {
             return postCall("recipes", recipe);
-        }
-
-        public static String updateRecipe(Recipe recipe)
-        {
-            return putCall(recipe);
-        }
-
-        public static String deleteRecipe(Recipe recipe)
-        {
-            return deleteCall(recipe);
         }
     }
 }

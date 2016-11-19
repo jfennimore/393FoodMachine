@@ -118,9 +118,17 @@ namespace _393_Food_Machine.Views
                             Int32.Parse(newIngredientCalories.Text),
                             (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), newIngredientUnit.Text),
                             (Ingredient.IngredientCategory)Models.FieldValidator.getComboIndex(typeof(Ingredient.IngredientCategory), newCategoryBox.Text));
-                ingrList.Add(newIngr);
-                newIngr.PushNewItem();
-                populateIngredientsBox();
+                bool requestSuccessful = newIngr.PushNewItem();
+                if(requestSuccessful)
+                {
+                    //Adding to the list has to happen AFTER PushNewItem() because it actually changes the state of the Ingredient- adds the URI
+                    ingrList.Add(newIngr);
+                    populateIngredientsBox();
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("There was a problem posting the new ingredient!");
+                }
             }
         }
 
@@ -156,13 +164,16 @@ namespace _393_Food_Machine.Views
             if (ingredientListBox.SelectedIndex != -1 && ingredientListBox.SelectedIndex < ingrList.Count)
             {
                 Ingredient current = ingrList.ElementAt(ingredientListBox.SelectedIndex);
-                current.DeleteItem();
-                ingrList.RemoveAt(ingredientListBox.SelectedIndex);
-                editIngredientName.Text = "";
-                editIngredientCalories.Text = "";
-                editIngredientUnit.Text = "";
-                editCategoryBox.Text = "";
-                populateIngredientsBox();
+                bool requestSuccessful = current.DeleteItem();
+                if (requestSuccessful)
+                {
+                    ingrList.RemoveAt(ingredientListBox.SelectedIndex);
+                    editIngredientName.Text = "";
+                    editIngredientCalories.Text = "";
+                    editIngredientUnit.Text = "";
+                    editCategoryBox.Text = "";
+                    populateIngredientsBox();
+                }
             }
         }
 
