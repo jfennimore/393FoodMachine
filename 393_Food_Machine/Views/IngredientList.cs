@@ -46,9 +46,8 @@ namespace _393_Food_Machine.Views
         {
             LoadingScreen ls = new LoadingScreen();
             ls.Show();
-            JObject outerLayer = JObject.Parse(Models.APICalls.getAllIngredients());
+            ingrList = Models.APICalls.extractFromJson<List<Ingredient>>(Models.APICalls.getAllIngredients(), "ingredients");
             ls.Close();
-            ingrList = JsonConvert.DeserializeObject<List<Ingredient>>(outerLayer.GetValue("ingredients").ToString());
             return true;
         }
 

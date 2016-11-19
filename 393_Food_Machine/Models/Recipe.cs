@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _393_Food_Machine
 {
@@ -13,6 +14,7 @@ namespace _393_Food_Machine
         public enum RecipeCategory
         {
            Entree,
+           Side_Dish,
            Appetizer,
            Dessert,
            Soups_Stews,
@@ -89,12 +91,22 @@ namespace _393_Food_Machine
         }
 
         //PushItem basically IS 'ExportRecipe()'
-        //TODO: Incorporate actual call to API
         public override bool PushNewItem()
         {
-            String jsonObj = JsonConvert.SerializeObject(this);
-            Console.Write(jsonObj);
-            return true;
+            try
+            {
+                String jsonWithURI = Models.APICalls.postNewRecipe(this);
+                Recipe confirmed = Models.APICalls.extractFromJson<Recipe>(jsonWithURI, "recipe");
+                this.uri = confirmed.uri;
+                return true;
+            }
+            catch (Exception e)
+            {
+                //There must have been an issue deserializing the result of the request.
+
+                System.Windows.Forms.MessageBox.Show(String.Format("There was an issue posting {0}: {1}", this.name, e.Message));
+                return false;
+            }
         }
 
         //Calculate Avg Cost and Calories Per Serving based on information from Store and Ingredients

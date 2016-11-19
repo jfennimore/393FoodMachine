@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace _393_Food_Machine.Models
 {
@@ -99,6 +101,22 @@ namespace _393_Food_Machine.Models
         public static String postNewRecipe(Recipe recipe)
         {
             return postCall("recipes", recipe);
+        }
+
+        public static T extractFromJson<T>(String json, String key)
+        {
+            try
+            {
+                JObject outerLayer = JObject.Parse(json);
+                T confirmed = JsonConvert.DeserializeObject<T>(outerLayer.GetValue(key).ToString());
+                return confirmed;
+            }
+            catch (Exception e)
+            {
+                //There must have been an issue deserializing the result of the request.
+                System.Windows.Forms.MessageBox.Show(String.Format("There was a problem extracting {0} from {1}", key, json));
+                return default(T);
+            }
         }
     }
 }
