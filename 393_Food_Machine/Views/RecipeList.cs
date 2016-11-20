@@ -35,6 +35,8 @@ namespace _393_Food_Machine
         {
             JObject outerLayer = JObject.Parse(Models.APICalls.getAllRecipes());
             recipeList = JsonConvert.DeserializeObject<List<Recipe>>(outerLayer.GetValue("recipes").ToString());
+            recipeList.Add(new Recipe(jsonCake()));
+            recipeList.Add(new Recipe(jsonMeatballs()));
             return true;
         }
 
@@ -121,6 +123,7 @@ namespace _393_Food_Machine
                 if(importedRec.name != null)
                 {
                     recipeList.Add(importedRec);
+                    //Models.APICalls.postNewRecipe(importedRec);
                     recipeListBox.Items.Add(importedRec.name);
                 }
             }

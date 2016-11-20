@@ -45,10 +45,11 @@ namespace _393_Food_Machine
             //Add the ingredients
             foreach (Tuple<Ingredient, double, Ingredient.measurementUnits> ingredient in indivRecipe.ingredientList)
             {
+                String unitName = Models.FieldValidator.getComboName(typeof(Ingredient.measurementUnits), ingredient.Item3);
                 ingredientListBox.Items.Add(String.Format("{0}\t\t{1} {2}",
                     ingredient.Item1.name,
                     ingredient.Item2,
-                    ingredient.Item3));
+                    unitName));
             }
             //Add prep description
             StringBuilder recipeDesc = new StringBuilder();

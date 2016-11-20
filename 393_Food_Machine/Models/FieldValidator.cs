@@ -111,7 +111,7 @@ namespace _393_Food_Machine.Models
             }
             else
             {
-                return Enum.GetName(enumType, index);
+                return Enum.GetName(enumType, value);
             }
         }
 

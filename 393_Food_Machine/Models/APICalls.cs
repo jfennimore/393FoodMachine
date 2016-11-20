@@ -37,12 +37,6 @@ namespace _393_Food_Machine.Models
             return makeCall(request);
         }
 
-        public static String getIndivCall(String uri)
-        {
-            return getCall(uri);
-        }
-
-
         public static String postCall(String urlExtension, Editable obj)
         {
             String fullUrl = baseUrl + "//" + urlExtension;
@@ -93,6 +87,11 @@ namespace _393_Food_Machine.Models
             return postCall("ingredients", ingredient);
         }
 
+        public static String getIngredientByName(String ingrName)
+        {
+            return getCall("ingredients//" + ingrName);
+        }
+
         public static String getAllRecipes()
         {
             return getCall("recipes");
@@ -103,6 +102,19 @@ namespace _393_Food_Machine.Models
             return postCall("recipes", recipe);
         }
 
+        public static string postNewStore(Store store)
+        {
+            return postCall("stores", store);
+        }
+
+        public static string postNewGrocList(GroceryList groceryList)
+        {
+            return postCall("grocery lists",groceryList);
+        }
+
+        //The Json Deserializer is expecting the value portion of what the API returns, which wraps everything.
+        //I.e., the serializer is looking for a list of ingredients, and the API returns "{ "ingredients" : [the list] }"
+        //So this method extracts what you want
         public static T extractFromJson<T>(String json, String key)
         {
             try

@@ -24,7 +24,7 @@ namespace _393_Food_Machine
             }
             catch(Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(String.Format("There was a problem updating {0}", this.name));
+                System.Windows.Forms.MessageBox.Show(String.Format("There was a problem updating {0}: {1}", this.name, e.Message));
                 return false;
             }
             
@@ -40,7 +40,7 @@ namespace _393_Food_Machine
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(String.Format("There was a problem deleting {0}", this.name));
+                System.Windows.Forms.MessageBox.Show(String.Format("There was a problem deleting {0}: {1}", this.name, e.Message));
                 return false;
             }
         }

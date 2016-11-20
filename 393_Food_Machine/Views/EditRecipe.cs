@@ -13,10 +13,11 @@ namespace _393_Food_Machine
     public partial class EditRecipe : Form
     {
         private Recipe indivRecipe;
+        private bool isNewRecipe;
         public EditRecipe(int id)
         {
             InitializeComponent();
-
+            isNewRecipe = false;
             //Grab the contents of this recipe from the API
             bool successfulPull = PullRecipeByID(id);
             if (!successfulPull)
@@ -31,6 +32,7 @@ namespace _393_Food_Machine
         public EditRecipe(String json)
         {
             InitializeComponent();
+            isNewRecipe = false;
             indivRecipe = new _393_Food_Machine.Recipe(json);
             populateComboBoxes();
             InitializeFields();
@@ -40,6 +42,7 @@ namespace _393_Food_Machine
         public EditRecipe()
         {
             InitializeComponent();
+            isNewRecipe = true;
             Text = "Create New Recipe";
             populateComboBoxes();
         }
@@ -74,10 +77,11 @@ namespace _393_Food_Machine
             ingredientListBox.Items.Clear();
             foreach (Tuple<Ingredient, double, Ingredient.measurementUnits> ingredient in indivRecipe.ingredientList)
             {
+                String unitName = Models.FieldValidator.getComboName(typeof(Ingredient.measurementUnits), ingredient.Item3);
                 ingredientListBox.Items.Add(String.Format("{0}\t\t{1} {2}",
                     ingredient.Item1.name,
                     ingredient.Item2,
-                    ingredient.Item3));
+                    unitName));
             }
         }
 
@@ -99,7 +103,14 @@ namespace _393_Food_Machine
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
-            (new IndivRecipeUI(indivRecipe.ToString())).Show();
+            if(!isNewRecipe)
+            {
+                (new IndivRecipeUI(indivRecipe.ToString())).Show();
+            }
+            else
+            {
+                (new RecipeList()).Show();
+            }
         }
 
         private void confirmButton_Click(object sender, EventArgs e)
@@ -239,6 +250,13 @@ namespace _393_Food_Machine
             if (newIngrFieldsValid)
             {
                 //TODO: Get ingredient ID from the name
+                Ingredient newIngr = new Ingredient(Models.APICalls.getIngredientByName(newIngredientName.Text));
+                indivRecipe.ingredientList.Add(
+                    new Tuple<Ingredient,double,Ingredient.measurementUnits>
+                    (newIngr, 
+                    Double.Parse(editIngredientAmount.Text), 
+                    (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), editIngredientUnit.Text))
+                );
                 //Add ingredient to this Recipe
                 populateIngredientsBox();
             }
@@ -257,7 +275,7 @@ namespace _393_Food_Machine
                 return false;
             }
             //Ingredient Unit
-            if (!Models.FieldValidator.ValidateWithinRange(newIngredientUnit.SelectedIndex, typeof(Ingredient.measurementUnits), "New Ingredient Unit", newIngredientUnit.Name))
+            if (!Models.FieldValidator.ValidateWithinRange(newIngredientUnit.SelectedIndex, typeof(Ingredient.measurementUnits), "New Ingredient Unit", newIngredientUnit.Text))
             {
                 return false;
             }
