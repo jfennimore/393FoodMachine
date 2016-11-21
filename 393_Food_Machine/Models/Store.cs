@@ -10,7 +10,7 @@ namespace _393_Food_Machine
     public class Store : Editable
     {
         //Pairs ingredients from a given store with the prices of those ingredients at the store
-        List<Tuple<Ingredient, double>> ingredientCosts;
+        public List<Tuple<Ingredient, double>> ingredientCosts;
 
         public Store(String name, List<Tuple<Ingredient, double>> ingredientCosts)
         {

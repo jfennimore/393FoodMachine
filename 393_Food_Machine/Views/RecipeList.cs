@@ -33,7 +33,10 @@ namespace _393_Food_Machine
 
         public bool PullItems()
         {
+            Views.LoadingScreen ls = new Views.LoadingScreen();
+            ls.Show();
             JObject outerLayer = JObject.Parse(Models.APICalls.getAllRecipes());
+            ls.Hide();
             recipeList = JsonConvert.DeserializeObject<List<Recipe>>(outerLayer.GetValue("recipes").ToString());
             recipeList.Add(new Recipe(jsonCake()));
             recipeList.Add(new Recipe(jsonMeatballs()));

@@ -44,6 +44,8 @@ namespace _393_Food_Machine
             InitializeComponent();
             isNewRecipe = true;
             Text = "Create New Recipe";
+            recipeCategoryBox.Text = "<Recipe Category>";
+            deleteButton.Visible = false;
             populateComboBoxes();
         }
 
@@ -209,13 +211,9 @@ namespace _393_Food_Machine
                 if (ingredientListBox.SelectedIndex != -1)
                 {
                     indivRecipe.ingredientList[ingredientListBox.SelectedIndex] =
-                        new Tuple<Ingredient, double, Ingredient.measurementUnits>(new Ingredient(
-                            editIngredientName.Text,
-                            0,
-                            (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), editIngredientUnit.Text),
-                            indivRecipe.ingredientList[ingredientListBox.SelectedIndex].Item1.category),
-                            Double.Parse(editIngredientAmount.Text),
-                            (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits),editIngredientUnit.Text)
+                        new Tuple<Ingredient, double, Ingredient.measurementUnits>(indivRecipe.ingredientList[ingredientListBox.SelectedIndex].Item1,
+                        Double.Parse(editIngredientAmount.Text),
+                        (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits),editIngredientUnit.Text)
                         );
                 }
                 populateIngredientsBox();

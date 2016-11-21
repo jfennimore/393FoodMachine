@@ -60,6 +60,12 @@
       <DependentUpon>EditRecipe.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\GroceryList.cs" />
+    <Compile Include="Views\EditStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditStore.Designer.cs">
+      <DependentUpon>EditStore.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,8 +107,17 @@
       <DependentUpon>RecipeList.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Store.cs" />
+    <Compile Include="Views\StoreList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\StoreList.Designer.cs">
+      <DependentUpon>StoreList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\EditRecipe.resx">
       <DependentUpon>EditRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditStore.resx">
+      <DependentUpon>EditStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\HomeScreen.resx">
       <DependentUpon>HomeScreen.cs</DependentUpon>
@@ -130,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RecipeList.resx">
       <DependentUpon>RecipeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StoreList.resx">
+      <DependentUpon>StoreList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
