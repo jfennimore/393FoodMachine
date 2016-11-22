@@ -39,6 +39,8 @@
             this.ingredientsLabel = new System.Windows.Forms.Label();
             this.ingredientListBox = new System.Windows.Forms.ListBox();
             this.title = new System.Windows.Forms.Label();
+            this.confirmButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // backButton
@@ -142,11 +144,37 @@
             this.title.Text = "Store Name";
             this.title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // confirmButton
+            // 
+            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmButton.Location = new System.Drawing.Point(497, 12);
+            this.confirmButton.Name = "confirmButton";
+            this.confirmButton.Size = new System.Drawing.Size(75, 23);
+            this.confirmButton.TabIndex = 40;
+            this.confirmButton.Text = "Confirm";
+            this.confirmButton.UseVisualStyleBackColor = true;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.BackColor = System.Drawing.Color.Tomato;
+            this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.ForeColor = System.Drawing.Color.Black;
+            this.deleteButton.Location = new System.Drawing.Point(416, 12);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteButton.TabIndex = 39;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
             // EditStore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 261);
+            this.Controls.Add(this.confirmButton);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.title);
             this.Controls.Add(this.newIngrButton);
             this.Controls.Add(this.newIngredientPrice);
@@ -178,5 +206,7 @@
         private System.Windows.Forms.Label ingredientsLabel;
         private System.Windows.Forms.ListBox ingredientListBox;
         private System.Windows.Forms.Label title;
+        private System.Windows.Forms.Button confirmButton;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

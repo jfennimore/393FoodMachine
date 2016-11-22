@@ -49,6 +49,7 @@ namespace _393_Food_Machine
             int index = recipeListBox.SelectedIndex;
             String jsonRecipe = recipeList.ElementAt(index).ToString();
             (new IndivRecipeUI(jsonRecipe)).Show();
+            this.Close();
         }
 
         private String jsonCake()

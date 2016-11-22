@@ -14,20 +14,6 @@ namespace _393_Food_Machine
     {
         private Recipe indivRecipe;
         private bool isNewRecipe;
-        public EditRecipe(int id)
-        {
-            InitializeComponent();
-            isNewRecipe = false;
-            //Grab the contents of this recipe from the API
-            bool successfulPull = PullRecipeByID(id);
-            if (!successfulPull)
-            {
-                Console.Error.Write(String.Format("Did not successfully pull recipe with id: {0}", id));
-                this.Close();
-            }
-            populateComboBoxes();
-            InitializeFields();
-        }
 
         public EditRecipe(String json)
         {
@@ -84,21 +70,6 @@ namespace _393_Food_Machine
                     ingredient.Item1.name,
                     ingredient.Item2,
                     unitName));
-            }
-        }
-
-        //Initialize the Recipe object of this UI page from the JSON returned from the API
-        public bool PullRecipeByID(int id)
-        {
-            //Get the Recipe from the API - make an HTTP request for GetRecipe(ID)
-            indivRecipe = new Recipe(Models.APICalls.getCall(indivRecipe.uri));
-            if (indivRecipe != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
 
@@ -286,6 +257,7 @@ namespace _393_Food_Machine
             if(ingredientListBox.SelectedIndex != -1 && ingredientListBox.SelectedIndex < indivRecipe.ingredientList.Count)
             {
                 indivRecipe.ingredientList.RemoveAt(ingredientListBox.SelectedIndex);
+                indivRecipe.PushExistingItem();
                 editIngredientName.Text = "";
                 editIngredientAmount.Text = "";
                 editIngredientUnit.Text = "";
@@ -293,6 +265,10 @@ namespace _393_Food_Machine
             }
         }
 
-       
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            indivRecipe.DeleteItem();
+            this.Close();
+        }
     }
 }

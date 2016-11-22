@@ -14,19 +14,6 @@ namespace _393_Food_Machine
     {
         private Recipe indivRecipe;
 
-        public IndivRecipeUI(int id)
-        {
-            InitializeComponent();
-
-            //Grab the contents of this recipe from the API
-            bool successfulPull = PullRecipeByID(id);
-            if(!successfulPull)
-            {
-                Console.Error.Write(String.Format("Did not successfully pull recipe with id: %d", id));
-            }
-            InitializeFields();
-        }
-
         public IndivRecipeUI(String json)
         {
             InitializeComponent();

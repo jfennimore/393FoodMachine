@@ -29,5 +29,9 @@ namespace _393_Food_Machine.Views
             (new IngredientList()).Show();
         }
 
+        private void storeButton_Click(object sender, EventArgs e)
+        {
+            (new StoreList()).Show();
+        }
     }
 }

@@ -71,6 +71,7 @@
             this.storeButton.TabIndex = 4;
             this.storeButton.Text = "Stores";
             this.storeButton.UseVisualStyleBackColor = true;
+            this.storeButton.Click += new System.EventHandler(this.storeButton_Click);
             // 
             // ingredientButton
             // 

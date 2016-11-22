@@ -14,10 +14,22 @@ namespace _393_Food_Machine.Views
     {
 
         public Store indivStore;
+        private bool isNewStore;
+
+        public EditStore(String json)
+        {
+            InitializeComponent();
+            indivStore = new _393_Food_Machine.Store(json);
+            isNewStore = false;
+            populateIngredientsBox();
+        }
 
         public EditStore()
         {
             InitializeComponent();
+            isNewStore = true;
+            Text = "Create New Store";
+            deleteButton.Visible = false;
         }
 
         private void populateIngredientsBox()
@@ -80,7 +92,13 @@ namespace _393_Food_Machine.Views
 
         private void editIngredientRemove_Click(object sender, EventArgs e)
         {
-
+            if (ingredientListBox.SelectedIndex != -1 && ingredientListBox.SelectedIndex < indivStore.ingredientCosts.Count)
+            {
+                indivStore.ingredientCosts.RemoveAt(ingredientListBox.SelectedIndex);
+                editIngredientName.Text = "";
+                editIngredientPrice.Text = "";
+                populateIngredientsBox();
+            }
         }
 
         private bool validateEditFields()
@@ -115,6 +133,25 @@ namespace _393_Food_Machine.Views
             }
 
             return true;
+        }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            if(isNewStore)
+            {
+                indivStore.PushNewItem();
+            }
+            else
+            {
+                indivStore.PushExistingItem();
+            }
+           
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            indivStore.DeleteItem();
+            this.Close();
         }
     }
 }
