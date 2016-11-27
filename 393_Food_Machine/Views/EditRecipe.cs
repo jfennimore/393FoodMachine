@@ -48,7 +48,8 @@ namespace _393_Food_Machine
             servingsBox.Text = (String.Format("{0}", indivRecipe.numServings));
             descriptionTextBox.Text = indivRecipe.description;
 
-            recipeCategoryBox.Text = Enum.GetName(typeof(Recipe.RecipeCategory), indivRecipe.category);
+            recipeCategoryBox.Text = Models.FieldValidator.getComboName(typeof(Recipe.RecipeCategory), indivRecipe.category);
+            dishTypeCombo.Text = Models.FieldValidator.getComboName(typeof(Recipe.DishType), indivRecipe.dishType);
             editIngredientName.ReadOnly = true;
         }
 
