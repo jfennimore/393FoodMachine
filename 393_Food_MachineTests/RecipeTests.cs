@@ -24,7 +24,7 @@ namespace _393_Food_Machine.Tests
             ingredients.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(butter, 3.0, Ingredient.measurementUnits.tbsp));
             ingredients.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(flour, 2.5, Ingredient.measurementUnits.cups));
             ingredients.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(water, 1.0, Ingredient.measurementUnits.cups));
-            sample = new _393_Food_Machine.Recipe("Pie Crust", "Add all ingredients and mix", Recipe.RecipeCategory.Dessert, 100, DateTime.Today, 12,
+            sample = new _393_Food_Machine.Recipe("Pie Crust", "Add all ingredients and mix", Recipe.RecipeCategory.Dessert, Recipe.DishType.Pie, 100, DateTime.Today, 12,
                 ingredients);
         }
         
@@ -62,6 +62,14 @@ namespace _393_Food_Machine.Tests
             sample.category = Recipe.RecipeCategory.Breakfast;
             Assert.AreEqual(Recipe.RecipeCategory.Breakfast, sample.category);
             Assert.AreNotEqual(Recipe.RecipeCategory.Dessert, sample.category);
+        }
+
+        [TestMethod()]
+        public void TestAlterDishType()
+        {
+            sample.dishType = Recipe.DishType.Other;
+            Assert.AreEqual(Recipe.DishType.Other, sample.dishType);
+            Assert.AreNotEqual(Recipe.DishType.Pie, sample.dishType);
         }
 
         [TestMethod()]

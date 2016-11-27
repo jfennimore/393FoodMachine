@@ -50,6 +50,7 @@
             this.newIngredientAmount = new System.Windows.Forms.TextBox();
             this.newIngredientName = new System.Windows.Forms.TextBox();
             this.recipeCategoryBox = new System.Windows.Forms.ComboBox();
+            this.dishTypeCombo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -88,7 +89,7 @@
             // 
             // title
             // 
-            this.title.Location = new System.Drawing.Point(202, 28);
+            this.title.Location = new System.Drawing.Point(202, 12);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(156, 20);
             this.title.TabIndex = 3;
@@ -246,16 +247,26 @@
             // recipeCategoryBox
             // 
             this.recipeCategoryBox.FormattingEnabled = true;
-            this.recipeCategoryBox.Location = new System.Drawing.Point(202, 55);
+            this.recipeCategoryBox.Location = new System.Drawing.Point(202, 39);
             this.recipeCategoryBox.Name = "recipeCategoryBox";
             this.recipeCategoryBox.Size = new System.Drawing.Size(156, 21);
             this.recipeCategoryBox.TabIndex = 26;
+            // 
+            // dishTypeCombo
+            // 
+            this.dishTypeCombo.FormattingEnabled = true;
+            this.dishTypeCombo.Location = new System.Drawing.Point(202, 66);
+            this.dishTypeCombo.Name = "dishTypeCombo";
+            this.dishTypeCombo.Size = new System.Drawing.Size(156, 21);
+            this.dishTypeCombo.TabIndex = 27;
+            this.dishTypeCombo.Text = "<Let us guess Dish Type!>";
             // 
             // EditRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 370);
+            this.Controls.Add(this.dishTypeCombo);
             this.Controls.Add(this.recipeCategoryBox);
             this.Controls.Add(this.newIngrButton);
             this.Controls.Add(this.newIngredientUnit);
@@ -309,5 +320,6 @@
         private System.Windows.Forms.TextBox newIngredientAmount;
         private System.Windows.Forms.TextBox newIngredientName;
         private System.Windows.Forms.ComboBox recipeCategoryBox;
+        private System.Windows.Forms.ComboBox dishTypeCombo;
     }
 }

@@ -65,7 +65,7 @@ namespace _393_Food_Machine
             ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(butter, 1, Ingredient.measurementUnits.lbs));
             Recipe cake = new _393_Food_Machine.Recipe("Cake", 
                 "Blend on high mix, thoroughly whipping the butter and sugar together until they are creamy and smooth.  Then slowly add the flour a few tablespoons at a time until just mixed.", 
-                Recipe.RecipeCategory.Dessert, 30, DateTime.Today, 8, ingrList);
+                Recipe.RecipeCategory.Dessert, Recipe.DishType.Cake, 30, DateTime.Today, 8, ingrList);
             return cake.ToString();
         }
 
@@ -82,7 +82,7 @@ namespace _393_Food_Machine
             ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(cheese, 1, Ingredient.measurementUnits.cups));
             Recipe meatballs = new _393_Food_Machine.Recipe("Meatballs",
                 "Mix together meat, eggs, breadcrumbs all at once, then break off pieces, roll into balls, place on a pan and bake at 350F for 20 minutes.",
-                Recipe.RecipeCategory.Dessert, 30, DateTime.Today, 6, ingrList);
+                Recipe.RecipeCategory.Entree, Recipe.DishType.Roast, 30, DateTime.Today, 6, ingrList);
             return meatballs.ToString();
         }
 
@@ -126,8 +126,8 @@ namespace _393_Food_Machine
                 Recipe importedRec = new Recipe(jsonObj);
                 if(importedRec.name != null)
                 {
+                    //importedRec.PushNewItem();
                     recipeList.Add(importedRec);
-                    //Models.APICalls.postNewRecipe(importedRec);
                     recipeListBox.Items.Add(importedRec.name);
                 }
             }

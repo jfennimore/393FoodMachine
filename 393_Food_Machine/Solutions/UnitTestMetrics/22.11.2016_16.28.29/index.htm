@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html data-ng-app="coverageApp">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE,chrome=1" />
+<title>Summary - Coverage Report</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="report.css" />
+</head><body data-ng-controller="SummaryViewCtrl"><div class="container"><div class="containerleft">
+<h1>Summary</h1>
+<table class="overview table-fixed">
+<colgroup>
+<col class="column135" />
+<col />
+</colgroup>
+<tbody>
+<tr><th>Generated on:</th><td>11/22/2016 - 4:28:30 PM</td></tr>
+<tr><th>Parser:</th><td>OpenCoverParser</td></tr>
+<tr><th>Assemblies:</th><td>1</td></tr>
+<tr><th>Classes:</th><td>19</td></tr>
+<tr><th>Files:</th><td>28</td></tr>
+<tr><th>Covered lines:</th><td>1292</td></tr>
+<tr><th>Uncovered lines:</th><td>476</td></tr>
+<tr><th>Coverable lines:</th><td>1768</td></tr>
+<tr><th>Total lines:</th><td>3244</td></tr>
+<tr><th>Line coverage:</th><td>73%</td></tr>
+<tr><th>Branch coverage:</th><td>61.5%</td></tr>
+</tbody>
+</table>
+<h1>Assemblies</h1>
+<div data-ng-if="filteringEnabled" data-reactive-table data-assemblies="assemblies" data-branch-coverage-available="branchCoverageAvailable"></div>
+<div data-ng-if="!filteringEnabled">
+<div class="ng-hide customizebox" data-ng-show="true"><input data-ng-click="enableFiltering()" value="Enable filtering" title="This may take some time since the report contains many classes." type="submit" /></div>
+</div>
+<table data-ng-if="!filteringEnabled" class="overview table-fixed">
+<colgroup>
+<col />
+<col class="column90" />
+<col class="column105" />
+<col class="column100" />
+<col class="column70" />
+<col class="column60" />
+<col class="column112" />
+<col class="column60" />
+<col class="column112" />
+</colgroup>
+<thead><tr><th>Name</th><th class="right">Covered</th><th class="right">Uncovered</th><th class="right">Coverable</th><th class="right">Total</th><th class="center" colspan="2">Line coverage</th><th class="center" colspan="2">Branch coverage</th></tr></thead>
+<tbody>
+<tr><th>393_Food_Machine</th><th class="right">1292</th><th class="right">476</th><th class="right">1768</th><th class="right">3244</th><th title="LineCoverage" class="right">73%</th><th><table class="coverage"><tr><td class="green covered73">&nbsp;</td><td class="red covered27">&nbsp;</td></tr></table></th><th class="right">61.5%</th><th><table class="coverage"><tr><td class="green covered62">&nbsp;</td><td class="red covered38">&nbsp;</td></tr></table></th></tr>
+<tr><td><a href="393_Food_Machine_Editable.htm">_393_Food_Machine.Editable</a></td><td class="right">23</td><td class="right">4</td><td class="right">27</td><td class="right">56</td><td title="LineCoverage" class="right">85.1%</td><td><table class="coverage"><tr><td class="green covered85">&nbsp;</td><td class="red covered15">&nbsp;</td></tr></table></td><td class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_EditRecipe.htm">_393_Food_Machine.EditRecipe</a></td><td class="right">334</td><td class="right">33</td><td class="right">367</td><td class="right">587</td><td title="LineCoverage" class="right">91%</td><td><table class="coverage"><tr><td class="green covered91">&nbsp;</td><td class="red covered9">&nbsp;</td></tr></table></td><td class="right">78.2%</td><td><table class="coverage"><tr><td class="green covered78">&nbsp;</td><td class="red covered22">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_GroceryList.htm">_393_Food_Machine.GroceryList</a></td><td class="right">0</td><td class="right">35</td><td class="right">35</td><td class="right">65</td><td title="LineCoverage" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_IndivRecipeUI.htm">_393_Food_Machine.IndivRecipeUI</a></td><td class="right">137</td><td class="right">10</td><td class="right">147</td><td class="right">255</td><td title="LineCoverage" class="right">93.1%</td><td><table class="coverage"><tr><td class="green covered93">&nbsp;</td><td class="red covered7">&nbsp;</td></tr></table></td><td class="right">75%</td><td><table class="coverage"><tr><td class="green covered75">&nbsp;</td><td class="red covered25">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_Ingredient.htm">_393_Food_Machine.Ingredient</a></td><td class="right">17</td><td class="right">26</td><td class="right">43</td><td class="right">99</td><td title="LineCoverage" class="right">39.5%</td><td><table class="coverage"><tr><td class="green covered40">&nbsp;</td><td class="red covered60">&nbsp;</td></tr></table></td><td class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_APICalls.htm">_393_Food_Machine.Models.APICalls</a></td><td class="right">69</td><td class="right">14</td><td class="right">83</td><td class="right">134</td><td title="LineCoverage" class="right">83.1%</td><td><table class="coverage"><tr><td class="green covered83">&nbsp;</td><td class="red covered17">&nbsp;</td></tr></table></td><td class="right">100%</td><td><table class="coverage"><tr><td class="green covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_FieldValidator.htm">_393_Food_Machine.Models.FieldValidator</a></td><td class="right">59</td><td class="right">3</td><td class="right">62</td><td class="right">122</td><td title="LineCoverage" class="right">95.1%</td><td><table class="coverage"><tr><td class="green covered95">&nbsp;</td><td class="red covered5">&nbsp;</td></tr></table></td><td class="right">94.4%</td><td><table class="coverage"><tr><td class="green covered94">&nbsp;</td><td class="red covered6">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_Program.htm">_393_Food_Machine.Program</a></td><td class="right">5</td><td class="right">0</td><td class="right">5</td><td class="right">22</td><td title="LineCoverage" class="right">100%</td><td><table class="coverage"><tr><td class="green covered100">&nbsp;</td></tr></table></td><td class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_Resources.htm">_393_Food_Machine.Properties.Resources</a></td><td class="right">0</td><td class="right">17</td><td class="right">17</td><td class="right">71</td><td title="LineCoverage" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_Settings.htm">_393_Food_Machine.Properties.Settings</a></td><td class="right">0</td><td class="right">4</td><td class="right">4</td><td class="right">30</td><td title="LineCoverage" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_Recipe.htm">_393_Food_Machine.Recipe</a></td><td class="right">67</td><td class="right">36</td><td class="right">103</td><td class="right">185</td><td title="LineCoverage" class="right">65%</td><td><table class="coverage"><tr><td class="green covered65">&nbsp;</td><td class="red covered35">&nbsp;</td></tr></table></td><td class="right">33.3%</td><td><table class="coverage"><tr><td class="green covered33">&nbsp;</td><td class="red covered67">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_RecipeCategorySelect.htm">_393_Food_Machine.RecipeCategorySelect</a></td><td class="right">0</td><td class="right">45</td><td class="right">45</td><td class="right">102</td><td title="LineCoverage" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_RecipeList.htm">_393_Food_Machine.RecipeList</a></td><td class="right">162</td><td class="right">18</td><td class="right">180</td><td class="right">297</td><td title="LineCoverage" class="right">90%</td><td><table class="coverage"><tr><td class="green covered90">&nbsp;</td><td class="red covered10">&nbsp;</td></tr></table></td><td class="right">37.5%</td><td><table class="coverage"><tr><td class="green covered38">&nbsp;</td><td class="red covered62">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_Store.htm">_393_Food_Machine.Store</a></td><td class="right">0</td><td class="right">35</td><td class="right">35</td><td class="right">66</td><td title="LineCoverage" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_EditStore.htm">_393_Food_Machine.Views.EditStore</a></td><td class="right">0</td><td class="right">179</td><td class="right">179</td><td class="right">369</td><td title="LineCoverage" class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td><td class="right">0%</td><td><table class="coverage"><tr><td class="red covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_HomeScreen.htm">_393_Food_Machine.Views.HomeScreen</a></td><td class="right">86</td><td class="right">0</td><td class="right">86</td><td class="right">162</td><td title="LineCoverage" class="right">100%</td><td><table class="coverage"><tr><td class="green covered100">&nbsp;</td></tr></table></td><td class="right"></td><td><table class="coverage"><tr><td class="gray covered100">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_IngredientList.htm">_393_Food_Machine.Views.IngredientList</a></td><td class="right">264</td><td class="right">11</td><td class="right">275</td><td class="right">439</td><td title="LineCoverage" class="right">96%</td><td><table class="coverage"><tr><td class="green covered96">&nbsp;</td><td class="red covered4">&nbsp;</td></tr></table></td><td class="right">81.2%</td><td><table class="coverage"><tr><td class="green covered81">&nbsp;</td><td class="red covered19">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_LoadingScreen.htm">_393_Food_Machine.Views.LoadingScreen</a></td><td class="right">28</td><td class="right">3</td><td class="right">31</td><td class="right">81</td><td title="LineCoverage" class="right">90.3%</td><td><table class="coverage"><tr><td class="green covered90">&nbsp;</td><td class="red covered10">&nbsp;</td></tr></table></td><td class="right">50%</td><td><table class="coverage"><tr><td class="green covered50">&nbsp;</td><td class="red covered50">&nbsp;</td></tr></table></td></tr>
+<tr><td><a href="393_Food_Machine_StoreList.htm">_393_Food_Machine.Views.StoreList</a></td><td class="right">41</td><td class="right">3</td><td class="right">44</td><td class="right">102</td><td title="LineCoverage" class="right">93.1%</td><td><table class="coverage"><tr><td class="green covered93">&nbsp;</td><td class="red covered7">&nbsp;</td></tr></table></td><td class="right">50%</td><td><table class="coverage"><tr><td class="green covered50">&nbsp;</td><td class="red covered50">&nbsp;</td></tr></table></td></tr>
+</tbody>
+</table>
+<div class="footer">Generated by: ReportGenerator 2.5.1.0<br />11/22/2016 - 4:28:30 PM<br /><a href="https://github.com/danielpalme/ReportGenerator">GitHub</a> | <a href="http://www.palmmedia.de">www.palmmedia.de</a></div></div></div>
+<script type="text/javascript" src="combined.js"></script>
+</body></html>

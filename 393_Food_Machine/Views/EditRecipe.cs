@@ -56,6 +56,7 @@ namespace _393_Food_Machine
         private void populateComboBoxes()
         {
             recipeCategoryBox.Items.AddRange(Enum.GetNames(typeof(Recipe.RecipeCategory)));
+            dishTypeCombo.Items.AddRange(Enum.GetNames(typeof(Recipe.DishType)));
             editIngredientUnit.Items.AddRange(Enum.GetNames(typeof(Ingredient.measurementUnits)));
             newIngredientUnit.Items.AddRange(Enum.GetNames(typeof(Ingredient.measurementUnits)));
         }
@@ -94,7 +95,7 @@ namespace _393_Food_Machine
             {
                 //Create a dummy recipe- all of this data is about to be written over anyway.
                 isNewRecipe = true;
-                indivRecipe = new _393_Food_Machine.Recipe("Dummy", "", Recipe.RecipeCategory.Appetizer, 0, DateTime.Today, 0, new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>());
+                indivRecipe = new _393_Food_Machine.Recipe("Dummy", "", Recipe.RecipeCategory.Appetizer, Recipe.DishType.Other, 0, DateTime.Today, 0, new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>());
             }
 
             //Collect all of the recipe info on the page and push that to the API
@@ -108,6 +109,7 @@ namespace _393_Food_Machine
                 indivRecipe.prepTime = Int32.Parse(prepTimeBox.Text);
                 indivRecipe.description = descriptionTextBox.Text;
                 indivRecipe.category = (Recipe.RecipeCategory)recipeCategoryBox.SelectedIndex;
+                indivRecipe.dishType = (Recipe.DishType)dishTypeCombo.SelectedIndex;
 
                 this.Close();
                 if (isNewRecipe)
@@ -154,6 +156,11 @@ namespace _393_Food_Machine
             }
             //Validate Recipe Category
             if (!Models.FieldValidator.ValidateWithinRange(recipeCategoryBox.SelectedIndex, typeof(Recipe.RecipeCategory), "Recipe Category", recipeCategoryBox.Text))
+            {
+                return false;
+            }
+            //Validate Dish Type
+            if (!Models.FieldValidator.ValidateWithinRange(dishTypeCombo.SelectedIndex, typeof(Recipe.DishType), "Dish Type", dishTypeCombo.Text))
             {
                 return false;
             }

@@ -21,10 +21,24 @@ namespace _393_Food_Machine
            Breakfast
         }
 
+        public enum DishType
+        {
+            Roast,
+            Casserole,
+            Stew,
+            Soup,
+            Dough,
+            Pie,
+            Cake,
+            Cookie,
+            Other
+        }
+
 
         //JSON Serialization requires that all of these properties be public, but the Get/Set ensures getter/setter functionality
         public String description { get; set; }
         public RecipeCategory category { get; set; }
+        public DishType dishType { get; set; }
         public int prepTime { get; set; }
         public DateTime dateAdded { get; set; }
         //If this isn't confusing, I don't know what is - the property can't reference itself when you spell out the accessors
@@ -48,7 +62,7 @@ namespace _393_Food_Machine
         public List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingredientList { get; set; }
 
         [JsonConstructor]
-        public Recipe(String name, String description, RecipeCategory category, 
+        public Recipe(String name, String description, RecipeCategory category, DishType dishType, 
             int prepTime, DateTime dateAdded, 
             int numServings, List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingredientList)
         {
@@ -56,6 +70,7 @@ namespace _393_Food_Machine
             this.name = name; 
             this.description = description;
             this.category = category;
+            this.dishType = dishType;
             this.prepTime = prepTime;
             this.dateAdded = dateAdded;
             this.ingredientList = ingredientList;
@@ -73,6 +88,7 @@ namespace _393_Food_Machine
                 this.name = imported.name;
                 this.description = imported.description;
                 this.category = imported.category;
+                this.dishType = imported.dishType;
                 this.prepTime = imported.prepTime;
                 this.dateAdded = imported.dateAdded;
                 this.ingredientList = imported.ingredientList;
@@ -152,6 +168,7 @@ namespace _393_Food_Machine
                 this.description.Equals(rec.description) &&
                 this.dateAdded.Equals(rec.dateAdded) &&
                 this.category == rec.category &&
+                this.dishType == rec.dishType &&
                 this.caloriesPerServing == rec.caloriesPerServing &&
                 this.avgCost == rec.avgCost &&
                 this.numServings == rec.numServings &&

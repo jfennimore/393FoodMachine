@@ -37,6 +37,7 @@
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.RichTextBox();
             this.categoryLabel = new System.Windows.Forms.Label();
+            this.dishTypeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // backButton
@@ -84,7 +85,7 @@
             // ingredientListBox
             // 
             this.ingredientListBox.FormattingEnabled = true;
-            this.ingredientListBox.Location = new System.Drawing.Point(71, 79);
+            this.ingredientListBox.Location = new System.Drawing.Point(71, 94);
             this.ingredientListBox.Name = "ingredientListBox";
             this.ingredientListBox.Size = new System.Drawing.Size(416, 82);
             this.ingredientListBox.TabIndex = 4;
@@ -93,7 +94,7 @@
             // 
             this.ingredientsLabel.AutoSize = true;
             this.ingredientsLabel.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ingredientsLabel.Location = new System.Drawing.Point(67, 57);
+            this.ingredientsLabel.Location = new System.Drawing.Point(67, 72);
             this.ingredientsLabel.Name = "ingredientsLabel";
             this.ingredientsLabel.Size = new System.Drawing.Size(94, 19);
             this.ingredientsLabel.TabIndex = 6;
@@ -103,7 +104,7 @@
             // 
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionLabel.Location = new System.Drawing.Point(67, 168);
+            this.descriptionLabel.Location = new System.Drawing.Point(67, 183);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(188, 19);
             this.descriptionLabel.TabIndex = 7;
@@ -111,7 +112,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(71, 191);
+            this.descriptionTextBox.Location = new System.Drawing.Point(71, 206);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(416, 84);
             this.descriptionTextBox.TabIndex = 8;
@@ -128,11 +129,21 @@
             this.categoryLabel.Text = "Recipe Category";
             this.categoryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // dishTypeLabel
+            // 
+            this.dishTypeLabel.AutoSize = true;
+            this.dishTypeLabel.Location = new System.Drawing.Point(225, 57);
+            this.dishTypeLabel.Name = "dishTypeLabel";
+            this.dishTypeLabel.Size = new System.Drawing.Size(55, 13);
+            this.dishTypeLabel.TabIndex = 10;
+            this.dishTypeLabel.Text = "Dish Type";
+            // 
             // IndivRecipeUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 311);
+            this.Controls.Add(this.dishTypeLabel);
             this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.descriptionLabel);
@@ -160,5 +171,6 @@
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.RichTextBox descriptionTextBox;
         private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.Label dishTypeLabel;
     }
 }

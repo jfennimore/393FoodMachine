@@ -40,6 +40,7 @@
             this.storeListBox.Name = "storeListBox";
             this.storeListBox.Size = new System.Drawing.Size(191, 173);
             this.storeListBox.TabIndex = 0;
+            this.storeListBox.SelectedIndexChanged += new System.EventHandler(this.storeListBox_SelectedIndexChanged);
             // 
             // newStoreButton
             // 
@@ -49,6 +50,7 @@
             this.newStoreButton.TabIndex = 1;
             this.newStoreButton.Text = "New Store";
             this.newStoreButton.UseVisualStyleBackColor = true;
+            this.newStoreButton.Click += new System.EventHandler(this.newStoreButton_Click);
             // 
             // backButton
             // 
@@ -58,6 +60,7 @@
             this.backButton.TabIndex = 2;
             this.backButton.Text = "< Home";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // StoreList
             // 
