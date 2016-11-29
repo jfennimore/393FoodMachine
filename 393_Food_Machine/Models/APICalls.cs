@@ -89,7 +89,16 @@ namespace _393_Food_Machine.Models
 
         public static String getIngredientByName(String ingrName)
         {
-            return getCall("ingredients//" + ingrName);
+            try
+            {
+                String response = getCall("ingredients/" + ingrName);
+                return response;
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(String.Format("{0} is not in the current library of ingredients", ingrName));
+                return "";
+            }
         }
 
         public static String getAllRecipes()
@@ -126,7 +135,10 @@ namespace _393_Food_Machine.Models
             catch (Exception e)
             {
                 //There must have been an issue deserializing the result of the request.
-                System.Windows.Forms.MessageBox.Show(String.Format("There was a problem extracting {0} from {1}", key, json));
+                if(!json.Equals(""))
+                {
+                    System.Windows.Forms.MessageBox.Show(String.Format("There was a problem extracting \"{0}\" from {1}", key, json));
+                }
                 return default(T);
             }
         }

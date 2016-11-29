@@ -14,6 +14,7 @@ namespace _393_Food_Machine
     {
         private Recipe indivRecipe;
         private bool isNewRecipe;
+        private Recipe dummyRecipe = new _393_Food_Machine.Recipe("Dummy", "", Recipe.RecipeCategory.Appetizer, Recipe.DishType.Other, 0, DateTime.Today, 0, new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>());
 
         public EditRecipe(String json)
         {
@@ -29,6 +30,7 @@ namespace _393_Food_Machine
         {
             InitializeComponent();
             isNewRecipe = true;
+            indivRecipe = dummyRecipe;
             Text = "Create New Recipe";
             recipeCategoryBox.Text = "<Recipe Category>";
             deleteButton.Visible = false;
@@ -96,7 +98,7 @@ namespace _393_Food_Machine
             {
                 //Create a dummy recipe- all of this data is about to be written over anyway.
                 isNewRecipe = true;
-                indivRecipe = new _393_Food_Machine.Recipe("Dummy", "", Recipe.RecipeCategory.Appetizer, Recipe.DishType.Other, 0, DateTime.Today, 0, new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>());
+                indivRecipe = dummyRecipe;
             }
 
             //Collect all of the recipe info on the page and push that to the API
@@ -227,15 +229,18 @@ namespace _393_Food_Machine
             if (newIngrFieldsValid)
             {
                 //TODO: Get ingredient ID from the name
-                Ingredient newIngr = new Ingredient(Models.APICalls.getIngredientByName(newIngredientName.Text));
-                indivRecipe.ingredientList.Add(
-                    new Tuple<Ingredient,double,Ingredient.measurementUnits>
-                    (newIngr, 
-                    Double.Parse(editIngredientAmount.Text), 
-                    (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), editIngredientUnit.Text))
-                );
-                //Add ingredient to this Recipe
-                populateIngredientsBox();
+                Ingredient newIngr = (Models.APICalls.extractFromJson<Ingredient>(Models.APICalls.getIngredientByName(newIngredientName.Text),"ingredient"));
+                if(newIngr != null)
+                {
+                    indivRecipe.ingredientList.Add(
+                                        new Tuple<Ingredient, double, Ingredient.measurementUnits>
+                                        (newIngr,
+                                        Double.Parse(newIngredientAmount.Text),
+                                        (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), newIngredientUnit.Text))
+                                    );
+                    //Add ingredient to this Recipe
+                    populateIngredientsBox();
+                }
             }
         }
 
