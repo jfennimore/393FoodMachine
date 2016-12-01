@@ -23,6 +23,7 @@ namespace _393_Food_Machine
 
         public enum DishType
         {
+            Other,
             Roast,
             Casserole,
             Stew,
@@ -30,8 +31,7 @@ namespace _393_Food_Machine
             Dough,
             Pie,
             Cake,
-            Cookie,
-            Other
+            Cookie
         }
 
 

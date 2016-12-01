@@ -29,7 +29,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 6;
             // 
             // label2
             // 
@@ -38,7 +38,7 @@
             this.label2.Location = new System.Drawing.Point(185, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(259, 45);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 5;
             this.label2.Text = "Food Machine";
             // 
             // recipeButton
@@ -47,7 +47,7 @@
             this.recipeButton.Location = new System.Drawing.Point(193, 94);
             this.recipeButton.Name = "recipeButton";
             this.recipeButton.Size = new System.Drawing.Size(235, 32);
-            this.recipeButton.TabIndex = 2;
+            this.recipeButton.TabIndex = 0;
             this.recipeButton.Text = "Recipes";
             this.recipeButton.UseVisualStyleBackColor = true;
             this.recipeButton.Click += new System.EventHandler(this.recipeButton_Click);
@@ -58,7 +58,7 @@
             this.groceryButton.Location = new System.Drawing.Point(193, 132);
             this.groceryButton.Name = "groceryButton";
             this.groceryButton.Size = new System.Drawing.Size(235, 32);
-            this.groceryButton.TabIndex = 3;
+            this.groceryButton.TabIndex = 1;
             this.groceryButton.Text = "Grocery Lists";
             this.groceryButton.UseVisualStyleBackColor = true;
             // 
@@ -68,7 +68,7 @@
             this.storeButton.Location = new System.Drawing.Point(193, 170);
             this.storeButton.Name = "storeButton";
             this.storeButton.Size = new System.Drawing.Size(235, 32);
-            this.storeButton.TabIndex = 4;
+            this.storeButton.TabIndex = 2;
             this.storeButton.Text = "Stores";
             this.storeButton.UseVisualStyleBackColor = true;
             this.storeButton.Click += new System.EventHandler(this.storeButton_Click);
@@ -79,7 +79,7 @@
             this.ingredientButton.Location = new System.Drawing.Point(193, 208);
             this.ingredientButton.Name = "ingredientButton";
             this.ingredientButton.Size = new System.Drawing.Size(235, 32);
-            this.ingredientButton.TabIndex = 5;
+            this.ingredientButton.TabIndex = 3;
             this.ingredientButton.Text = "Ingredients";
             this.ingredientButton.UseVisualStyleBackColor = true;
             this.ingredientButton.Click += new System.EventHandler(this.ingredientButton_Click);
@@ -89,7 +89,7 @@
             this.button1.Location = new System.Drawing.Point(223, 276);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 23);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 4;
             this.button1.Text = "About";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -97,6 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(634, 311);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ingredientButton);

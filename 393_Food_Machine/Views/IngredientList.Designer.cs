@@ -53,7 +53,7 @@
             this.ingredientListBox.Location = new System.Drawing.Point(46, 82);
             this.ingredientListBox.Name = "ingredientListBox";
             this.ingredientListBox.Size = new System.Drawing.Size(477, 82);
-            this.ingredientListBox.TabIndex = 11;
+            this.ingredientListBox.TabIndex = 16;
             this.ingredientListBox.SelectedIndexChanged += new System.EventHandler(this.ingredientListBox_SelectedIndexChanged);
             // 
             // label2
@@ -62,7 +62,7 @@
             this.label2.Location = new System.Drawing.Point(402, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 10;
+            this.label2.TabIndex = 15;
             this.label2.Text = "Sort:";
             // 
             // label1
@@ -71,7 +71,7 @@
             this.label1.Location = new System.Drawing.Point(43, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 9;
+            this.label1.TabIndex = 14;
             this.label1.Text = "Filter:";
             // 
             // ingredientSort
@@ -80,7 +80,7 @@
             this.ingredientSort.Location = new System.Drawing.Point(402, 43);
             this.ingredientSort.Name = "ingredientSort";
             this.ingredientSort.Size = new System.Drawing.Size(121, 21);
-            this.ingredientSort.TabIndex = 8;
+            this.ingredientSort.TabIndex = 12;
             // 
             // ingredientFilter
             // 
@@ -93,14 +93,14 @@
             this.ingredientFilter.Location = new System.Drawing.Point(43, 44);
             this.ingredientFilter.Name = "ingredientFilter";
             this.ingredientFilter.Size = new System.Drawing.Size(121, 21);
-            this.ingredientFilter.TabIndex = 7;
+            this.ingredientFilter.TabIndex = 11;
             // 
             // newIngrButton
             // 
             this.newIngrButton.Location = new System.Drawing.Point(437, 219);
             this.newIngrButton.Name = "newIngrButton";
             this.newIngrButton.Size = new System.Drawing.Size(67, 23);
-            this.newIngrButton.TabIndex = 34;
+            this.newIngrButton.TabIndex = 10;
             this.newIngrButton.Text = "Add New";
             this.newIngrButton.UseVisualStyleBackColor = true;
             this.newIngrButton.Click += new System.EventHandler(this.newIngrButton_Click);
@@ -111,14 +111,14 @@
             this.newIngredientUnit.Location = new System.Drawing.Point(276, 221);
             this.newIngredientUnit.Name = "newIngredientUnit";
             this.newIngredientUnit.Size = new System.Drawing.Size(73, 21);
-            this.newIngredientUnit.TabIndex = 33;
+            this.newIngredientUnit.TabIndex = 8;
             // 
             // newIngredientCalories
             // 
             this.newIngredientCalories.Location = new System.Drawing.Point(219, 221);
             this.newIngredientCalories.Name = "newIngredientCalories";
             this.newIngredientCalories.Size = new System.Drawing.Size(51, 20);
-            this.newIngredientCalories.TabIndex = 32;
+            this.newIngredientCalories.TabIndex = 7;
             this.newIngredientCalories.Text = "(Calories)";
             // 
             // newIngredientName
@@ -126,7 +126,7 @@
             this.newIngredientName.Location = new System.Drawing.Point(46, 221);
             this.newIngredientName.Name = "newIngredientName";
             this.newIngredientName.Size = new System.Drawing.Size(167, 20);
-            this.newIngredientName.TabIndex = 31;
+            this.newIngredientName.TabIndex = 6;
             this.newIngredientName.Text = "(New Ingredient Name)";
             // 
             // editIngredientRemove
@@ -134,7 +134,7 @@
             this.editIngredientRemove.Location = new System.Drawing.Point(497, 190);
             this.editIngredientRemove.Name = "editIngredientRemove";
             this.editIngredientRemove.Size = new System.Drawing.Size(56, 23);
-            this.editIngredientRemove.TabIndex = 30;
+            this.editIngredientRemove.TabIndex = 5;
             this.editIngredientRemove.Text = "Remove";
             this.editIngredientRemove.UseVisualStyleBackColor = true;
             this.editIngredientRemove.Click += new System.EventHandler(this.editIngredientRemove_Click);
@@ -144,7 +144,7 @@
             this.editIngredientConfirm.Location = new System.Drawing.Point(437, 190);
             this.editIngredientConfirm.Name = "editIngredientConfirm";
             this.editIngredientConfirm.Size = new System.Drawing.Size(54, 23);
-            this.editIngredientConfirm.TabIndex = 29;
+            this.editIngredientConfirm.TabIndex = 4;
             this.editIngredientConfirm.Text = "Confirm";
             this.editIngredientConfirm.UseVisualStyleBackColor = true;
             this.editIngredientConfirm.Click += new System.EventHandler(this.editIngredientConfirm_Click);
@@ -155,14 +155,14 @@
             this.editIngredientUnit.Location = new System.Drawing.Point(276, 192);
             this.editIngredientUnit.Name = "editIngredientUnit";
             this.editIngredientUnit.Size = new System.Drawing.Size(73, 21);
-            this.editIngredientUnit.TabIndex = 28;
+            this.editIngredientUnit.TabIndex = 2;
             // 
             // editIngredientCalories
             // 
             this.editIngredientCalories.Location = new System.Drawing.Point(219, 192);
             this.editIngredientCalories.Name = "editIngredientCalories";
             this.editIngredientCalories.Size = new System.Drawing.Size(51, 20);
-            this.editIngredientCalories.TabIndex = 27;
+            this.editIngredientCalories.TabIndex = 1;
             this.editIngredientCalories.Text = "(Calories)";
             // 
             // editIngredientName
@@ -170,7 +170,7 @@
             this.editIngredientName.Location = new System.Drawing.Point(46, 192);
             this.editIngredientName.Name = "editIngredientName";
             this.editIngredientName.Size = new System.Drawing.Size(167, 20);
-            this.editIngredientName.TabIndex = 26;
+            this.editIngredientName.TabIndex = 0;
             this.editIngredientName.Text = "(Existing Ingredient Name)";
             // 
             // editCategoryBox
@@ -179,7 +179,7 @@
             this.editCategoryBox.Location = new System.Drawing.Point(356, 192);
             this.editCategoryBox.Name = "editCategoryBox";
             this.editCategoryBox.Size = new System.Drawing.Size(75, 21);
-            this.editCategoryBox.TabIndex = 35;
+            this.editCategoryBox.TabIndex = 3;
             // 
             // newCategoryBox
             // 
@@ -187,14 +187,14 @@
             this.newCategoryBox.Location = new System.Drawing.Point(356, 221);
             this.newCategoryBox.Name = "newCategoryBox";
             this.newCategoryBox.Size = new System.Drawing.Size(75, 21);
-            this.newCategoryBox.TabIndex = 36;
+            this.newCategoryBox.TabIndex = 9;
             // 
             // backButton
             // 
             this.backButton.Location = new System.Drawing.Point(3, 1);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(81, 23);
-            this.backButton.TabIndex = 37;
+            this.backButton.TabIndex = 13;
             this.backButton.Text = "< Home";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
@@ -203,6 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGreen;
             this.ClientSize = new System.Drawing.Size(584, 311);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.newCategoryBox);

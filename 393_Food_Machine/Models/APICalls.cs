@@ -91,7 +91,7 @@ namespace _393_Food_Machine.Models
         {
             try
             {
-                String response = getCall("ingredients/" + ingrName);
+                String response = getCall("ingredients/" + Uri.EscapeUriString(ingrName));
                 return response;
             }
             catch(Exception e)

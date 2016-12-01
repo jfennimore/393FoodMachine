@@ -111,8 +111,8 @@ namespace _393_Food_Machine
                 indivRecipe.numServings = Int32.Parse(servingsBox.Text);
                 indivRecipe.prepTime = Int32.Parse(prepTimeBox.Text);
                 indivRecipe.description = descriptionTextBox.Text;
-                indivRecipe.category = (Recipe.RecipeCategory)recipeCategoryBox.SelectedIndex;
-                indivRecipe.dishType = (Recipe.DishType)dishTypeCombo.SelectedIndex;
+                indivRecipe.category = (Recipe.RecipeCategory) Models.FieldValidator.getComboIndex(typeof(Recipe.RecipeCategory), recipeCategoryBox.Text);
+                indivRecipe.dishType = (Recipe.DishType) Models.FieldValidator.getComboIndex(typeof(Recipe.DishType), dishTypeCombo.Text);
 
                 this.Close();
                 if (isNewRecipe)
