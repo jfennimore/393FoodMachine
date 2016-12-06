@@ -96,7 +96,8 @@ namespace _393_Food_Machine.Models
             }
             catch(Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(String.Format("{0} is not in the current library of ingredients", ingrName));
+                //System.Windows.Forms.MessageBox.Show(String.Format("{0} is not in the current library of ingredients", ingrName));
+                (new Views.QuickNewIngredient(ingrName)).Show();
                 return "";
             }
         }
