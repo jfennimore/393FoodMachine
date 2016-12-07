@@ -117,6 +117,8 @@
             // 
             // newIngredientUnit
             // 
+            this.newIngredientUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.newIngredientUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.newIngredientUnit.FormattingEnabled = true;
             this.newIngredientUnit.Location = new System.Drawing.Point(276, 221);
             this.newIngredientUnit.Name = "newIngredientUnit";
@@ -161,6 +163,8 @@
             // 
             // editIngredientUnit
             // 
+            this.editIngredientUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.editIngredientUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.editIngredientUnit.FormattingEnabled = true;
             this.editIngredientUnit.Location = new System.Drawing.Point(276, 192);
             this.editIngredientUnit.Name = "editIngredientUnit";
@@ -185,6 +189,8 @@
             // 
             // editCategoryBox
             // 
+            this.editCategoryBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.editCategoryBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.editCategoryBox.FormattingEnabled = true;
             this.editCategoryBox.Location = new System.Drawing.Point(356, 192);
             this.editCategoryBox.Name = "editCategoryBox";
@@ -193,6 +199,8 @@
             // 
             // newCategoryBox
             // 
+            this.newCategoryBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.newCategoryBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.newCategoryBox.FormattingEnabled = true;
             this.newCategoryBox.Location = new System.Drawing.Point(356, 221);
             this.newCategoryBox.Name = "newCategoryBox";

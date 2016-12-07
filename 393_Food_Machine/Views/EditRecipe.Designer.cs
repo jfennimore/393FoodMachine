@@ -51,6 +51,7 @@
             this.newIngredientName = new System.Windows.Forms.TextBox();
             this.recipeCategoryBox = new System.Windows.Forms.ComboBox();
             this.dishTypeCombo = new System.Windows.Forms.ComboBox();
+            this.browseButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -269,12 +270,24 @@
             this.dishTypeCombo.TabIndex = 2;
             this.dishTypeCombo.Text = "<Let us guess Dish Type!>";
             // 
+            // browseButton
+            // 
+            this.browseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.browseButton.Location = new System.Drawing.Point(37, 218);
+            this.browseButton.Name = "browseButton";
+            this.browseButton.Size = new System.Drawing.Size(41, 21);
+            this.browseButton.TabIndex = 23;
+            this.browseButton.Text = "Browse";
+            this.browseButton.UseVisualStyleBackColor = true;
+            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            // 
             // EditRecipe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(584, 370);
+            this.Controls.Add(this.browseButton);
             this.Controls.Add(this.dishTypeCombo);
             this.Controls.Add(this.recipeCategoryBox);
             this.Controls.Add(this.newIngrButton);
@@ -330,5 +343,6 @@
         private System.Windows.Forms.TextBox newIngredientName;
         private System.Windows.Forms.ComboBox recipeCategoryBox;
         private System.Windows.Forms.ComboBox dishTypeCombo;
+        private System.Windows.Forms.Button browseButton;
     }
 }

@@ -283,5 +283,16 @@ namespace _393_Food_Machine
             indivRecipe.DeleteItem();
             this.Close();
         }
+
+        private void browseButton_Click(object sender, EventArgs e)
+        {
+            (new Views.IngredientSelect(this)).Show();
+        }
+
+        public void setBrowsedIngr(Ingredient ingr)
+        {
+            newIngredientName.Text = ingr.name;
+            newIngredientUnit.Text = Models.FieldValidator.getComboName(typeof(Ingredient.measurementUnits),ingr.unit);
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace _393_Food_Machine.Views
         }
 
         private RecipeList rl;
+        private EditRecipe editR;
         private List<Ingredient> allIngrs;
         public IngredientSelect(RecipeList recipes)
         {
@@ -32,11 +33,32 @@ namespace _393_Food_Machine.Views
             
         }
 
+        public IngredientSelect(EditRecipe recipe)
+        {
+            InitializeComponent();
+            this.editR = recipe;
+            allIngrs = Models.APICalls.extractFromJson<List<Ingredient>>(Models.APICalls.getAllIngredients(), "ingredients");
+            foreach (Ingredient ingr in allIngrs)
+            {
+                ingredientComboBox.Items.Add(ingr.name);
+            }
+
+        }
+
         private void okButton_Click_1(object sender, EventArgs e)
         {
-            rl.setFilterText("Ingredient: " + ingredientComboBox.Text);
-            rl.filterByIngredient(allIngrs[ingredientComboBox.SelectedIndex]);
-            this.Close();
+            if(editR == null)
+            {
+                rl.setFilterText("Ingredient: " + ingredientComboBox.Text);
+                rl.filterByIngredient(allIngrs[ingredientComboBox.SelectedIndex]);
+                this.Close();
+            }
+            else
+            {
+                editR.setBrowsedIngr(allIngrs[ingredientComboBox.SelectedIndex]);
+                this.Close();
+            }
+            
         }
     }
 }
