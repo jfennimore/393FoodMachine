@@ -62,7 +62,7 @@ namespace _393_Food_Machine
         private String jsonCake()
         {
             Ingredient egg = new Ingredient("Egg", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Baking_Spices);
-            Ingredient sugar = new Ingredient("Sugar", 200, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
+            Ingredient sugar = new Ingredient("Sugar", 600, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
             Ingredient flour = new Ingredient("Flour", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
             Ingredient butter = new Ingredient("Butter", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Dairy);
             List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingrList = new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>();
@@ -79,9 +79,9 @@ namespace _393_Food_Machine
         private String jsonMeatballs()
         {
             Ingredient egg = new Ingredient("Egg", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Baking_Spices);
-            Ingredient ground_beef = new Ingredient("Ground Beef", 300, Ingredient.measurementUnits.lbs, Ingredient.IngredientCategory.Baking_Spices);
+            Ingredient ground_beef = new Ingredient("Ground Beef", 500, Ingredient.measurementUnits.lbs, Ingredient.IngredientCategory.Meat);
             Ingredient breadcrumbs = new Ingredient("Breadcrumbs", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
-            Ingredient cheese = new Ingredient("Grated Cheese", 200, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Dairy);
+            Ingredient cheese = new Ingredient("Grated Cheese", 300, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Dairy);
             Ingredient milk = new Ingredient("Milk", 150, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Dairy);
             List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingrList = new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>();
             ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(egg, 1, Ingredient.measurementUnits.na));
@@ -134,6 +134,11 @@ namespace _393_Food_Machine
                     filterValue.Text = "(Max)";
                     break;
                 case "Ingredient":
+                    Views.IngredientSelect ingrSel = new Views.IngredientSelect(this);
+                    ingrSel.Show();
+                    //Filter out by dish type- triggered by the OK from the DTS
+                    filterValue.Visible = false;
+                    filterOK.Visible = false;
                     break;
                 //Reset the filters
                 case "No Filter":
@@ -286,6 +291,21 @@ namespace _393_Food_Machine
             foreach (Recipe recipe in recipeList)
             {
                 if (recipe.dishType.Equals(dishType))
+                {
+                    newRecipeList.Add(recipe);
+                }
+            }
+            recipeList = newRecipeList;
+            populateRecipeList();
+        }
+
+        public void filterByIngredient(Ingredient ingredient)
+        {
+            PullItems();
+            List<Recipe> newRecipeList = new List<Recipe>();
+            foreach (Recipe recipe in recipeList)
+            {
+                if (recipe.recipeContains(ingredient))
                 {
                     newRecipeList.Add(recipe);
                 }

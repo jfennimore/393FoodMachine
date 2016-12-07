@@ -95,5 +95,10 @@ namespace _393_Food_Machine
             }
         }
 
+        public bool Equals(Ingredient ingr)
+        {
+            return this.name.Equals(ingr.name);
+        }
+
     }
 }

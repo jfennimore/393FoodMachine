@@ -198,5 +198,17 @@ namespace _393_Food_Machine
             
         }
 
+        public bool recipeContains(Ingredient ingredient)
+        {
+            foreach(Tuple<Ingredient,double,Ingredient.measurementUnits> tuple in ingredientList)
+            {
+                if(tuple.Item1.Equals(ingredient))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }
