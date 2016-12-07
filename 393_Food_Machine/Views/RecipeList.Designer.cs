@@ -47,6 +47,8 @@
             "Calories",
             "Category",
             "Cost",
+            "Servings (Min)",
+            "Servings (Max)",
             "Ingredient",
             "No Filter"});
             this.recipeFilter.Location = new System.Drawing.Point(51, 40);

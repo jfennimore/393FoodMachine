@@ -116,6 +116,16 @@ namespace _393_Food_Machine
                     filterValue.Visible = true;
                     filterValue.Text = "(Cutoff)";
                     break;
+                case "Servings (Min)":
+                    filterOK.Visible = true;
+                    filterValue.Visible = true;
+                    filterValue.Text = "(Min)";
+                    break;
+                case "Servings (Max)":
+                    filterOK.Visible = true;
+                    filterValue.Visible = true;
+                    filterValue.Text = "(Max)";
+                    break;
                 case "Ingredient":
                     break;
                 //Reset the filters
@@ -183,8 +193,16 @@ namespace _393_Food_Machine
 
         private void recipeSort_SelectedIndexChanged(object sender, EventArgs e)
         {
+            applySort();
+        }
+
+        private void applySort()
+        {
             switch (recipeSort.Text)
             {
+                case "Alphabetical":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.name.CompareTo(r2.name); });
+                    break;
                 case "Category":
                     recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.category.CompareTo(r2.category); });
                     break;
@@ -228,67 +246,115 @@ namespace _393_Food_Machine
             populateRecipeList();
         }
 
+        //Filter will remove non-matching elements from the overall recipe library and THEN it will call applySort,
+        //which will sort what elements DO make it into the recipeList.
         private void filterOK_Click(object sender, EventArgs e)
         {
-            switch(recipeFilter.Text)
+            PullItems();
+            switch (recipeFilter.Text)
             {
                 case "Cost":
-                    PullItems();
-                    double costThreshold = Double.MaxValue;
-                    if (Models.FieldValidator.ValidateDoubleNumeric(filterValue, "Filter Cost Cutoff"))
+                    filterByCostMax();
+                    break;
+                case "Calories":
+                    filterByCaloriesMax();
+                    break;
+                case "Servings (Min)":
+                    filterByServings(false);
+                    break;
+                case "Servings (Max)":
+                    filterByServings(true);
+                    break;
+            }
+            applySort();
+        }
+
+        private void filterByCostMax()
+        {
+            double costThreshold = Double.MaxValue;
+            if (Models.FieldValidator.ValidateDoubleNumeric(filterValue, "Filter Cost Cutoff"))
+            {
+                //Remove all recipes above cost threshhold
+                costThreshold = Double.Parse(filterValue.Text);
+            }
+            else
+            {
+                try
+                {
+                    decimal testCurrency = decimal.Parse(filterValue.Text, NumberStyles.Currency);
+                    costThreshold = (double)testCurrency;
+                }
+                catch (Exception e2)
+                {
+                    return;
+                }
+            }
+
+            if (costThreshold != Double.MaxValue)
+            {
+                List<Recipe> newRecipeList = new List<Recipe>();
+                foreach (Recipe recipe in recipeList)
+                {
+                    if (recipe.avgCost <= costThreshold)
                     {
-                        //Remove all recipes above cost threshhold
-                        costThreshold = Double.Parse(filterValue.Text);
+                        newRecipeList.Add(recipe);
+                    }
+                }
+                recipeList = newRecipeList;
+            }
+        }
+
+        private void filterByCaloriesMax()
+        {
+            int calThreshold = int.MaxValue;
+            if (Models.FieldValidator.ValidateIntNumeric(filterValue, "Filter Calorie Cutoff"))
+            {
+                //Remove all recipes above cost threshhold
+                calThreshold = Int32.Parse(filterValue.Text);
+            }
+            if (calThreshold != Int32.MaxValue)
+            {
+                List<Recipe> newRecipeList = new List<Recipe>();
+                foreach (Recipe recipe in recipeList)
+                {
+                    if (recipe.caloriesPerServing <= calThreshold)
+                    {
+                        newRecipeList.Add(recipe);
+                    }
+                }
+                recipeList = newRecipeList;
+            }
+        }
+
+        //maxOrMin: true for max, false for min
+        private void filterByServings(bool maxOrMin)
+        {
+            int servThreshold = int.MaxValue;
+            if(Models.FieldValidator.ValidateIntNumeric(filterValue,"Number of Servings Min or Max"))
+            {
+                servThreshold = Int32.Parse(filterValue.Text);
+            }
+            if(servThreshold != int.MaxValue)
+            {
+                List<Recipe> newRecipeList = new List<Recipe>();
+                foreach(Recipe recipe in recipeList)
+                {
+                    if(maxOrMin)
+                    {
+                        if(recipe.numServings <= servThreshold)
+                        {
+                            newRecipeList.Add(recipe);
+                        }
                     }
                     else
                     {
-                        try
+                        if(recipe.numServings >= servThreshold)
                         {
-                            decimal testCurrency = decimal.Parse(filterValue.Text, NumberStyles.Currency);
-                            costThreshold = (double)testCurrency;
-                        }
-                        catch (Exception e2)
-                        {
-                            return;
+                            newRecipeList.Add(recipe);
                         }
                     }
-
-                    if(costThreshold != Double.MaxValue)
-                    {
-                        List<Recipe> newRecipeList = new List<Recipe>();
-                        foreach(Recipe recipe in recipeList)
-                        {
-                            if(recipe.avgCost <= costThreshold)
-                            {
-                                newRecipeList.Add(recipe);
-                            }
-                        }
-                        recipeList = newRecipeList;
-                        populateRecipeList();
-                    }
-                    break;
-                case "Calories":
-                    PullItems();
-                    int calThreshold = int.MaxValue;
-                    if (Models.FieldValidator.ValidateIntNumeric(filterValue, "Filter Calorie Cutoff"))
-                    {
-                        //Remove all recipes above cost threshhold
-                        calThreshold = Int32.Parse(filterValue.Text);
-                    }
-                    if (calThreshold != Int32.MaxValue)
-                    {
-                        List<Recipe> newRecipeList = new List<Recipe>();
-                        foreach (Recipe recipe in recipeList)
-                        {
-                            if (recipe.caloriesPerServing <= calThreshold)
-                            {
-                                newRecipeList.Add(recipe);
-                            }
-                        }
-                        recipeList = newRecipeList;
-                        populateRecipeList();
-                    }
-                    break;
+                }
+                recipeList = newRecipeList;
             }
         }
     }
