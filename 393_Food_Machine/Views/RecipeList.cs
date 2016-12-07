@@ -32,9 +32,9 @@ namespace _393_Food_Machine
         {
             Views.LoadingScreen ls = new Views.LoadingScreen();
             ls.Show();
-            JObject outerLayer = JObject.Parse(Models.APICalls.getAllRecipes());
+            //JObject outerLayer = JObject.Parse(Models.APICalls.getAllRecipes());
             ls.Hide();
-            recipeList = JsonConvert.DeserializeObject<List<Recipe>>(outerLayer.GetValue("recipes").ToString());
+            //recipeList = JsonConvert.DeserializeObject<List<Recipe>>(outerLayer.GetValue("recipes").ToString());
             recipeList = new List<Recipe>();
             recipeList.Add(new Recipe(jsonCake()));
             recipeList.Add(new Recipe(jsonMeatballs()));

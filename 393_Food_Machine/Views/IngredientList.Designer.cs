@@ -45,6 +45,8 @@
             this.editCategoryBox = new System.Windows.Forms.ComboBox();
             this.newCategoryBox = new System.Windows.Forms.ComboBox();
             this.backButton = new System.Windows.Forms.Button();
+            this.filterOK = new System.Windows.Forms.Button();
+            this.filterValue = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ingredientListBox
@@ -77,10 +79,17 @@
             // ingredientSort
             // 
             this.ingredientSort.FormattingEnabled = true;
+            this.ingredientSort.Items.AddRange(new object[] {
+            "Alphabetical",
+            "Category",
+            "Calories (Low)",
+            "Calories (High)",
+            "No Sort"});
             this.ingredientSort.Location = new System.Drawing.Point(402, 43);
             this.ingredientSort.Name = "ingredientSort";
             this.ingredientSort.Size = new System.Drawing.Size(121, 21);
             this.ingredientSort.TabIndex = 12;
+            this.ingredientSort.SelectedIndexChanged += new System.EventHandler(this.ingredientSort_SelectedIndexChanged);
             // 
             // ingredientFilter
             // 
@@ -88,12 +97,13 @@
             this.ingredientFilter.Items.AddRange(new object[] {
             "Calories",
             "Category",
-            "Cost",
-            "Ingredient "});
+            "Search",
+            "No Filter"});
             this.ingredientFilter.Location = new System.Drawing.Point(43, 44);
             this.ingredientFilter.Name = "ingredientFilter";
             this.ingredientFilter.Size = new System.Drawing.Size(121, 21);
             this.ingredientFilter.TabIndex = 11;
+            this.ingredientFilter.SelectedIndexChanged += new System.EventHandler(this.ingredientFilter_SelectedIndexChanged);
             // 
             // newIngrButton
             // 
@@ -199,12 +209,31 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // filterOK
+            // 
+            this.filterOK.Location = new System.Drawing.Point(225, 44);
+            this.filterOK.Name = "filterOK";
+            this.filterOK.Size = new System.Drawing.Size(38, 23);
+            this.filterOK.TabIndex = 42;
+            this.filterOK.Text = "OK";
+            this.filterOK.UseVisualStyleBackColor = true;
+            this.filterOK.Click += new System.EventHandler(this.filterOK_Click);
+            // 
+            // filterValue
+            // 
+            this.filterValue.Location = new System.Drawing.Point(170, 45);
+            this.filterValue.Name = "filterValue";
+            this.filterValue.Size = new System.Drawing.Size(48, 20);
+            this.filterValue.TabIndex = 41;
+            // 
             // IngredientList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
             this.ClientSize = new System.Drawing.Size(584, 311);
+            this.Controls.Add(this.filterOK);
+            this.Controls.Add(this.filterValue);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.newCategoryBox);
             this.Controls.Add(this.editCategoryBox);
@@ -247,5 +276,7 @@
         private System.Windows.Forms.ComboBox editCategoryBox;
         private System.Windows.Forms.ComboBox newCategoryBox;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button filterOK;
+        private System.Windows.Forms.TextBox filterValue;
     }
 }

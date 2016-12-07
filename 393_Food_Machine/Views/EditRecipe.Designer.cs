@@ -184,6 +184,8 @@
             // 
             // editIngredientUnit
             // 
+            this.editIngredientUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.editIngredientUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.editIngredientUnit.FormattingEnabled = true;
             this.editIngredientUnit.Location = new System.Drawing.Point(334, 188);
             this.editIngredientUnit.Name = "editIngredientUnit";
@@ -222,6 +224,8 @@
             // 
             // newIngredientUnit
             // 
+            this.newIngredientUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.newIngredientUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.newIngredientUnit.FormattingEnabled = true;
             this.newIngredientUnit.Location = new System.Drawing.Point(334, 217);
             this.newIngredientUnit.Name = "newIngredientUnit";
@@ -246,6 +250,8 @@
             // 
             // recipeCategoryBox
             // 
+            this.recipeCategoryBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.recipeCategoryBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.recipeCategoryBox.FormattingEnabled = true;
             this.recipeCategoryBox.Location = new System.Drawing.Point(202, 39);
             this.recipeCategoryBox.Name = "recipeCategoryBox";
@@ -254,6 +260,8 @@
             // 
             // dishTypeCombo
             // 
+            this.dishTypeCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.dishTypeCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.dishTypeCombo.FormattingEnabled = true;
             this.dishTypeCombo.Location = new System.Drawing.Point(202, 66);
             this.dishTypeCombo.Name = "dishTypeCombo";

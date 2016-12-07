@@ -88,6 +88,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Recipe.cs" />
+    <Compile Include="Views\IngredientCategorySelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IngredientCategorySelect.Designer.cs">
+      <DependentUpon>IngredientCategorySelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\IngredientList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\IngredientCategorySelect.resx">
+      <DependentUpon>IngredientCategorySelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\IngredientList.resx">
       <DependentUpon>IngredientList.cs</DependentUpon>
     </EmbeddedResource>

@@ -54,6 +54,8 @@
             // 
             // dishTypeComboBox
             // 
+            this.dishTypeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.dishTypeComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.dishTypeComboBox.FormattingEnabled = true;
             this.dishTypeComboBox.Location = new System.Drawing.Point(65, 52);
             this.dishTypeComboBox.Name = "dishTypeComboBox";

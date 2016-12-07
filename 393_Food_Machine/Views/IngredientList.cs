@@ -23,6 +23,8 @@ namespace _393_Food_Machine.Views
 
             populateIngredientsBox();
             populateComboBoxes();
+            filterValue.Visible = false;
+            filterOK.Visible = false;
         }
 
         private void populateComboBoxes()
@@ -184,6 +186,141 @@ namespace _393_Food_Machine.Views
         public TextBox getEditIngrName()
         {
             return editIngredientName;
+        }
+
+        private void applySort()
+        {
+            switch (ingredientSort.Text)
+            {
+                case "Alphabetical":
+                    ingrList.Sort(delegate (Ingredient i1, Ingredient i2) { return i1.name.CompareTo(i2.name); });
+                    break;
+                case "Category":
+                    ingrList.Sort(delegate (Ingredient i1, Ingredient i2) { return i1.category.CompareTo(i2.category); });
+                    break;
+                case "Calories (Low)":
+                    ingrList.Sort(delegate (Ingredient i1, Ingredient i2) { return i1.calories.CompareTo(i2.calories); });
+                    break;
+                case "Calories (High)":
+                    ingrList.Sort(delegate (Ingredient i1, Ingredient i2) { return i2.calories.CompareTo(i1.calories); });
+                    break;
+            }
+            populateIngredientsBox();
+        }
+
+        public void setFilterText(String filter)
+        {
+            ingredientFilter.Text = filter;
+        }
+
+        private void ingredientFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ingredientFilter.Text)
+            {
+                case "Category":
+                    IngredientCategorySelect ics = new IngredientCategorySelect(this);
+                    ics.Show();
+                    //Filter out by category- triggered by the OK from the RCS
+                    filterValue.Visible = false;
+                    filterOK.Visible = false;
+                    break;
+                case "Calories":
+                    filterOK.Visible = true;
+                    filterValue.Visible = true;
+                    filterValue.Text = "(Cutoff)";
+                    break;
+                case "Search":
+                    filterOK.Visible = true;
+                    filterValue.Visible = true;
+                    filterValue.Text = "(Name)";
+                    break;
+                //Reset the filters
+                case "No Filter":
+                    filterValue.Visible = false;
+                    filterOK.Visible = false;
+                    PullItems();
+                    applySort();
+                    break;
+            }
+        }
+
+        public void filterByCategory(Ingredient.IngredientCategory category)
+        {
+            PullItems();
+            List<Ingredient> newIngrList = new List<Ingredient>();
+            foreach (Ingredient ingr in ingrList)
+            {
+                if (ingr.category.Equals(category))
+                {
+                    newIngrList.Add(ingr);
+                }
+            }
+            ingrList = newIngrList;
+            populateIngredientsBox();
+        }
+
+        private void ingredientSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            applySort();
+        }
+
+        private void filterOK_Click(object sender, EventArgs e)
+        {
+            PullItems();
+            switch (ingredientFilter.Text)
+            {
+                case "Calories":
+                    filterByCaloriesMax();
+                    break;
+                case "Search":
+                    filterBySearch();
+                    break;
+            }
+            applySort();
+        }
+
+        private void filterByCaloriesMax()
+        {
+            int calThreshold = int.MaxValue;
+            if (Models.FieldValidator.ValidateIntNumeric(filterValue, "Filter Calorie Cutoff"))
+            {
+                //Remove all recipes above cost threshhold
+                calThreshold = Int32.Parse(filterValue.Text);
+            }
+            if (calThreshold != Int32.MaxValue)
+            {
+                List<Ingredient> newIngrList = new List<Ingredient>();
+                foreach (Ingredient ingr in ingrList)
+                {
+                    if (ingr.calories <= calThreshold)
+                    {
+                        newIngrList.Add(ingr);
+                    }
+                }
+                ingrList = newIngrList;
+            }
+        }
+
+        private void filterBySearch()
+        {
+            String fragment = "";
+            if (Models.FieldValidator.ValidateString(filterValue, "Searched Recipe Name", new String[] { "(Name)" }))
+            {
+                //Remove all recipes above cost threshhold
+                fragment = filterValue.Text;
+            }
+            if (fragment != "")
+            {
+                List<Ingredient> newIngrList = new List<Ingredient>();
+                foreach (Ingredient ingr in ingrList)
+                {
+                    if (ingr.name.IndexOf(fragment) != -1)
+                    {
+                        newIngrList.Add(ingr);
+                    }
+                }
+                ingrList = newIngrList;
+            }
         }
     }
 }
