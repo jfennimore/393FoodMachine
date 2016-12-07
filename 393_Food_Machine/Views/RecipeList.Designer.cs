@@ -51,6 +51,7 @@
             "Servings (Min)",
             "Servings (Max)",
             "Ingredient",
+            "Search",
             "No Filter"});
             this.recipeFilter.Location = new System.Drawing.Point(51, 40);
             this.recipeFilter.Name = "recipeFilter";

@@ -133,6 +133,11 @@ namespace _393_Food_Machine
                     filterValue.Visible = true;
                     filterValue.Text = "(Max)";
                     break;
+                case "Search":
+                    filterOK.Visible = true;
+                    filterValue.Visible = true;
+                    filterValue.Text = "(Name)";
+                    break;
                 case "Ingredient":
                     Views.IngredientSelect ingrSel = new Views.IngredientSelect(this);
                     ingrSel.Show();
@@ -264,6 +269,9 @@ namespace _393_Food_Machine
                     break;
                 case "Servings (Max)":
                     filterByServings(true);
+                    break;
+                case "Search":
+                    filterBySearch();
                     break;
             }
             applySort();
@@ -397,6 +405,28 @@ namespace _393_Food_Machine
                         {
                             newRecipeList.Add(recipe);
                         }
+                    }
+                }
+                recipeList = newRecipeList;
+            }
+        }
+
+        private void filterBySearch()
+        {
+            String fragment = "";
+            if (Models.FieldValidator.ValidateString(filterValue,"Searched Recipe Name",new String[] { "(Name)"}))
+            {
+                //Remove all recipes above cost threshhold
+                fragment = filterValue.Text;
+            }
+            if (fragment != "")
+            {
+                List<Recipe> newRecipeList = new List<Recipe>();
+                foreach (Recipe recipe in recipeList)
+                {
+                    if (recipe.name.IndexOf(fragment) != -1)
+                    {
+                        newRecipeList.Add(recipe);
                     }
                 }
                 recipeList = newRecipeList;
