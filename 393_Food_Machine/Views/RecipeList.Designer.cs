@@ -36,6 +36,8 @@
             this.newRecipeButton = new System.Windows.Forms.Button();
             this.importButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.filterValue = new System.Windows.Forms.TextBox();
+            this.filterOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // recipeFilter
@@ -55,10 +57,25 @@
             // recipeSort
             // 
             this.recipeSort.FormattingEnabled = true;
-            this.recipeSort.Location = new System.Drawing.Point(410, 39);
+            this.recipeSort.Items.AddRange(new object[] {
+            "Category",
+            "Recently Added",
+            "Oldest",
+            "Calories (Low)",
+            "Calories (High)",
+            "Prep Time (Low)",
+            "Prep Time (High)",
+            "Number of Servings (Low)",
+            "Number of Servings (High)",
+            "Number of Ingredients (Low)",
+            "Number of Ingredients (High)",
+            "Cost (Low)",
+            "Cost (High)"});
+            this.recipeSort.Location = new System.Drawing.Point(384, 39);
             this.recipeSort.Name = "recipeSort";
-            this.recipeSort.Size = new System.Drawing.Size(121, 21);
+            this.recipeSort.Size = new System.Drawing.Size(147, 21);
             this.recipeSort.TabIndex = 1;
+            this.recipeSort.SelectedIndexChanged += new System.EventHandler(this.recipeSort_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -74,7 +91,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(410, 24);
+            this.label2.Location = new System.Drawing.Point(381, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 3;
@@ -119,12 +136,30 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // filterValue
+            // 
+            this.filterValue.Location = new System.Drawing.Point(178, 40);
+            this.filterValue.Name = "filterValue";
+            this.filterValue.Size = new System.Drawing.Size(48, 20);
+            this.filterValue.TabIndex = 39;
+            // 
+            // filterOK
+            // 
+            this.filterOK.Location = new System.Drawing.Point(233, 39);
+            this.filterOK.Name = "filterOK";
+            this.filterOK.Size = new System.Drawing.Size(38, 23);
+            this.filterOK.TabIndex = 40;
+            this.filterOK.Text = "OK";
+            this.filterOK.UseVisualStyleBackColor = true;
+            // 
             // RecipeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkBlue;
             this.ClientSize = new System.Drawing.Size(584, 311);
+            this.Controls.Add(this.filterOK);
+            this.Controls.Add(this.filterValue);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.importButton);
             this.Controls.Add(this.newRecipeButton);
@@ -150,6 +185,8 @@
         private System.Windows.Forms.Button newRecipeButton;
         private System.Windows.Forms.Button importButton;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.TextBox filterValue;
+        private System.Windows.Forms.Button filterOK;
     }
 }
 

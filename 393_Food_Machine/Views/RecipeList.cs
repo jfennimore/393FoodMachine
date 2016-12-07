@@ -21,14 +21,10 @@ namespace _393_Food_Machine
         public RecipeList()
         {
             InitializeComponent();
+            filterValue.Visible = false;
+            filterOK.Visible = false;
             PullItems();
-            
-            foreach (Recipe recipe in recipeList)
-            {
-                recipeListBox.Items.Add(recipe.name);
-            }
-
-            
+            populateRecipeList();
         }
 
         public bool PullItems()
@@ -42,6 +38,15 @@ namespace _393_Food_Machine
             recipeList.Add(new Recipe(jsonCake()));
             recipeList.Add(new Recipe(jsonMeatballs()));
             return true;
+        }
+
+        private void populateRecipeList()
+        {
+            recipeListBox.Items.Clear();
+            foreach (Recipe recipe in recipeList)
+            {
+                recipeListBox.Items.Add(recipe.name);
+            }
         }
 
         //User selected an item in the list
@@ -66,7 +71,7 @@ namespace _393_Food_Machine
             ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(butter, 1, Ingredient.measurementUnits.lbs));
             Recipe cake = new _393_Food_Machine.Recipe("Cake", 
                 "Blend on high mix, thoroughly whipping the butter and sugar together until they are creamy and smooth.  Then slowly add the flour a few tablespoons at a time until just mixed.", 
-                Recipe.RecipeCategory.Dessert, Recipe.DishType.Cake, 30, DateTime.Today, 8, ingrList);
+                Recipe.RecipeCategory.Dessert, Recipe.DishType.Cake, 50, DateTime.Today.Subtract(TimeSpan.FromDays(1)), 8, ingrList);
             return cake.ToString();
         }
 
@@ -76,11 +81,13 @@ namespace _393_Food_Machine
             Ingredient ground_beef = new Ingredient("Ground Beef", 300, Ingredient.measurementUnits.lbs, Ingredient.IngredientCategory.Baking_Spices);
             Ingredient breadcrumbs = new Ingredient("Breadcrumbs", 100, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Baking_Spices);
             Ingredient cheese = new Ingredient("Grated Cheese", 200, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Dairy);
+            Ingredient milk = new Ingredient("Milk", 150, Ingredient.measurementUnits.cups, Ingredient.IngredientCategory.Dairy);
             List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingrList = new List<Tuple<Ingredient, double, Ingredient.measurementUnits>>();
             ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(egg, 1, Ingredient.measurementUnits.na));
             ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(ground_beef, 1, Ingredient.measurementUnits.lbs));
             ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(breadcrumbs, 1.5, Ingredient.measurementUnits.cups));
             ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(cheese, 1, Ingredient.measurementUnits.cups));
+            ingrList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>(milk, .5, Ingredient.measurementUnits.cups));
             Recipe meatballs = new _393_Food_Machine.Recipe("Meatballs",
                 "Mix together meat, eggs, breadcrumbs all at once, then break off pieces, roll into balls, place on a pan and bake at 350F for 20 minutes.",
                 Recipe.RecipeCategory.Entree, Recipe.DishType.Roast, 30, DateTime.Today, 6, ingrList);
@@ -98,7 +105,7 @@ namespace _393_Food_Machine
                     break;
                 case "Calories":
                     break;
-                case "Cost":
+                case "Cost (Low to High)":
                     break;
                 case "Ingredient":
                     break;
@@ -141,6 +148,53 @@ namespace _393_Food_Machine
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void recipeSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (recipeSort.Text)
+            {
+                case "Category":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.category.CompareTo(r2.category); });
+                    break;
+                case "Recently Added":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r2.dateAdded.CompareTo(r1.dateAdded); });
+                    break;
+                case "Oldest":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.dateAdded.CompareTo(r2.dateAdded); });
+                    break;
+                case "Calories (Low)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.caloriesPerServing.CompareTo(r2.caloriesPerServing); });
+                    break;
+                case "Calories (High)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r2.caloriesPerServing.CompareTo(r1.caloriesPerServing); });
+                    break;
+                case "Cost (Low)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.avgCost.CompareTo(r2.avgCost); });
+                    break;
+                case "Prep Time (Low)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.prepTime.CompareTo(r2.prepTime); });
+                    break;
+                case "Number of Servings (Low)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.numServings.CompareTo(r2.numServings); });
+                    break;
+                case "Number of Ingredients (Low)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.ingredientList.Count.CompareTo(r2.ingredientList.Count); });
+                    break;
+                case "Cost (High)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r2.avgCost.CompareTo(r1.avgCost); });
+                    break;
+                case "Prep Time (High)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r2.prepTime.CompareTo(r1.prepTime); });
+                    break;
+                case "Number of Servings (High)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r2.numServings.CompareTo(r1.numServings); });
+                    break;
+                case "Number of Ingredients (High)":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r2.ingredientList.Count.CompareTo(r1.ingredientList.Count); });
+                    break;
+            }
+            populateRecipeList();
         }
     }
 }
