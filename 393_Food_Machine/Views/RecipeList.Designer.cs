@@ -47,7 +47,8 @@
             "Calories",
             "Category",
             "Cost",
-            "Ingredient "});
+            "Ingredient",
+            "No Filter"});
             this.recipeFilter.Location = new System.Drawing.Point(51, 40);
             this.recipeFilter.Name = "recipeFilter";
             this.recipeFilter.Size = new System.Drawing.Size(121, 21);
@@ -151,6 +152,7 @@
             this.filterOK.TabIndex = 40;
             this.filterOK.Text = "OK";
             this.filterOK.UseVisualStyleBackColor = true;
+            this.filterOK.Click += new System.EventHandler(this.filterOK_Click);
             // 
             // RecipeList
             // 

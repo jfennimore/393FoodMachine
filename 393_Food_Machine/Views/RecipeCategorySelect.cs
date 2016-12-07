@@ -24,6 +24,7 @@ namespace _393_Food_Machine
         private void button1_Click(object sender, EventArgs e)
         {
             rl.setFilterText("Category: " + categoryComboBox.Text);
+            rl.filterByCategory((Recipe.RecipeCategory)Models.FieldValidator.getComboIndex(typeof(Recipe.RecipeCategory), categoryComboBox.Text));
             this.Close();
         }
     }
