@@ -46,6 +46,7 @@
             this.recipeFilter.Items.AddRange(new object[] {
             "Calories",
             "Category",
+            "Dish Type",
             "Cost",
             "Servings (Min)",
             "Servings (Max)",
@@ -62,6 +63,7 @@
             this.recipeSort.FormattingEnabled = true;
             this.recipeSort.Items.AddRange(new object[] {
             "Category",
+            "Dish Type",
             "Recently Added",
             "Oldest",
             "Calories (Low)",

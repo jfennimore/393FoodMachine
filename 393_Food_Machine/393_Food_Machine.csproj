@@ -53,6 +53,12 @@
     <Compile Include="Models\APICalls.cs" />
     <Compile Include="Models\Editable.cs" />
     <Compile Include="Models\FieldValidator.cs" />
+    <Compile Include="Views\DishTypeSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DishTypeSelect.Designer.cs">
+      <DependentUpon>DishTypeSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditRecipe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     <Compile Include="Views\StoreList.Designer.cs">
       <DependentUpon>StoreList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\DishTypeSelect.resx">
+      <DependentUpon>DishTypeSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\EditRecipe.resx">
       <DependentUpon>EditRecipe.cs</DependentUpon>
     </EmbeddedResource>

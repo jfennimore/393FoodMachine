@@ -100,9 +100,16 @@ namespace _393_Food_Machine
             switch(recipeFilter.Text)
             {
                 case "Category":
-                    RecipeCategorySelect rsc = new RecipeCategorySelect(this);
-                    rsc.Show();
-                    //Filter out by category- triggered by the OK from the RSC
+                    RecipeCategorySelect rcs = new RecipeCategorySelect(this);
+                    rcs.Show();
+                    //Filter out by category- triggered by the OK from the RCS
+                    filterValue.Visible = false;
+                    filterOK.Visible = false;
+                    break;
+                case "Dish Type":
+                    Views.DishTypeSelect dts = new Views.DishTypeSelect(this);
+                    dts.Show();
+                    //Filter out by dish type- triggered by the OK from the DTS
                     filterValue.Visible = false;
                     filterOK.Visible = false;
                     break;
@@ -141,21 +148,6 @@ namespace _393_Food_Machine
         public void setFilterText(String filter)
         {
             recipeFilter.Text = filter;
-        }
-
-        public void filterByCategory(Recipe.RecipeCategory category)
-        {
-            PullItems();
-            List<Recipe> newRecipeList = new List<Recipe>();
-            foreach (Recipe recipe in recipeList)
-            {
-                if (recipe.category.Equals(category))
-                {
-                    newRecipeList.Add(recipe);
-                }
-            }
-            recipeList = newRecipeList;
-            populateRecipeList();
         }
 
         private void newRecipeButton_Click(object sender, EventArgs e)
@@ -205,6 +197,9 @@ namespace _393_Food_Machine
                     break;
                 case "Category":
                     recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.category.CompareTo(r2.category); });
+                    break;
+                case "Dish Type":
+                    recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r1.dishType.CompareTo(r2.dishType); });
                     break;
                 case "Recently Added":
                     recipeList.Sort(delegate (Recipe r1, Recipe r2) { return r2.dateAdded.CompareTo(r1.dateAdded); });
@@ -267,6 +262,36 @@ namespace _393_Food_Machine
                     break;
             }
             applySort();
+        }
+
+        public void filterByCategory(Recipe.RecipeCategory category)
+        {
+            PullItems();
+            List<Recipe> newRecipeList = new List<Recipe>();
+            foreach (Recipe recipe in recipeList)
+            {
+                if (recipe.category.Equals(category))
+                {
+                    newRecipeList.Add(recipe);
+                }
+            }
+            recipeList = newRecipeList;
+            populateRecipeList();
+        }
+
+        public void filterByDishType(Recipe.DishType dishType)
+        {
+            PullItems();
+            List<Recipe> newRecipeList = new List<Recipe>();
+            foreach (Recipe recipe in recipeList)
+            {
+                if (recipe.dishType.Equals(dishType))
+                {
+                    newRecipeList.Add(recipe);
+                }
+            }
+            recipeList = newRecipeList;
+            populateRecipeList();
         }
 
         private void filterByCostMax()
