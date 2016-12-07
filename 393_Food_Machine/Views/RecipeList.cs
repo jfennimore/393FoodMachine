@@ -150,7 +150,7 @@ namespace _393_Food_Machine
                     filterValue.Visible = false;
                     filterOK.Visible = false;
                     PullItems();
-                    populateRecipeList();
+                    applySort();
                     break;
             }
         }
