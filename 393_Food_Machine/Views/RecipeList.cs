@@ -32,12 +32,12 @@ namespace _393_Food_Machine
         {
             Views.LoadingScreen ls = new Views.LoadingScreen();
             ls.Show();
-            //JObject outerLayer = JObject.Parse(Models.APICalls.getAllRecipes());
+            JObject outerLayer = JObject.Parse(Models.APICalls.getAllRecipes());
             ls.Hide();
-            //recipeList = JsonConvert.DeserializeObject<List<Recipe>>(outerLayer.GetValue("recipes").ToString());
-            recipeList = new List<Recipe>();
-            recipeList.Add(new Recipe(jsonCake()));
-            recipeList.Add(new Recipe(jsonMeatballs()));
+            recipeList = JsonConvert.DeserializeObject<List<Recipe>>(outerLayer.GetValue("recipes").ToString());
+            //recipeList = new List<Recipe>();
+            //recipeList.Add(new Recipe(jsonCake()));
+            //recipeList.Add(new Recipe(jsonMeatballs()));
             return true;
         }
 
@@ -59,6 +59,7 @@ namespace _393_Food_Machine
             this.Close();
         }
 
+        //jsonCake and jsonMeatballs are just here to test
         private String jsonCake()
         {
             Ingredient egg = new Ingredient("Egg", 100, Ingredient.measurementUnits.tbsp, Ingredient.IngredientCategory.Baking_Spices);
@@ -177,7 +178,7 @@ namespace _393_Food_Machine
                 Recipe importedRec = new Recipe(jsonObj);
                 if(importedRec.name != null)
                 {
-                    //importedRec.PushNewItem();
+                    importedRec.PushNewItem();
                     recipeList.Add(importedRec);
                     recipeListBox.Items.Add(importedRec.name);
                 }
@@ -313,7 +314,7 @@ namespace _393_Food_Machine
             List<Recipe> newRecipeList = new List<Recipe>();
             foreach (Recipe recipe in recipeList)
             {
-                if (recipe.recipeContains(ingredient))
+                if (recipe.recipeContains(ingredient) != -1)
                 {
                     newRecipeList.Add(recipe);
                 }

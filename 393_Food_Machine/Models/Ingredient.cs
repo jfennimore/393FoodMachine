@@ -24,18 +24,18 @@ namespace _393_Food_Machine
         //These are the most common units for almost all recipes
         public enum measurementUnits
         {
-            tsp = 1,
-            tbsp = 3,
-            cups = 48,
-            lbs = 144,
+            tsp,
+            tbsp,
+            cups,
+            lbs,
             //This is a bit of a fudge- putting measurements of weight with volume.
             //But, for the sake of avoiding excessive complexity, we'll allow people
             //to list ingredients in whatever form they choose, and do our best to 
             //approximate the equivalent conversion
-            quarts = 192,
-            gallons = 768,
-            oz = 9,
-            na = 0
+            quarts,
+            gallons,
+            oz,
+            na
         }
 
         public int calories { get; set; }
@@ -98,6 +98,64 @@ namespace _393_Food_Machine
         public bool Equals(Ingredient ingr)
         {
             return this.name.Equals(ingr.name);
+        }
+
+        public static double getUnitDouble(String unitName)
+        {
+            switch(unitName)
+            {
+                case "tsp": return 1.0;
+                    break;
+                case "tbsp": return 3.0;
+                    break;
+                case "cups": return 48.0;
+                    break;
+                case "lbs": return 144.0;
+                    break;
+                case "quarts": return 192.0;
+                    break;
+                case "gallons": return 768.0;
+                    break;
+                case "oz": return 9.0;
+                    break;
+                case "na": return 1.0;
+                    break;
+                default:
+                    return 1.0;
+            }
+        }
+
+        public static double getUnitDouble(Ingredient.measurementUnits unitName)
+        {
+            switch (unitName)
+            {
+                case Ingredient.measurementUnits.tsp:
+                    return 1.0;
+                    break;
+                case Ingredient.measurementUnits.tbsp:
+                    return 3.0;
+                    break;
+                case Ingredient.measurementUnits.cups:
+                    return 48.0;
+                    break;
+                case Ingredient.measurementUnits.lbs:
+                    return 144.0;
+                    break;
+                case Ingredient.measurementUnits.quarts:
+                    return 192.0;
+                    break;
+                case Ingredient.measurementUnits.gallons:
+                    return 768.0;
+                    break;
+                case Ingredient.measurementUnits.oz:
+                    return 9.0;
+                    break;
+                case Ingredient.measurementUnits.na:
+                    return 1.0;
+                    break;
+                default:
+                    return 1.0;
+            }
         }
 
     }

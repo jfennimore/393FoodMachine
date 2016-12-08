@@ -149,7 +149,7 @@ namespace _393_Food_Machine
             }
             else
             {
-                return (double) recipeUnit / (double) ingrUnit;
+                return Ingredient.getUnitDouble(recipeUnit) / Ingredient.getUnitDouble(ingrUnit);
             }
             
         }
@@ -198,16 +198,55 @@ namespace _393_Food_Machine
             
         }
 
-        public bool recipeContains(Ingredient ingredient)
+        public int recipeContains(Ingredient ingredient)
         {
-            foreach(Tuple<Ingredient,double,Ingredient.measurementUnits> tuple in ingredientList)
+            int index = 0;
+            foreach (Tuple<Ingredient,double,Ingredient.measurementUnits> tuple in ingredientList)
             {
-                if(tuple.Item1.Equals(ingredient))
+                if (tuple.Item1.Equals(ingredient))
                 {
-                    return true;
+                    return index;
                 }
+                index++;
             }
-            return false;
+            return -1;
+        }
+
+        public void addIngredient(Ingredient ingredient, String amount, String unit)
+        {
+            if(recipeContains(ingredient) == -1)
+            {
+                ingredientList.Add(new Tuple<Ingredient, double, Ingredient.measurementUnits>
+                                    (ingredient,
+                                    Double.Parse(amount),
+                                    (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), unit))
+                                );
+            }
+            else
+            {
+                Tuple<Ingredient, double, Ingredient.measurementUnits> original = ingredientList[recipeContains(ingredient)];
+                Tuple<Ingredient, double, Ingredient.measurementUnits> additional = new Tuple<Ingredient, double, Ingredient.measurementUnits>
+                                    (ingredient,
+                                    Double.Parse(amount),
+                                    (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), unit));
+                double newAmount = (original.Item2 * Ingredient.getUnitDouble(original.Item3) + additional.Item2 * Ingredient.getUnitDouble(additional.Item3)) / Ingredient.getUnitDouble(original.Item3);
+                Tuple<Ingredient, double, Ingredient.measurementUnits> result = new Tuple<Ingredient, double, Ingredient.measurementUnits>(
+                                    ingredient,
+                                    newAmount,
+                                    original.Item3
+                    );
+                ingredientList[recipeContains(ingredient)] = result;
+            }
+            
+        }
+
+        public void updateIngredient(int index, Ingredient ingredient, String amount, String unit)
+        {
+            ingredientList[index] = (new Tuple<Ingredient, double, Ingredient.measurementUnits>
+                    (ingredient,
+                    Double.Parse(amount),
+                    (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), unit))
+                );
         }
 
     }

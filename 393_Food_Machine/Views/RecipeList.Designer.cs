@@ -63,6 +63,7 @@
             // 
             this.recipeSort.FormattingEnabled = true;
             this.recipeSort.Items.AddRange(new object[] {
+            "Alphabetical",
             "Category",
             "Dish Type",
             "Recently Added",

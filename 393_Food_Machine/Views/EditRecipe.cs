@@ -180,7 +180,7 @@ namespace _393_Food_Machine
                 Tuple<Ingredient, double, Ingredient.measurementUnits> selectedIngredient = indivRecipe.ingredientList.ElementAt(index);
                 editIngredientName.Text = selectedIngredient.Item1.name;
                 editIngredientAmount.Text = selectedIngredient.Item2.ToString();
-                editIngredientUnit.Text = selectedIngredient.Item1.unit.ToString();
+                editIngredientUnit.Text = Models.FieldValidator.getComboName(typeof(Ingredient.measurementUnits),selectedIngredient.Item3);
             }
         }
 
@@ -191,10 +191,11 @@ namespace _393_Food_Machine
             {
                 if (ingredientListBox.SelectedIndex != -1)
                 {
-                    indivRecipe.ingredientList[ingredientListBox.SelectedIndex] =
-                        new Tuple<Ingredient, double, Ingredient.measurementUnits>(indivRecipe.ingredientList[ingredientListBox.SelectedIndex].Item1,
-                        Double.Parse(editIngredientAmount.Text),
-                        (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits),editIngredientUnit.Text)
+                    indivRecipe.updateIngredient(
+                        ingredientListBox.SelectedIndex,
+                        indivRecipe.ingredientList[ingredientListBox.SelectedIndex].Item1,
+                        editIngredientAmount.Text,
+                        editIngredientUnit.Text
                         );
                 }
                 populateIngredientsBox();
@@ -232,11 +233,10 @@ namespace _393_Food_Machine
                 Ingredient newIngr = (Models.APICalls.extractFromJson<Ingredient>(Models.APICalls.getIngredientByName(newIngredientName.Text),"ingredient"));
                 if(newIngr != null)
                 {
-                    indivRecipe.ingredientList.Add(
-                                        new Tuple<Ingredient, double, Ingredient.measurementUnits>
-                                        (newIngr,
-                                        Double.Parse(newIngredientAmount.Text),
-                                        (Ingredient.measurementUnits)Models.FieldValidator.getComboIndex(typeof(Ingredient.measurementUnits), newIngredientUnit.Text))
+                    indivRecipe.addIngredient(
+                                        newIngr,
+                                        newIngredientAmount.Text,
+                                        newIngredientUnit.Text
                                     );
                     //Add ingredient to this Recipe
                     populateIngredientsBox();

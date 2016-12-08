@@ -55,7 +55,7 @@
             // groceryButton
             // 
             this.groceryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groceryButton.Location = new System.Drawing.Point(193, 132);
+            this.groceryButton.Location = new System.Drawing.Point(193, 208);
             this.groceryButton.Name = "groceryButton";
             this.groceryButton.Size = new System.Drawing.Size(235, 32);
             this.groceryButton.TabIndex = 1;
@@ -76,7 +76,7 @@
             // ingredientButton
             // 
             this.ingredientButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ingredientButton.Location = new System.Drawing.Point(193, 208);
+            this.ingredientButton.Location = new System.Drawing.Point(193, 132);
             this.ingredientButton.Name = "ingredientButton";
             this.ingredientButton.Size = new System.Drawing.Size(235, 32);
             this.ingredientButton.TabIndex = 3;
