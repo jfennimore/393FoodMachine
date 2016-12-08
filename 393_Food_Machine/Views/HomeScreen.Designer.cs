@@ -21,7 +21,7 @@
             this.groceryButton = new System.Windows.Forms.Button();
             this.storeButton = new System.Windows.Forms.Button();
             this.ingredientButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.aboutButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -84,14 +84,15 @@
             this.ingredientButton.UseVisualStyleBackColor = true;
             this.ingredientButton.Click += new System.EventHandler(this.ingredientButton_Click);
             // 
-            // button1
+            // aboutButton
             // 
-            this.button1.Location = new System.Drawing.Point(223, 276);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "About";
-            this.button1.UseVisualStyleBackColor = true;
+            this.aboutButton.Location = new System.Drawing.Point(223, 276);
+            this.aboutButton.Name = "aboutButton";
+            this.aboutButton.Size = new System.Drawing.Size(169, 23);
+            this.aboutButton.TabIndex = 4;
+            this.aboutButton.Text = "About";
+            this.aboutButton.UseVisualStyleBackColor = true;
+            this.aboutButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // HomeScreen
             // 
@@ -99,7 +100,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(634, 311);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.aboutButton);
             this.Controls.Add(this.ingredientButton);
             this.Controls.Add(this.storeButton);
             this.Controls.Add(this.groceryButton);
@@ -121,6 +122,6 @@
         private System.Windows.Forms.Button groceryButton;
         private System.Windows.Forms.Button storeButton;
         private System.Windows.Forms.Button ingredientButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button aboutButton;
     }
 }

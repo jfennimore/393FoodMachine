@@ -33,5 +33,10 @@ namespace _393_Food_Machine.Views
         {
             (new StoreList()).Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            (new AboutPage()).Show();
+        }
     }
 }
