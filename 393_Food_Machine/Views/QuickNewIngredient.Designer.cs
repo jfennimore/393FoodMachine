@@ -38,6 +38,8 @@
             // 
             // newCategoryBox
             // 
+            this.newCategoryBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.newCategoryBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.newCategoryBox.FormattingEnabled = true;
             this.newCategoryBox.Location = new System.Drawing.Point(364, 49);
             this.newCategoryBox.Name = "newCategoryBox";
@@ -57,6 +59,8 @@
             // 
             // newIngredientUnit
             // 
+            this.newIngredientUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.newIngredientUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.newIngredientUnit.FormattingEnabled = true;
             this.newIngredientUnit.Location = new System.Drawing.Point(242, 49);
             this.newIngredientUnit.Name = "newIngredientUnit";

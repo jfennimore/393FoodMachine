@@ -94,7 +94,7 @@ namespace _393_Food_Machine
         {
             bool isNewRecipe = false;
 
-            if (indivRecipe == null)
+            if (indivRecipe == null || indivRecipe.Equals(dummyRecipe))
             {
                 //Create a dummy recipe- all of this data is about to be written over anyway.
                 isNewRecipe = true;
@@ -293,6 +293,12 @@ namespace _393_Food_Machine
         {
             newIngredientName.Text = ingr.name;
             newIngredientUnit.Text = Models.FieldValidator.getComboName(typeof(Ingredient.measurementUnits),ingr.unit);
+        }
+
+        //So that the QuickNewIngredient can trigger the new ingredient to be added.
+        public void addNewIngredient()
+        {
+            newIngrButton_Click(new object(), new EventArgs());
         }
     }
 }

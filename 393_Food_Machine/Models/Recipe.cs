@@ -66,7 +66,7 @@ namespace _393_Food_Machine
             int prepTime, DateTime dateAdded, 
             int numServings, List<Tuple<Ingredient, double, Ingredient.measurementUnits>> ingredientList)
         {
-            //this.id =
+            this.uri = "";
             this.name = name; 
             this.description = description;
             this.category = category;
