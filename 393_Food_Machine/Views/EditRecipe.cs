@@ -70,7 +70,7 @@ namespace _393_Food_Machine
             foreach (Tuple<Ingredient, double, Ingredient.measurementUnits> ingredient in indivRecipe.ingredientList)
             {
                 String unitName = Models.FieldValidator.getComboName(typeof(Ingredient.measurementUnits), ingredient.Item3);
-                ingredientListBox.Items.Add(String.Format("{0}\t\t{1} {2}",
+                ingredientListBox.Items.Add(String.Format("{0,-20}{1} {2}",
                     ingredient.Item1.name,
                     ingredient.Item2,
                     unitName));
