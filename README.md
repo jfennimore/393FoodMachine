@@ -1,10 +1,13 @@
 # 393FoodMachine
 
 FoodMachine Desktop Client
+
 Joe Fennimore
+
 jrf118@case.edu
 
 See the Food Machine API repo here: https://github.com/ParceledTongue/food-machine-api
+
 That work was done by Zach Palumbo!
 
 ## Desktop Client
